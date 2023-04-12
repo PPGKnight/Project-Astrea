@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Player : Creature
 {
-    private void Awake()
+    public void Stats()
     {
-        GameManager.Instance.party.Add(this);
+        //GameManager.Instance.party.Add(this);
+        base.UpdateStats();
+    }
+
+    public void UpdateMyStats()
+    {
         base.UpdateStats();
     }
 }

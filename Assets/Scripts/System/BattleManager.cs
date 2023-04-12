@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public enum BattleState
     {
@@ -9,19 +10,32 @@ public enum BattleState
         Victory,
         Defeat
     }
-public class BattleManager : ScriptableObject
+public class BattleManager : MonoBehaviour
 {
+    private List<Player> allies;
+    private List<Enemy> enemies;
+    private List<Creature> queue;
+
     private BattleState battleState;
 
-    public List<Player> allies = new List<Player>();
-    public List<GameObject> enemies = new List<GameObject>();
-    private List<Creature> queue = new List<Creature>();
+    [SerializeField]
+    private BattleData battleData;
+    [SerializeField]
+    private Canvas _battleUI;
+    [SerializeField]
+    private GameObject _characterPanel;
 
-    public void Battle()
+    private void Awake()
     {
+        queue = new List<Creature>();
+        Setup();
+    }
+    public void Setup()
+    {
+        this.allies = battleData.allies;
+        this.enemies = battleData.enemies;
         GameManager.Instance.worldTime = 0;
         battleState = BattleState.Setup;
-        Debug.Log("Walka wczytana pomyœlnie");
         SetupArena();
     }
 
@@ -29,31 +43,40 @@ public class BattleManager : ScriptableObject
     {
         if (battleState != BattleState.Setup) return;
         sbyte index = 1;
-        foreach(Player player in allies)
+        foreach (Player player in allies)
         {
-            GameObject temp = GameObject.Find("Ally"+index);
-            //Instantiate(player, temp.transform);
+            GameObject temp = GameObject.Find("Ally" + index);
+            GameObject p = Instantiate(GameManager.Instance.entity[player.Name], temp.transform);
+            p.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
+            p.transform.transform.localScale = new Vector3(1f, 2f, 1f);
+            p.transform.parent = temp.transform;
             queue.Add(player);
+
+            #region AllyUI
+            GameObject p_characterPanel = Instantiate(_characterPanel, _battleUI.transform);
+            p_characterPanel.transform.SetParent(_battleUI.transform);
+
+            UpdateInfo uinfo = p_characterPanel.GetComponent<UpdateInfo>();
+            player.Stats();
+            uinfo.SetInfo(player.Name, player.Level, player.CurrentHP, player.MaxHP, player.CurrentMana, player.MaxMana);
+            #endregion
+
             index++;
         }
         index = 1;
-        foreach(GameObject enemy in enemies)
+        foreach(Enemy enemy in enemies)
         {
             GameObject temp = GameObject.Find("Enemy" + index);
-            Debug.Log(temp);
-            //Instantiate(enemy, new Vector3(-8f - (index * 3), 101f, 8f - (index * 3)), Quaternion.identity);
-            //var e = Instantiate(enemy, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
-            var e = Instantiate(enemy, temp.transform);
+            GameObject e = Instantiate(GameManager.Instance.entity[enemy.Name], temp.transform);
             e.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
-            //e.transform.parent = temp.transform;
-            //e.transform.position.y = 0f;
-            queue.Add(enemy.GetComponent<Enemy>());
+            e.transform.parent = temp.transform;
+            queue.Add(enemy);
             index++;
         }
-        queue.Sort((x,y) => (y.Initiative).CompareTo(x.Initiative));
-        foreach(var q in queue)
-            Debug.Log(q.Name + ", " + q.Initiative);
+        
     }
+
+
 
     
 }

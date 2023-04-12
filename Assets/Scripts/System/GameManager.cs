@@ -6,14 +6,19 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    private BattleManager _battleManager;
-    public int worldTime = 1;
-    public List<Player> party;
 
     [SerializeField]
-    private GameObject player;
+    BattleData _battleData;
+
+    public int worldTime = 1;
+
+    public Dictionary<string, GameObject> entity;
+
     [SerializeField]
-    private GameObject playerCam;
+    private Player player;
+
+    public List<Player> party;
+    public PlayerPositionSO playerPosition;
 
     public static GameManager Instance { 
         get { return _instance; } 
@@ -28,30 +33,32 @@ public class GameManager : MonoBehaviour
         else
             Destroy(this.gameObject);
 
+        entity = new Dictionary<string, GameObject>()
+        {
+            {"Gracz", Resources.Load<GameObject>("Prefabs/PlayerModel")},
+            {"Big Bad", Resources.Load<GameObject>("Prefabs/Enemy")}
+        };
+        party.Add(Resources.Load<Player>("Prefabs/PlayerModel"));
+        player.Stats();
         DontDestroyOnLoad(this);
-        Instantiate(player);
-        Instantiate(playerCam);
-
-        SceneManager.LoadScene("Battle Arena", LoadSceneMode.Additive);
     }
 
 
     public void BattleStart(Enemy[] enemy)
     {
-        Debug.Log("Wczytujê walkê");
-        _battleManager = ScriptableObject.CreateInstance<BattleManager>();
+        _battleData.allies.Clear();
+        _battleData.enemies.Clear();
+
         foreach(Player p in party)
         {
-           _battleManager.allies.Add(p);
+           _battleData.allies.Add(p);
         }
         foreach (Enemy e in enemy)
         {
-            _battleManager.enemies.Add(e.gameObject);
+            _battleData.enemies.Add(e);
         }
         
-        //SceneManager.LoadScene("Battle Arena", LoadSceneMode.Additive);
-        _battleManager.Battle();
-
+        SceneManager.LoadScene("Battle Arena");
     }
 
 
