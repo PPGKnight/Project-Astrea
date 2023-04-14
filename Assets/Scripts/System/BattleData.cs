@@ -6,5 +6,4 @@ public class BattleData : ScriptableObject
 {
     public List<Player> allies;
     public List<Enemy> enemies;
-    public string returnToScene;
 }

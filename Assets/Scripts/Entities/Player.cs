@@ -10,6 +10,11 @@ public class Player : Creature
         base.UpdateStats();
     }
 
+    public GameObject GetPosition()
+    {
+        return gameObject.transform.parent.gameObject;
+    }
+
     public void UpdateMyStats()
     {
         base.UpdateStats();

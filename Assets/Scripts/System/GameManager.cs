@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     BattleData _battleData;
 
+    [SerializeField]
+    PlayerPositionSO _playerPositionSO;
+
     public int worldTime = 1;
 
     public Dictionary<string, GameObject> entity;
@@ -18,7 +21,6 @@ public class GameManager : MonoBehaviour
     private Player player;
 
     public List<Player> party;
-    public PlayerPositionSO playerPosition;
 
     public static GameManager Instance { 
         get { return _instance; } 
@@ -43,11 +45,28 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+    private void FindPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("MainPlayer").GetComponent<Player>();
+    }
+
+    public void ReturnToScene()
+    {
+        SceneManager.LoadScene(_playerPositionSO.returnToScene);
+        
+        //MeshRenderer o = GameObject.Find("Encounter").GetComponent<MeshRenderer>();
+        //if (won) o.material.color = Color.green;
+        //else o.material.color = Color.red;
+        player.transform.position = _playerPositionSO.GetPlayerPosition();
+        player.transform.rotation = _playerPositionSO.GetPlayerRotation();
+        player.transform.localScale = _playerPositionSO.GetPlayerLocalScale();
+    }
 
     public void BattleStart(Enemy[] enemy)
     {
         _battleData.allies.Clear();
         _battleData.enemies.Clear();
+        _playerPositionSO.returnToScene = "";
 
         foreach(Player p in party)
         {
@@ -57,7 +76,9 @@ public class GameManager : MonoBehaviour
         {
             _battleData.enemies.Add(e);
         }
-        
+        GameObject _p = player.GetPosition();
+        _playerPositionSO.SetPosition(_p.transform.position, _p.transform.rotation, _p.transform.localScale);
+        _playerPositionSO.returnToScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Battle Arena");
     }
 

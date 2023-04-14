@@ -154,10 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleData: {fileID: 11400000, guid: f63e6fc56128b014b8065cd4664db2ef, type: 2}
+  _playerPositionSO: {fileID: 11400000, guid: 78a851ff247933b489d5d19e6746bc56, type: 2}
   worldTime: 1
   player: {fileID: 379042752}
   party: []
-  playerPosition: {fileID: 11400000, guid: 78a851ff247933b489d5d19e6746bc56, type: 2}
 --- !u!4 &15954131
 Transform:
   m_ObjectHideFlags: 0
@@ -4283,6 +4283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088aae86af1ba404d9ca6705551c15ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  encounterID: 0
   enemies:
   - {fileID: 3613461070001785044, guid: 99bc1aae1806e7349b2fb6121fc62e02, type: 3}
   - {fileID: 3613461070001785044, guid: 99bc1aae1806e7349b2fb6121fc62e02, type: 3}
@@ -4321,7 +4322,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1e6f43479b26a9d40a1af2bef9579eff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5956,12 +5957,12 @@ PrefabInstance:
     - target: {fileID: 8726117212044031617, guid: 943a00d772ca3b546b2db0565c75f144,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000015389857
+      value: -0.000000015389855
       objectReference: {fileID: 0}
     - target: {fileID: 8726117212044031617, guid: 943a00d772ca3b546b2db0565c75f144,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000007694929
+      value: 0.000000007694927
       objectReference: {fileID: 0}
     - target: {fileID: 8726117212593545945, guid: 943a00d772ca3b546b2db0565c75f144,
         type: 3}
@@ -6041,12 +6042,12 @@ PrefabInstance:
     - target: {fileID: 8726117213825449600, guid: 943a00d772ca3b546b2db0565c75f144,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -6.3890636e-16
+      value: 3.1945318e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8726117213825449600, guid: 943a00d772ca3b546b2db0565c75f144,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -2.801557e-16
+      value: -3.0401135e-16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943a00d772ca3b546b2db0565c75f144, type: 3}

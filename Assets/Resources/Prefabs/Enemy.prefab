@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3613461070001785044}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,6 +121,9 @@ MonoBehaviour:
   SlotsTaken: 1
   HadTurn: 0
   SpeedBonus: 0
+  IsGuarded: 0
+  creatureType: 1
+  tracker: 0
   Strength: 7
   Dexterity: 6
   Intelligence: 7

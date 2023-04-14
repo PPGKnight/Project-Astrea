@@ -130,16 +130,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Gracz
   Level: 1
-  CurrentHP: 0
-  MaxHP: 0
-  CurrentMana: 0
-  MaxMana: 0
+  CurrentHP: 41
+  MaxHP: 41
+  CurrentMana: 30
+  MaxMana: 30
   IsDead: 0
   SlotsTaken: 1
   HadTurn: 0
   SpeedBonus: 0
+  IsGuarded: 0
+  creatureType: 0
+  tracker: 0
   Strength: 11
   Dexterity: 14
   Intelligence: 10
   Constitution: 15
-  Initiative: 0
+  Initiative: 2
