@@ -117,15 +117,15 @@ MonoBehaviour:
   MaxHP: 0
   CurrentMana: 0
   MaxMana: 0
-  IsDead: 0
   SlotsTaken: 1
   HadTurn: 0
   SpeedBonus: 0
   IsGuarded: 0
   creatureType: 1
   tracker: 0
-  Strength: 7
+  _isDead: 0
+  Strength: 5
   Dexterity: 6
   Intelligence: 7
-  Constitution: 3
+  Constitution: 25
   Initiative: 0

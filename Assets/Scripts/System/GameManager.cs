@@ -53,13 +53,10 @@ public class GameManager : MonoBehaviour
     public void ReturnToScene()
     {
         SceneManager.LoadScene(_playerPositionSO.returnToScene);
-        
-        //MeshRenderer o = GameObject.Find("Encounter").GetComponent<MeshRenderer>();
-        //if (won) o.material.color = Color.green;
-        //else o.material.color = Color.red;
-        player.transform.position = _playerPositionSO.GetPlayerPosition();
-        player.transform.rotation = _playerPositionSO.GetPlayerRotation();
-        player.transform.localScale = _playerPositionSO.GetPlayerLocalScale();
+        if (player == null) FindPlayer();
+        player.gameObject.transform.position = _playerPositionSO.GetPlayerPosition();
+        player.gameObject.transform.rotation = _playerPositionSO.GetPlayerRotation();
+        player.gameObject.transform.localScale = _playerPositionSO.GetPlayerLocalScale();
     }
 
     public void BattleStart(Enemy[] enemy)

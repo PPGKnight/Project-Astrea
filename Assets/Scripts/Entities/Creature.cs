@@ -24,6 +24,10 @@ public class Creature : MonoBehaviour
     public float tracker = 0;
     [SerializeField]
     private bool _isDead = false;
+    #nullable enable
+    [HideInInspector]
+    public UpdateInfo? entityInfo;
+    #nullable disable
     #endregion
 
     #region Attributes
@@ -53,7 +57,7 @@ public class Creature : MonoBehaviour
     }
     public int Attack()
     {
-        return (Strength * 2) + Dexterity;
+        return Random.Range(Mathf.FloorToInt((Strength + Dexterity) / 3), (Strength * 2) + Dexterity);
     }
 
     public void Heal(int h)
