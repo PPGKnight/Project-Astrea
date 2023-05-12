@@ -64,6 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: b943994659056cc4fa3101529920f1a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -134,13 +135,14 @@ MonoBehaviour:
   MaxHP: 41
   CurrentMana: 30
   MaxMana: 30
-  IsDead: 0
   SlotsTaken: 1
   HadTurn: 0
   SpeedBonus: 0
   IsGuarded: 0
   creatureType: 0
   tracker: 0
+  _isDead: 0
+  entityInfo: {fileID: 0}
   Strength: 11
   Dexterity: 14
   Intelligence: 10

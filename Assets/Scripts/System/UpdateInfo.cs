@@ -16,7 +16,7 @@ public class UpdateInfo : MonoBehaviour
 
     public void SetInfo(string charName, int charLv, int charCHP, int charMHP, int charCM, int charMM)
     {
-        Debug.Log("Zosta쿮m wykonany A");
+        //Debug.Log("Zosta쿮m wykonany A");
         this._characterName.text = charName;
         this._characterLevel.text = $"Lv. {charLv}";
         this._characterSliderHP.maxValue = charMHP;
@@ -29,7 +29,7 @@ public class UpdateInfo : MonoBehaviour
 
     public void SetEnemyInfo(string charName, int charCHP, int charMHP)
     {
-        Debug.Log("Zosta쿮m wykonany");
+        //Debug.Log("Zosta쿮m wykonany");
         this._characterName.text = charName;
         this._characterSliderHP.maxValue = charMHP;
         this._characterSliderHP.value = charCHP;
@@ -37,7 +37,7 @@ public class UpdateInfo : MonoBehaviour
 
     public void UpdateHP(int c)
     {
-        Debug.Log($"Set to {c}");
+        //Debug.Log($"Set to {c}");
         this._characterSliderHP.value = c;
     }
 }

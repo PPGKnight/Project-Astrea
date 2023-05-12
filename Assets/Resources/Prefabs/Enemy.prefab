@@ -63,6 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 4c0333c23d2b01942aa461bc36e9247b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -124,6 +125,7 @@ MonoBehaviour:
   creatureType: 1
   tracker: 0
   _isDead: 0
+  entityInfo: {fileID: 0}
   Strength: 5
   Dexterity: 6
   Intelligence: 7

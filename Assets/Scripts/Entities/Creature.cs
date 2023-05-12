@@ -87,4 +87,16 @@ public class Creature : MonoBehaviour
         }
     }
 
+
+    private void OnMouseOver()
+    {
+        Material m = GetComponent<Renderer>().material;
+        m.SetFloat("_Alpha", 255);
+    }
+
+    private void OnMouseExit()
+    {
+        Material m = GetComponent<Renderer>().material;
+        m.SetFloat("_Alpha", 0);
+    }
 }

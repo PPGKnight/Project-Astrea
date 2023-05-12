@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class FloatingNumbers : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class FloatingNumbers : MonoBehaviour
     private Vector3 targetPos;
     private float timer;
 
-    // Start is called before the first frame update
     void Start()
     {
         iniPos = transform.position;
@@ -22,14 +22,27 @@ public class FloatingNumbers : MonoBehaviour
         float dir = Random.rotation.eulerAngles.z;
         float dist = Random.Range(minDist, maxDist);
         targetPos = iniPos + (Quaternion.Euler(0,0, dir) * new Vector3(dist, dist, 0f));
-        //targetPos.y = iniPos.y + dist;
+        targetPos.y = iniPos.y + dist;
 
         //transform.LookAt(2 * transform.position - Camera.main.transform.position);
         transform.Rotate(25f, -90f, 0f);
         transform.localScale = Vector3.zero;
+
+        //TweenMove();
     }
 
-    // Update is called once per frame
+    void TweenMove()
+    {
+        transform.DOScale(Vector3.one, lifetime);
+        transform.DOLocalMoveY(iniPos.y - 1f, lifetime / 2).SetEase(Ease.InOutBounce).OnComplete(() =>
+        {
+            transform.DOLocalMoveY(iniPos.y + Random.Range(minDist, maxDist), lifetime / 2).SetEase(Ease.InOutSine).OnComplete(() =>
+            {
+                Destroy(gameObject);
+            });
+        });
+
+    }
     void Update()
     {
         timer += Time.deltaTime;

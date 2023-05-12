@@ -14,7 +14,7 @@ public class EnemyEncounter : MonoBehaviour
 
         if (other.gameObject.CompareTag("MainPlayer"))
         {
-            GameManager.Instance.BattleStart(enemies);
+            GameManager.Instance.BattleStart(enemies, encounterID);
         }
     }
 }

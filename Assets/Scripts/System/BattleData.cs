@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "TestAsset/Battle Data")]
 public class BattleData : ScriptableObject
 {
+    public int? eID;
     public List<Player> allies;
     public List<Enemy> enemies;
 }
