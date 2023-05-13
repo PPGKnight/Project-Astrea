@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyEncounter : MonoBehaviour
 {
+    public int encounterID;
     public Enemy[] enemies;
 
     [SerializeField]
@@ -13,9 +14,7 @@ public class EnemyEncounter : MonoBehaviour
 
         if (other.gameObject.CompareTag("MainPlayer"))
         {
-            var ob = other.GetComponentInParent<GetPosition>();
-            ob.GetPositiotSO();
-            GameManager.Instance.BattleStart(enemies);
+            GameManager.Instance.BattleStart(enemies, encounterID);
         }
     }
 }

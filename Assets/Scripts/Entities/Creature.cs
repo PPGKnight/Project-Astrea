@@ -1,5 +1,10 @@
 using UnityEngine;
 
+enum CreatureType
+{
+    Ally,
+    Enemy
+}
 public class Creature : MonoBehaviour
 {
     #region CreatureInfo
@@ -9,10 +14,20 @@ public class Creature : MonoBehaviour
     public int MaxHP;
     public int CurrentMana;
     public int MaxMana;
-    public bool IsDead = false;
     public sbyte SlotsTaken = 1;
     public bool HadTurn = false;
     public int SpeedBonus = 0;
+    [SerializeField]
+    private bool IsGuarded = false;
+    [SerializeField]
+    private CreatureType creatureType;
+    public float tracker = 0;
+    [SerializeField]
+    private bool _isDead = false;
+    #nullable enable
+    [HideInInspector]
+    public UpdateInfo? entityInfo;
+    #nullable disable
     #endregion
 
     #region Attributes
@@ -35,5 +50,53 @@ public class Creature : MonoBehaviour
         Initiative = Mathf.RoundToInt(((Dexterity - 10)/2)+SpeedBonus);
         CurrentHP = MaxHP;
         CurrentMana = MaxMana;
+    }
+    public string GetCreatureType()
+    {
+        return this.creatureType.ToString();
+    }
+    public int Attack()
+    {
+        return Random.Range(Mathf.FloorToInt((Strength + Dexterity) / 3), (Strength * 2) + Dexterity);
+    }
+
+    public void Heal(int h)
+    {
+        this.CurrentHP += h;
+        if (this.CurrentHP > this.MaxHP) this.CurrentHP = this.MaxHP;
+    }
+
+    public void Guard()
+    {
+        IsGuarded = true;
+    }
+
+    public bool IsDead()
+    {
+        return this._isDead;
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        this.CurrentHP -= IsGuarded ? Mathf.RoundToInt(dmg / 2) : dmg;
+        IsGuarded = false;
+
+        if(this.CurrentHP <= 0)
+        {
+            this._isDead = true;
+        }
+    }
+
+
+    private void OnMouseOver()
+    {
+        Material m = GetComponent<Renderer>().material;
+        m.SetFloat("_Alpha", 255);
+    }
+
+    private void OnMouseExit()
+    {
+        Material m = GetComponent<Renderer>().material;
+        m.SetFloat("_Alpha", 0);
     }
 }

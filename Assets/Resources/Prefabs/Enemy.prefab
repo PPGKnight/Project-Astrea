@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3613461070001785044}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 4c0333c23d2b01942aa461bc36e9247b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -117,12 +118,16 @@ MonoBehaviour:
   MaxHP: 0
   CurrentMana: 0
   MaxMana: 0
-  IsDead: 0
   SlotsTaken: 1
   HadTurn: 0
   SpeedBonus: 0
-  Strength: 7
+  IsGuarded: 0
+  creatureType: 1
+  tracker: 0
+  _isDead: 0
+  entityInfo: {fileID: 0}
+  Strength: 5
   Dexterity: 6
   Intelligence: 7
-  Constitution: 3
+  Constitution: 25
   Initiative: 0
