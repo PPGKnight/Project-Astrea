@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a1ddbd2a3235a4a8172b93b26ad681, type: 3}
+  m_Name: PlayerPosition
+  m_EditorClassIdentifier: 
+  playerCharacterPosition: {x: -8.409983, y: 2.0333333, z: 7.2588735}
+  playerCharacterRotation: {x: -0, y: -0.21312262, z: -0, w: 0.9770255}
+  playerCharacterScale: {x: 1, y: 2, z: 1}
+  returnToScene: Testing Ground
