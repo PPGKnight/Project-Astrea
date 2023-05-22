@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 enum CreatureType
 {
@@ -24,6 +25,8 @@ public class Creature : MonoBehaviour
     public float tracker = 0;
     [SerializeField]
     private bool _isDead = false;
+    public Sprite avatar;
+
     #nullable enable
     [HideInInspector]
     public UpdateInfo? entityInfo;

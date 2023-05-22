@@ -8,6 +8,7 @@ TagManager:
   - MainPlayer
   - Enemy
   - Ally
+  - PlayerCamera
   layers:
   - Default
   - TransparentFX

@@ -56,9 +56,14 @@ public class FloatingNumbers : MonoBehaviour
         transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, Mathf.Sin(timer / lifetime));
     }
 
-    public void SetText(int damage, Color color)
+    public void SetText(int _damage, Color _color)
     {
-        text.text = damage.ToString();
-        text.color = color;
+        text.text = _damage.ToString();
+        text.color = _color;
+    }
+    public void SetText(string _text, Color _color)
+    {
+        text.text = _text;
+        text.color = _color;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public float movement_speed, rotation_speed;
+    [SerializeField]
     private PlayerInput input;
     private InputAction followAction;
     private InputAction walkAction;
@@ -17,14 +18,17 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 cameraForward;
 
-
-    NavMeshAgent navPlayer;
+    [SerializeField]
+    private NavMeshAgent navPlayer;
 
     private void Awake()
     {
-        navPlayer = GetComponent<NavMeshAgent>();
+        navPlayer = null;
+        input = null;
 
+        navPlayer = GetComponent<NavMeshAgent>();
         input = GetComponent<PlayerInput>();
+
         followAction = input.actions["Follow"];
         walkAction = input.actions["Walk"];
         runAction = input.actions["Run"];

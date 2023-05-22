@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public List<Player> party;
 
+    private PartyManager _partyManager;
+
     [SerializeField]
     private GameObject[] encounters;
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
 
         Populate();
         party.Add(Resources.Load<Player>("Prefabs/PlayerModel"));
+        _partyManager.SetActiveBar(party.Count);
 
         encounters = GameObject.FindGameObjectsWithTag("Encounter");
 
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
         {
             _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), _playerPositionSO.GetPlayerPosition(), Quaternion.identity);
             player = _player.GetComponent<Player>();
+            _partyManager = _player.GetComponent<PartyManager>();
+            _partyManager.SetActiveMinimap(true);
         }
         await Task.Run(() =>
         {
@@ -88,12 +93,12 @@ public class GameManager : MonoBehaviour
     public void ReturnToScene()
     {
         SceneManager.LoadScene(_playerPositionSO.returnToScene);
+        worldTime = 1;
         //_ = LoadPlayer();
     }
 
     public void Check()
-    {
-        
+    {   
         Debug.Log($"Encounter_{_battleData.eID}");
         GameObject.Find($"Encounter_{_battleData.eID}").SetActive(false);
     }
