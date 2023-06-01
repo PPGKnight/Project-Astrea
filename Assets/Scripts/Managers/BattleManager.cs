@@ -33,6 +33,7 @@ public class BattleManager : MonoBehaviour
     private List<Player> allies;
     private List<Enemy> enemies;
     private List<Creature> queue;
+    private Queue<Creature> _queue;
 
     private BattleState _battleState;
     private Turn _turn;
@@ -54,6 +55,7 @@ public class BattleManager : MonoBehaviour
     private GameObject _enemyPanel;
     [SerializeField]
     private Canvas _battleOptions;
+    private Creature creatureThisTurn;
 
     #region Setup
     private void Awake()
@@ -90,7 +92,7 @@ public class BattleManager : MonoBehaviour
             
             p_characterPanel.transform.localPosition = new Vector3(1075f - (index*325f), -420f, 0f);
             p.entityInfo = p_characterPanel.GetComponent<UpdateInfo>();
-            p.entityInfo.SetInfo(p.Name, p.Level, p.CurrentHP, p.MaxHP, p.CurrentMana, p.MaxMana);
+            p.entityInfo.SetInfo(p.Name, p.Level, p.CurrentHP, p.MaxHP);
             #endregion
             index++;
         }
@@ -112,8 +114,16 @@ public class BattleManager : MonoBehaviour
             index++;
         }
         Debug.Log("Jeszcze ¿yjê #1");
+
+        foreach (Creature q in queue)
+            q.SetInitiative();
+
+        queue.Sort((x, y) => y.InitiativeThisFight.CompareTo(x.InitiativeThisFight));
+        _queue = new Queue<Creature>(queue);
+
         CreateTokens();
         _battleState = BattleState.Battle;
+        StartNextTurn();
     }
 
     private void CreateTokens()
@@ -129,6 +139,7 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region WorkingWithDelay
+    /*
     void Fight()
     {
         if (isSomeonesTurn) return;
@@ -149,6 +160,29 @@ public class BattleManager : MonoBehaviour
             }
         }
         foreach (Creature c in queue) c.HadTurn = false;
+    }
+    */
+    
+    public void StartNextTurn()
+    {
+        if(!isSomeonesTurn && _queue.Count > 0)
+        {
+            ProgressTurn();
+            creatureThisTurn = _queue.Dequeue();
+            Debug.Log($"Tura {creatureThisTurn.Name}");
+            if (creatureThisTurn.GetCreatureType() == "Enemy")
+            {
+                _turn = Turn.Enemy;
+                DoEnemyTurn(creatureThisTurn);
+            }
+            else
+                AllyTurn();
+        }
+        else if(_queue.Count <= 0)
+        {
+            _queue = new Queue<Creature>(queue);
+            StartNextTurn();
+        }
     }
 
     public void SetAction(string s)
@@ -193,7 +227,7 @@ public class BattleManager : MonoBehaviour
         if (_battleState == BattleState.Battle)
         {
             CheckDeaths();
-            if (!isSomeonesTurn) Fight();
+            //if (!isSomeonesTurn) Fight();
             if (isSomeonesTurn && _turn == Turn.Ally && action.Length <= 0) _turnOptions = TurnOptions.Options;
             if ((_turnOptions == TurnOptions.Options || _turnOptions == TurnOptions.Target))
             {
@@ -225,8 +259,9 @@ public class BattleManager : MonoBehaviour
 
     void ManualCheck()
     {
-        Creature c = queue.Where(t => t.tracker >= 100f).ToList()[0];
-        DoTurn(c);
+        //Creature c = queue.Where(t => t.tracker >= 100f).ToList()[0];
+        DoTurn(creatureThisTurn);
+        StartNextTurn();
     }
 
     void AllyTurn()
@@ -325,6 +360,7 @@ public class BattleManager : MonoBehaviour
         c.tracker = 0;
         _turn = Turn.Idle;
         isSomeonesTurn = false;
+        StartNextTurn();
     }
     #endregion
 }

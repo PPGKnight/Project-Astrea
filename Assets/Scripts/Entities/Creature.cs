@@ -13,8 +13,6 @@ public class Creature : MonoBehaviour
     public int Level;
     public int CurrentHP;
     public int MaxHP;
-    public int CurrentMana;
-    public int MaxMana;
     public sbyte SlotsTaken = 1;
     public bool HadTurn = false;
     public int SpeedBonus = 0;
@@ -39,6 +37,7 @@ public class Creature : MonoBehaviour
     public int Intelligence;
     public int Constitution;
     public int Initiative;
+    public int InitiativeThisFight;
     #endregion
 
     private void Awake()
@@ -49,14 +48,16 @@ public class Creature : MonoBehaviour
     public virtual void UpdateStats()
     {
         MaxHP = (Constitution * 2 + Strength) * Level;
-        MaxMana = Intelligence * 3 * Level;
-        Initiative = Mathf.RoundToInt(((Dexterity - 10)/2)+SpeedBonus);
+        Initiative = (Dexterity - 10) / 2;
         CurrentHP = MaxHP;
-        CurrentMana = MaxMana;
     }
     public string GetCreatureType()
     {
         return this.creatureType.ToString();
+    }
+    public void SetInitiative()
+    {
+        InitiativeThisFight = Random.Range(1, 21) + Initiative;
     }
     public int Attack()
     {

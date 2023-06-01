@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class InitiativeTrackerManager : MonoBehaviour
 {
@@ -10,14 +11,15 @@ public class InitiativeTrackerManager : MonoBehaviour
     public List<Creature> characters;
     private List<Creature> aliveCharacters;
     public List<Image> tokens = new List<Image>();
+    bool UpdateTokens = false;
 
     private float initiativeBarWidth;
 
-    void Start()
+    void SetIniBar()
     {
+        int size = aliveCharacters.Count <= 5 ? aliveCharacters.Count : 5;
+        initiativeBar.rectTransform.sizeDelta = new Vector2(size * 100f, 100f);
         initiativeBarWidth = initiativeBar.rectTransform.sizeDelta.x;
-
-        UpdateTokensPosition();
     }
 
     private void OnEnable()
@@ -33,14 +35,20 @@ public class InitiativeTrackerManager : MonoBehaviour
     public void CreateTokens(List<Creature> _creatures)
     {
         characters = new List<Creature>(_creatures);
-
         aliveCharacters = new List<Creature>(characters);
+        SetIniBar();
+        int counter = 1;
         foreach (Creature c in aliveCharacters)
         {
-            Image token = Instantiate(characterImage, initiativeBar.transform);
+            Image token = Instantiate(characterImage,initiativeBar.transform);
+            Vector3 r = new Vector3(100f * counter, 0f, 0f);
+            token.rectTransform.anchoredPosition = r;
             token.sprite = c.avatar;
+            counter++;
             tokens.Add(token);
         }
+
+        //UpdateTokensPosition();
     }
 
     public void RemoveToken()
@@ -57,7 +65,7 @@ public class InitiativeTrackerManager : MonoBehaviour
         }
 
     }
-
+    /*
     void UpdateTokensPosition()
     {
         for (int i = 0; i < aliveCharacters.Count; i++)
@@ -67,4 +75,19 @@ public class InitiativeTrackerManager : MonoBehaviour
             tokens[i].rectTransform.anchoredPosition = new Vector2(tokenPosition, 0f);
         }
     }
+    */
+
+    void UpdateTokensPosition()
+    {
+        for (int i = 0; i < aliveCharacters.Count; i++)
+        {
+            RectTransform r = tokens[i].rectTransform;
+            Vector3 newPosition = new Vector3(r.anchoredPosition.x - 100f, 0f, 0f);
+            r.anchoredPosition = newPosition;
+
+            if (r.anchoredPosition.x < 0f)
+                r.anchoredPosition = new Vector3((aliveCharacters.Count - 1) * 100f, 0f);
+        }
+    }
+
 }
