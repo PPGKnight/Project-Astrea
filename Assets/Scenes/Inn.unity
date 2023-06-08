@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 732d3ab1bab1e1a4780faaa2ab9b9693, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 35164d7d479c4f748a947a58916d7b15, type: 2}
 --- !u!1001 &5078392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28339,6 +28339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trans: 0
+  _action: 0
   _previousSceneName: Inn
   _nextSceneName: HendleyVillage
 --- !u!65 &1324764637
@@ -28375,7 +28376,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1332001980
 GameObject:
@@ -34021,7 +34022,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh45906
+  m_Name: pb_Mesh54768
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
