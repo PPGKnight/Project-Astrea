@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!1 &4301384663073895730
+=======
+--- !u!1 &6868062743212785729
+>>>>>>> LevelDesign
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +12,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 4301384663073895728}
   - component: {fileID: 4301384663073895729}
   - component: {fileID: 4301384663073895735}
+=======
+  - component: {fileID: 6868062743212785731}
+  - component: {fileID: 6868062743212785730}
+  - component: {fileID: 6868062743212785732}
+>>>>>>> LevelDesign
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -18,13 +28,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &4301384663073895728
+=======
+--- !u!4 &6868062743212785731
+>>>>>>> LevelDesign
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 4301384663073895730}
+=======
+  m_GameObject: {fileID: 6868062743212785729}
+>>>>>>> LevelDesign
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.6779094, y: -4.585025, z: -1.0670605}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +51,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!114 &4301384663073895729
+=======
+--- !u!114 &6868062743212785730
+>>>>>>> LevelDesign
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 4301384663073895730}
+=======
+  m_GameObject: {fileID: 6868062743212785729}
+>>>>>>> LevelDesign
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4abbeccfbf3b464b9f62fb7fbfa58c8, type: 3}
@@ -51,11 +77,19 @@ MonoBehaviour:
   _player: {fileID: 0}
   party: []
   encounters: []
+<<<<<<< HEAD
 --- !u!81 &4301384663073895735
+=======
+--- !u!81 &6868062743212785732
+>>>>>>> LevelDesign
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 4301384663073895730}
+=======
+  m_GameObject: {fileID: 6868062743212785729}
+>>>>>>> LevelDesign
   m_Enabled: 1
