@@ -214,11 +214,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: pb_Mesh49106
-=======
   m_Name: pb_Mesh38804
->>>>>>> LevelDesign
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3546,10 +3542,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-<<<<<<< HEAD
-  m_SourcePrefab: {fileID: 100100000, guid: 7202134deeb59f94b816b84ba985caa1, type: 3}
---- !u!1001 &311136542
-=======
   m_SourcePrefab: {fileID: 100100000, guid: 8260c71c656d8e9408fc1a8c32ca1389, type: 3}
 --- !u!4 &273863079 stripped
 Transform:
@@ -3558,56 +3550,10 @@ Transform:
   m_PrefabInstance: {fileID: 273863078}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &289394182
->>>>>>> LevelDesign
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-<<<<<<< HEAD
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.6779094
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.585025
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.0670605
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-=======
     m_TransformParent: {fileID: 852949858}
     m_Modifications:
     - target: {fileID: 2727562668038817082, guid: 8260c71c656d8e9408fc1a8c32ca1389,
@@ -3666,39 +3612,20 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8949994971206705658, guid: 8260c71c656d8e9408fc1a8c32ca1389,
->>>>>>> LevelDesign
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4301384663073895728, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-=======
     - target: {fileID: 8949994971206705658, guid: 8260c71c656d8e9408fc1a8c32ca1389,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -172.999
       objectReference: {fileID: 0}
     - target: {fileID: 8949994971206705658, guid: 8260c71c656d8e9408fc1a8c32ca1389,
->>>>>>> LevelDesign
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 4301384663073895730, guid: 0ad4b731addcf3e44a113a8e91dc6b4b,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0ad4b731addcf3e44a113a8e91dc6b4b, type: 3}
-=======
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8260c71c656d8e9408fc1a8c32ca1389, type: 3}
 --- !u!4 &289394183 stripped
@@ -3877,7 +3804,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 350595123}
   m_PrefabAsset: {fileID: 0}
->>>>>>> LevelDesign
 --- !u!1 &365602140
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,11 +5663,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: pb_Mesh49038
-=======
   m_Name: pb_Mesh38594
->>>>>>> LevelDesign
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5899,79 +5821,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
-<<<<<<< HEAD
---- !u!1 &697467519
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 697467523}
-  - component: {fileID: 697467522}
-  - component: {fileID: 697467521}
-  - component: {fileID: 697467520}
-  m_Layer: 0
-  m_Name: RoadHendleyLoad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &697467520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697467519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6114c1dc9dc33de4aa427581ffa9afde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _trans: 1
-  _action: 0
-  _previousSceneName: RoadToHendley
-  _nextSceneName: HendleyVillage
---- !u!65 &697467521
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697467519}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &697467522
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697467519}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &697467523
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697467519}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -209.93, y: -4.64, z: -271.2011}
-  m_LocalScale: {x: 20, y: 1, z: 23.652}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
 --- !u!1001 &624451750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6312,7 +6161,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 685290221}
   m_PrefabAsset: {fileID: 0}
->>>>>>> LevelDesign
 --- !u!1 &709853921
 GameObject:
   m_ObjectHideFlags: 0
@@ -12069,13 +11917,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134935812}
-<<<<<<< HEAD
-  m_LocalRotation: {x: -0.17545335, y: 0.82420707, z: -0.39352947, w: -0.367469}
-  m_LocalPosition: {x: -218.97104, y: 17, z: -266.01617}
-=======
   m_LocalRotation: {x: 0.43087044, y: 0, z: 0, w: 0.9024138}
   m_LocalPosition: {x: -460.89078, y: 14.812325, z: -598.7352}
->>>>>>> LevelDesign
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12149,8 +11992,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< HEAD
-=======
 --- !u!1001 &1142878385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12491,18 +12332,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1178088088}
   m_PrefabAsset: {fileID: 0}
->>>>>>> LevelDesign
 --- !u!43 &1178700203
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: pb_Mesh48974
-=======
   m_Name: pb_Mesh38422
->>>>>>> LevelDesign
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15197,11 +15033,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: pb_Mesh48962
-=======
   m_Name: pb_Mesh38410
->>>>>>> LevelDesign
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19470,11 +19302,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: pb_Mesh49050
-=======
   m_Name: pb_Mesh38654
->>>>>>> LevelDesign
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20403,11 +20231,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_Name: pb_Mesh49120
-=======
   m_Name: pb_Mesh38846
->>>>>>> LevelDesign
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21656,79 +21480,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
-<<<<<<< HEAD
---- !u!1 &2103808484
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2103808488}
-  - component: {fileID: 2103808487}
-  - component: {fileID: 2103808486}
-  - component: {fileID: 2103808485}
-  m_Layer: 0
-  m_Name: RoadHendleyUnload
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2103808485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103808484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6114c1dc9dc33de4aa427581ffa9afde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _trans: 1
-  _action: 1
-  _previousSceneName: RoadToHendley
-  _nextSceneName: HendleyVillage
---- !u!65 &2103808486
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103808484}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2103808487
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103808484}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &2103808488
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103808484}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -225.03, y: -4.64, z: -271.2011}
-  m_LocalScale: {x: 10, y: 1, z: 23.652}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-=======
 --- !u!1001 &2072666854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21899,7 +21650,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2084055853}
   m_PrefabAsset: {fileID: 0}
->>>>>>> LevelDesign
 --- !u!1001 &5461450509825182526
 PrefabInstance:
   m_ObjectHideFlags: 0
