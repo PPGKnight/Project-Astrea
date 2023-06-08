@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a1ddbd2a3235a4a8172b93b26ad681, type: 3}
   m_Name: PlayerPosition
   m_EditorClassIdentifier: 
-  playerCharacterPosition: {x: -8.409983, y: 2.0333333, z: 7.2588735}
+  playerCharacterPosition: {x: -500.75, y: -5, z: -563.9}
   playerCharacterRotation: {x: -0, y: -0.21312262, z: -0, w: 0.9770255}
   playerCharacterScale: {x: 1, y: 2, z: 1}
   returnToScene: Testing Ground
