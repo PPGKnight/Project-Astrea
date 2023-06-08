@@ -12,6 +12,10 @@ public class PlayerPositionSO : ScriptableObject
     
     public string returnToScene;
 
+    public void SetOnlyPosition(Vector3 pos)
+    {
+        this.playerCharacterPosition = pos;
+    }
 
     public void SetPosition(Vector3 pos, Quaternion rot, Vector3 sca)
     {

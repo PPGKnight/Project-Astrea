@@ -17,11 +17,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 cameraForward;
 
-
+    [SerializeField]
     NavMeshAgent navPlayer;
 
     private void Awake()
     {
+        navPlayer = null;
         navPlayer = GetComponent<NavMeshAgent>();
 
         input = GetComponent<PlayerInput>();

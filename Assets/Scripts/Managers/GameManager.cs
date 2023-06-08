@@ -68,27 +68,9 @@ public class GameManager : MonoBehaviour
         });
         player.Stats();
     }
-    #region LoadPlayer
-    //private async Task LoadPlayer()
-    //{
-    //    await Task.Delay(2000);
-    //    _player = null;
-    //    player = null;
-    //    if (_player == null)
-    //    {
-    //        _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), new Vector3(0f, 0f, 0f), Quaternion.identity);
-    //        player = _player.GetComponent<Player>();
-    //    }
-    //    //_player.transform.position = _playerPositionSO.GetPlayerPosition();
-    //    _player.transform.position = new Vector3(-6f, 2.17f, 2f);
-    //    _player.transform.rotation = _playerPositionSO.GetPlayerRotation();
-    //    _player.transform.localScale = _playerPositionSO.GetPlayerLocalScale();
-    //}
-    #endregion
     public void ReturnToScene()
     {
         SceneManager.LoadScene(_playerPositionSO.returnToScene);
-        //_ = LoadPlayer();
     }
 
     public void Check()
@@ -128,5 +110,10 @@ public class GameManager : MonoBehaviour
             {"Gracz", Resources.Load<GameObject>("Prefabs/PlayerModel")},
             {"Big Bad", Resources.Load<GameObject>("Prefabs/Enemy")}
         };
+    }
+
+    public void ChangePlayerPos(Vector3 newPos)
+    {
+        _playerPositionSO.SetOnlyPosition(newPos);
     }
 }

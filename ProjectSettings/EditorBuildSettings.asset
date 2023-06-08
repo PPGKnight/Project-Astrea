@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Inn.unity
+    guid: 2ea134071c0a4ff499a0909a3eb5fe0e
+  - enabled: 1
+    path: Assets/Scenes/Inn_SleepingRooms.unity
+    guid: ad2a95618b554c04f88a0cee936df173
+  - enabled: 1
+    path: Assets/Scenes/RoadToHendley.unity
+    guid: 78b8d90308f4d3a479abbb501803ff23
+  - enabled: 1
+    path: Assets/Scenes/HendleyVillage.unity
+    guid: b6981d06d8fc6e24dbf811eacba096c2
+  - enabled: 1
     path: Assets/Scenes/Testing Ground.unity
     guid: 98720df57546f134e9e41f654f73bd3f
   - enabled: 1
