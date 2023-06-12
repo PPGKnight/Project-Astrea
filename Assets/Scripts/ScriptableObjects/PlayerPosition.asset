@@ -11,8 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96a1ddbd2a3235a4a8172b93b26ad681, type: 3}
   m_Name: PlayerPosition
-  m_EditorClassIdentifier:
-  playerCharacterPosition: {x: 0, y: -0.4, z: -1.5}
+  m_EditorClassIdentifier: 
+  playerCharacterPosition: {x: -460, y: -1.5, z: -675}
   playerCharacterRotation: {x: 0, y: 0, z: 0, w: 1}
   playerCharacterScale: {x: 1, y: 1, z: 1}
-  returnToScene: Testing Ground
+  returnToScene: HendleyVillage

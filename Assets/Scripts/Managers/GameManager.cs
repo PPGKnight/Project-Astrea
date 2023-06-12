@@ -12,16 +12,19 @@ public class GameManager : MonoBehaviour
     BattleData _battleData;
 
     [SerializeField]
-    PlayerPositionSO _playerPositionSO;
+    public PlayerPositionSO _playerPositionSO;
 
     public int worldTime = 1;
 
     public Dictionary<string, GameObject> entity;
 
     [SerializeField]
-    private GameObject _player;
+    public GameObject _player;
 
     private Player player;
+
+    [SerializeField]
+    public List<string> activeScenes;
 
     public List<Player> party;
 
@@ -34,19 +37,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _ = SpawnPlayer();
         if(_instance == null)
         {
             _instance = this;
-            _player.transform.position = Vector3.zero;
+            //ascene = SceneManager.GetActiveScene().name;
+            //_player.transform.position = Vector3.zero;
         }
         else
             Destroy(this.gameObject);
 
+        SpawnThePlayer(false);
         Populate();
         party.Add(Resources.Load<Player>("Prefabs/PlayerModel"));
 
         encounters = GameObject.FindGameObjectsWithTag("Encounter");
+
+        activeScenes.Add(SceneManager.GetActiveScene().name);
 
         if (SceneManager.GetActiveScene().name == "Testing Ground")
             foreach (GameObject o in encounters)
@@ -55,11 +61,15 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this);
     }
-    private async Task SpawnPlayer()
+    public void SpawnThePlayer(bool keepPosition)
+    {
+        _ = SpawnPlayer(keepPosition);
+    }
+    public async Task SpawnPlayer(bool keepPosition)
     {
         if (_player == null)
         {
-            _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), _playerPositionSO.GetPlayerPosition(), Quaternion.identity);
+            _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), keepPosition ? _playerPositionSO.GetPlayerPosition() : _playerPositionSO.spawnPoint[SceneManager.GetActiveScene().name], Quaternion.identity);
             player = _player.GetComponent<Player>();
         }
         await Task.Run(() =>
@@ -114,6 +124,13 @@ public class GameManager : MonoBehaviour
 
     public void ChangePlayerPos(Vector3 newPos)
     {
+        Debug.Log(newPos);
         _playerPositionSO.SetOnlyPosition(newPos);
+    }
+
+    public void MovePlayerToNewPos()
+    {
+        Debug.Log(_playerPositionSO.GetPlayerPosition());
+        _player.transform.position.Set(_playerPositionSO.GetPlayerPosition().x, _playerPositionSO.GetPlayerPosition().y, _playerPositionSO.GetPlayerPosition().z);
     }
 }

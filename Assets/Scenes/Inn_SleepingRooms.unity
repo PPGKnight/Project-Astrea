@@ -5383,6 +5383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trans: 0
+  _action: 0
   _previousSceneName: Inn_SleepingRooms
   _nextSceneName: Inn
 --- !u!65 &808111766
@@ -7171,8 +7172,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962427233}
-  m_LocalRotation: {x: 0.43080255, y: 0.016017027, z: -0.007647561, w: 0.9022717}
-  m_LocalPosition: {x: -0.5323876, y: 21, z: -16.49055}
+  m_LocalRotation: {x: 0.42589295, y: -0.13677123, z: 0.065303385, w: 0.89198893}
+  m_LocalPosition: {x: 0.66292715, y: 21, z: -15.72417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

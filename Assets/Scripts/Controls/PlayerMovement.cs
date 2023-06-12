@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     NavMeshAgent navPlayer;
 
+    static PlayerMovement _instance;
+
     private void Awake()
     {
         navPlayer = null;
@@ -30,6 +33,15 @@ public class PlayerMovement : MonoBehaviour
         walkAction = input.actions["Walk"];
         runAction = input.actions["Run"];
         keyAction = input.actions["Keys"];
+
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else
+            Destroy(this.gameObject);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
@@ -91,6 +103,12 @@ public class PlayerMovement : MonoBehaviour
             }
             i++;
         }
+    }
+
+    public void UpdateAgent(Vector3 newPos)
+    {
+        Stop();
+        navPlayer.Warp(newPos);
     }
 
     private void Stop()
