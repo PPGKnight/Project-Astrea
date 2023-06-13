@@ -46,5 +46,6 @@ public class PlayerPositionSO : ScriptableObject
         {"Inn_SleepingRooms", new Vector3(-3.831394f, 1f, -1.413297f) },
         {"HendleyVillage", new Vector3(-487.86f, -4.188f, -638.3361f) },
         {"RoadToHendley", new Vector3(-453.2354f, -4.18767f, -527.0212f) },
+        {"Testing Ground", new Vector3(2.3450737f,1.17f,-30.6609974f)}
     };
 }

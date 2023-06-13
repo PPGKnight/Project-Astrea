@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     public float movement_speed, rotation_speed;
     private PlayerInput input;
     private InputAction followAction;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
         navPlayer = null;
         navPlayer = GetComponent<NavMeshAgent>();
 
@@ -46,6 +48,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if(navPlayer.velocity.magnitude == 0)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+        }
+        else if(navPlayer.velocity.magnitude > 0 && navPlayer.velocity.magnitude < 4f)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator.SetBool("isRunning", true);
+        }
         cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0;
         cameraForward = Vector3.Normalize(cameraForward);
@@ -58,9 +74,10 @@ public class PlayerMovement : MonoBehaviour
             runAction.performed += _ => MoveMouse(10f);
             
             if(followAction.phase == InputActionPhase.Performed) { MoveMouse(5f);  }
-            if(followAction.phase == InputActionPhase.Canceled) { Stop();  }
+            if(followAction.phase == InputActionPhase.Canceled) { StopAnim();  }
 
             if(keyAction.phase == InputActionPhase.Started) MoveKeybard();
+            
     }
     private void MoveMouse(float speed)
     {
@@ -69,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         {
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
+            
         }
     }
 
@@ -79,30 +97,39 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey("up") || Input.GetKey("w"))
             {
+                animator.SetBool("isWalking", true);
                 Stop();
                 transform.position += Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
                 transform.rotation = Quaternion.LookRotation(cameraForward, Vector3.up);
             }
+            
             if (Input.GetKey("down") || Input.GetKey("s"))
             {
+               animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
                 transform.rotation = Quaternion.LookRotation(-cameraForward, Vector3.up);
             }
+            
             if (Input.GetKey("left") || Input.GetKey("a"))
             {
+               animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.right * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
                 transform.rotation = Quaternion.LookRotation(-Camera.main.transform.right, Vector3.up);
             }
+           
             if (Input.GetKey("right") || Input.GetKey("d"))
             {
+               animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += Camera.main.transform.right * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
                 transform.rotation = Quaternion.LookRotation(Camera.main.transform.right, Vector3.up);
             }
             i++;
         }
+      
+            
     }
 
     public void UpdateAgent(Vector3 newPos)
@@ -115,4 +142,10 @@ public class PlayerMovement : MonoBehaviour
     {
         navPlayer.ResetPath();
     }
+    private void StopAnim()
+    {
+        navPlayer.ResetPath();
+        animator.SetBool("isWalking", false);
+    }
+
 }

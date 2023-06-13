@@ -32,6 +32,7 @@ public class BattleManager : MonoBehaviour
     private List<Player> allies;
     private List<Enemy> enemies;
     private List<Creature> queue;
+    [SerializeField] public Animator animator;
 
     private BattleState _battleState;
     private Turn _turn;
@@ -75,6 +76,7 @@ public class BattleManager : MonoBehaviour
         sbyte index = 1;
         foreach (Player player in allies)
         {
+            animator = GetComponent<Animator>();
             GameObject temp = GameObject.Find("Ally" + index);
             Creature p = Instantiate(GameManager.Instance.entity[player.Name], temp.transform).GetComponent<Player>();
             p.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
@@ -95,6 +97,7 @@ public class BattleManager : MonoBehaviour
         index = 1;
         foreach(Enemy enemy in enemies)
         {
+            animator = GetComponent<Animator>();
             GameObject temp = GameObject.Find("Enemy" + index);
             Enemy e = Instantiate(GameManager.Instance.entity[enemy.Name], temp.transform).GetComponent<Enemy>();
 
@@ -108,7 +111,7 @@ public class BattleManager : MonoBehaviour
             queue.Add(e);
             index++;
         }
-        Debug.Log("Jeszcze ¿yjê #1");
+        Debug.Log("Jeszcze ï¿½yjï¿½ #1");
         //Fight();
         _battleState = BattleState.Battle;
         //isSetup = true;
@@ -129,10 +132,11 @@ public class BattleManager : MonoBehaviour
 
         foreach(Creature c in queue)
         {
+            animator = GetComponent<Animator>();
             c.tracker += Mathf.RoundToInt(((c.Dexterity + c.Strength) * 0.25f + c.SpeedBonus)); 
             //Debug.Log($"{c.Name} posiada {c.tracker} / 100 inicjatywy!");
             //bool a = (c.tracker >= 100);
-            //Debug.Log($" Wiêcej od 100? {c.tracker} {a}");
+            //Debug.Log($" Wiï¿½cej od 100? {c.tracker} {a}");
             if(c.tracker >= 100f)
             {
                 if (c.HadTurn) continue;
@@ -151,7 +155,7 @@ public class BattleManager : MonoBehaviour
     public void SetAction(string s)
     {
         action = s;
-        Debug.Log($"Ustawiono akcjê na {action}");
+        Debug.Log($"Ustawiono akcjï¿½ na {action}");
         _turnOptions = TurnOptions.Target;
     }
 
@@ -161,7 +165,7 @@ public class BattleManager : MonoBehaviour
         {        
             Creature c = queue[t];
             if (c.IsDead()) { 
-                Debug.Log($"{c.Name} zosta³ zg³adzony!");
+                Debug.Log($"{c.Name} zostaï¿½ zgï¿½adzony!");
                 if (c.GetCreatureType() == "Enemy") enemiesDeaths++;
                 else alliesDeaths++;
 
@@ -173,13 +177,13 @@ public class BattleManager : MonoBehaviour
             }
             
             if (enemiesDeaths == enemies.Count) {
-                Debug.Log("Uda³o Ci siê wygraæ bitwê!");
+                Debug.Log("Udaï¿½o Ci siï¿½ wygraï¿½ bitwï¿½!");
                 _battleState = BattleState.Victory;
                 GameManager.Instance.ReturnToScene();
             }
             else if (alliesDeaths == allies.Count)
             {
-                Debug.Log("Niestety przegra³eœ tê walkê!");
+                Debug.Log("Niestety przegraï¿½eï¿½ tï¿½ walkï¿½!");
                 _battleState = BattleState.Defeat;
                 GameManager.Instance.ReturnToScene();
             }
@@ -244,13 +248,16 @@ public class BattleManager : MonoBehaviour
             {
                 case "Attack":
                     print($"You attacked {target.GetComponent<Enemy>().Name} for {c.GetComponent<Player>().Attack()} damage!");
+                    c.GetComponent<Animator>().SetBool("isAttacking", true);
                     target.GetComponent<Enemy>().TakeDamage(c.GetComponent<Player>().Attack());
+                    target.GetComponent<Animator>().SetBool("isReacting",true);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText(c.Attack(), Color.red);
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
                     break;
                 case "Heal":
                     print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
+                    c.GetComponent<Animator>().SetBool("isHealing", true);
                     target.GetComponent<Player>().Heal(c.GetComponent<Player>().Intelligence);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText(c.Intelligence, Color.green);
@@ -258,6 +265,7 @@ public class BattleManager : MonoBehaviour
                     break;
                 case "Guard":
                     print($"You will take -50% damage on enemy's next attack");
+                    c.GetComponent<Animator>().SetBool("isGuarding", true);
                     c.GetComponent<Player>().Guard();
                     break;
             }
@@ -268,6 +276,9 @@ public class BattleManager : MonoBehaviour
             _turnOptions = TurnOptions.Idle;
             c.tracker = 0;
             isSomeonesTurn = false;
+          //  c.GetComponent<Animator>().SetBool("isAttacking", false);
+          //  c.GetComponent<Animator>().SetBool("isHealing", false);
+          //  c.GetComponent<Animator>().SetBool("isGuarding", false);
         }
     }
 
@@ -284,7 +295,8 @@ public class BattleManager : MonoBehaviour
         {
             case 0:
                 int att = rnd.Next(0, insideAllies.Count);
-                Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {c.Attack()} punktów obra¿eñ!");
+                Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {c.Attack()} punktï¿½w obraï¿½eï¿½!");
+                c.GetComponent<Animator>().SetBool("isAttacking", true);
                 insideAllies[att].TakeDamage(c.Attack());
                 f = Instantiate(_floatingNumbers, insideAllies[att].transform.position, Quaternion.identity);
                 f.SetText(c.Attack(), Color.red);
@@ -292,7 +304,8 @@ public class BattleManager : MonoBehaviour
                 break;
             case 1:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
-                Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktów zdrowia");
+                Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktï¿½w zdrowia");
+                c.GetComponent<Animator>().SetBool("isHealing", true);
                 insideEnemies[0].Heal(c.Intelligence);
                 f = Instantiate(_floatingNumbers, insideAllies[0].transform.position, Quaternion.identity);
                 f.SetText(c.Intelligence, Color.green);
@@ -300,7 +313,8 @@ public class BattleManager : MonoBehaviour
                 break;
             case 2:
                 int bl = rnd.Next(0, insideEnemies.Count);
-                Debug.Log($"{c.Name} broni {insideEnemies[bl].Name} przez co ten otrzyma o po³owê mniej obra¿eñ");
+                Debug.Log($"{c.Name} broni {insideEnemies[bl].Name} przez co ten otrzyma o poï¿½owï¿½ mniej obraï¿½eï¿½");
+                c.GetComponent<Animator>().SetBool("isGuarding", true);
                 insideEnemies[bl].Guard();
                 break;
         }
@@ -308,6 +322,9 @@ public class BattleManager : MonoBehaviour
         c.tracker = 0;
         _turn = Turn.Idle;
         isSomeonesTurn = false;
+        // c.GetComponent<Animator>().SetBool("isAttacking", false);
+        // c.GetComponent<Animator>().SetBool("isHealing", false);
+        // c.GetComponent<Animator>().SetBool("isGuarding", false);
     }
 
     IEnumerator FloatingNumbers()
