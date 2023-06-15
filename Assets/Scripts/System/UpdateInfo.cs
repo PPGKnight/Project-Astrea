@@ -11,10 +11,8 @@ public class UpdateInfo : MonoBehaviour
     [SerializeField] TMP_Text _characterLevel;
     [SerializeField] Slider _characterSliderHP;
     [SerializeField] TMP_Text _characterTextHP;
-    [SerializeField] Slider _characterSliderMana;
-    [SerializeField] TMP_Text _characterTextMana;
 
-    public void SetInfo(string charName, int charLv, int charCHP, int charMHP, int charCM, int charMM)
+    public void SetInfo(string charName, int charLv, int charCHP, int charMHP)
     {
         //Debug.Log("Zosta³em wykonany A");
         this._characterName.text = charName;
@@ -22,9 +20,6 @@ public class UpdateInfo : MonoBehaviour
         this._characterSliderHP.maxValue = charMHP;
         this._characterSliderHP.value = charCHP;
         this._characterTextHP.text = $"{charCHP} / {charMHP}";
-        this._characterSliderMana.maxValue = charMM;
-        this._characterSliderMana.value = charCM;
-        this._characterTextMana.text = $"{charCM} / {charMM}";
     }
 
     public void SetEnemyInfo(string charName, int charCHP, int charMHP)
