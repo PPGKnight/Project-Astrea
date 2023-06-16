@@ -45,6 +45,9 @@ public class BattleManager : MonoBehaviour
     public delegate void ProgressTokens();
     public static event ProgressTokens ProgressTurn;
 
+    public delegate void UpdateHpBars();
+    public static event UpdateHpBars UpdateBars;
+
     [SerializeField]    
     private BattleData battleData;
     [SerializeField]
@@ -86,14 +89,16 @@ public class BattleManager : MonoBehaviour
             p.transform.parent = temp.transform;
             queue.Add(p);
 
+            /*
             #region AllyUI
             GameObject p_characterPanel = Instantiate(_characterPanel, _battleUI.transform);
             p_characterPanel.transform.SetParent(_battleUI.transform);
-            
             p_characterPanel.transform.localPosition = new Vector3(1075f - (index*325f), -420f, 0f);
+
             p.entityInfo = p_characterPanel.GetComponent<UpdateInfo>();
             p.entityInfo.SetInfo(p.Name, p.Level, p.CurrentHP, p.MaxHP);
             #endregion
+            */
             index++;
         }
         index = 1;
@@ -102,6 +107,7 @@ public class BattleManager : MonoBehaviour
             GameObject temp = GameObject.Find("Enemy" + index);
             Enemy e = Instantiate(GameManager.Instance.entity[enemy.Name], temp.transform).GetComponent<Enemy>();
 
+            
             GameObject e_characterPanel = Instantiate(_enemyPanel, temp.transform);
             e.entityInfo = e_characterPanel.GetComponent<UpdateInfo>();
             e.entityInfo.SetEnemyInfo(e.Name, e.CurrentHP, e.MaxHP);
@@ -177,6 +183,9 @@ public class BattleManager : MonoBehaviour
             }
             else
                 AllyTurn();
+            
+            if(UpdateBars != null)
+                UpdateBars();
         }
         else if(_queue.Count <= 0)
         {
@@ -211,12 +220,14 @@ public class BattleManager : MonoBehaviour
             if (enemiesDeaths == enemies.Count) {
                 Debug.Log("Uda³o Ci siê wygraæ bitwê!");
                 _battleState = BattleState.Victory;
+                battleData.battleStatus = BattleStatus.Victory;
                 GameManager.Instance.ReturnToScene();
             }
             else if (alliesDeaths == allies.Count)
             {
                 Debug.Log("Niestety przegra³eœ tê walkê!");
                 _battleState = BattleState.Defeat;
+                battleData.battleStatus = BattleStatus.Defeat;
                 GameManager.Instance.ReturnToScene();
             }
         }
@@ -293,7 +304,7 @@ public class BattleManager : MonoBehaviour
                     target.GetComponent<Player>().Heal(c.GetComponent<Player>().Intelligence);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText(c.Intelligence, Color.green);
-                    target.GetComponent<Player>().entityInfo.UpdateHP(target.GetComponent<Player>().CurrentHP);
+                    //target.GetComponent<Player>().entityInfo.UpdateHP(target.GetComponent<Player>().CurrentHP);
                     break;
                 case "Guard":
                     print($"You will take -50% damage on enemy's next attack");
@@ -339,7 +350,7 @@ public class BattleManager : MonoBehaviour
                 insideAllies[att].TakeDamage(a);
                 f = Instantiate(_floatingNumbers, insideAllies[att].transform.position, Quaternion.identity);
                 f.SetText(a, Color.red);
-                insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
+                //insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
                 break;
             case 1:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
@@ -347,7 +358,7 @@ public class BattleManager : MonoBehaviour
                 insideEnemies[0].Heal(c.Intelligence);
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText(c.Intelligence, Color.green);
-                insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
+                //insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
                 break;
             case 2:
                 int bl = rnd.Next(0, insideEnemies.Count);
