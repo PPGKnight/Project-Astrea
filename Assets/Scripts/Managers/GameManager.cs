@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -67,10 +67,12 @@ public class GameManager : MonoBehaviour
     }
     public async Task SpawnPlayer(bool keepPosition)
     {
+        Debug.Log("jestem");
         if (_player == null)
         {
             _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), keepPosition ? _playerPositionSO.GetPlayerPosition() : _playerPositionSO.spawnPoint[SceneManager.GetActiveScene().name], Quaternion.identity);
             player = _player.GetComponent<Player>();
+            Debug.Log("Stworzylem");
         }
         await Task.Run(() =>
         {
@@ -81,16 +83,23 @@ public class GameManager : MonoBehaviour
     public void ReturnToScene()
     {
         SceneManager.LoadScene(_playerPositionSO.returnToScene);
+        worldTime = 1;
+        _player.SetActive(true);
+        if (_battleData.battleStatus == BattleStatus.Victory)
+            Check();
     }
 
     public void Check()
     {
-        
-        Debug.Log($"Encounter_{_battleData.eID}");
-        GameObject.Find($"Encounter_{_battleData.eID}").SetActive(false);
+        Debug.Log($"Encounter: {_battleData.eID}");
+        if (_battleData.battleStatus == BattleStatus.Victory)
+        {
+            GameObject g = GameObject.Find(_battleData.eID);
+            g.SetActive(false);
+        }
     }
 
-    public void BattleStart(Enemy[] enemy, int eid)
+    public void BattleStart(Enemy[] enemy, string eid, string arenaName)
     {
         _battleData.allies.Clear();
         _battleData.enemies.Clear();
@@ -108,9 +117,11 @@ public class GameManager : MonoBehaviour
         _playerPositionSO.SetPosition(_player.transform.position, _player.transform.rotation, _player.transform.localScale);
         _playerPositionSO.returnToScene = SceneManager.GetActiveScene().name;
         _battleData.eID = eid;
-        player = null;
-        _player = null;
-        SceneManager.LoadScene("Battle Arena");
+        //_player.GetComponent<NavMeshAgent>().Warp(new Vector3(0f, -10f, 0f));
+        //player = null;
+        //_player = null;
+        SceneManager.LoadScene(arenaName);
+        _player.SetActive(false);
     }
 
     public void Populate()

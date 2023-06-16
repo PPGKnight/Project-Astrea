@@ -10,11 +10,29 @@ public class HealthBarSystem : MonoBehaviour
     public event EventHandler OnHealed;
     private int healthAmount;
     private int healthAmountMax;
-
-    public HealthBarSystem(int healthAmount)
+    private Player _player;
+    private int previousHealth;
+    public HealthBarSystem(Player p)
     {
-        this.healthAmount = healthAmount;
+        this._player = p;
+        this.healthAmount = p.CurrentHP;
+        this.healthAmountMax = p.MaxHP;
+        this.previousHealth = p.CurrentHP;
+        BattleManager.UpdateBars += UpdateHP;
     }
+    void UpdateHP()
+    {
+        if (this._player.CurrentHP != this.previousHealth)
+        {
+            if (this._player.CurrentHP < this.previousHealth)
+                Damage(this.previousHealth - this._player.CurrentHP);
+            else
+                Heal(this._player.CurrentHP - this.previousHealth);
+
+            this.previousHealth = this._player.CurrentHP;
+        }
+    }
+
     public void Damage(int amount)
     {
         healthAmount -= amount;
@@ -33,6 +51,9 @@ public class HealthBarSystem : MonoBehaviour
     }
     public float GetHealthNormalized()
     {
-        return (float)healthAmount / healthAmountMax;
+        float f = 0f;
+        f = (float)healthAmount / (float)healthAmountMax;
+        Debug.Log($"{this.healthAmount}, {this.healthAmountMax}, {f}");
+        return f;
     }
 }

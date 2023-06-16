@@ -118,6 +118,7 @@ MonoBehaviour:
   creatureType: 1
   tracker: 0
   _isDead: 0
+  avatar: {fileID: 21300000, guid: 2028e057f4790ac4e8156692ee0282d0, type: 3}
   entityInfo: {fileID: 0}
   Strength: 5
   Dexterity: 6

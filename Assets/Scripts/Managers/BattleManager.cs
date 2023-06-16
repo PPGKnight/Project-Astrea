@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using UnityEngine.UI;
 
 public enum BattleState
     {
@@ -39,8 +40,15 @@ public class BattleManager : MonoBehaviour
     private TurnOptions _turnOptions;
 
     public FloatingNumbers _floatingNumbers;
+    public InitiativeTrackerManager initiativeTrackerManager;
 
-    [SerializeField]
+    public delegate void ProgressTokens();
+    public static event ProgressTokens ProgressTurn;
+
+    public delegate void UpdateHpBars();
+    public static event UpdateHpBars UpdateBars;
+
+    [SerializeField]    
     private BattleData battleData;
     [SerializeField]
     private Canvas _battleUI;
@@ -50,9 +58,8 @@ public class BattleManager : MonoBehaviour
     private GameObject _enemyPanel;
     [SerializeField]
     private Canvas _battleOptions;
-    //private bool isSetup = false;
+    private Creature creatureThisTurn;
 
-    //private event Action<Creature> _whoseTurn;
     #region Setup
     private void Awake()
     {
@@ -66,7 +73,6 @@ public class BattleManager : MonoBehaviour
         this.allies = battleData.allies;
         this.enemies = battleData.enemies;
         GameManager.Instance.worldTime = 0;
-        //_whoseTurn += DoTurn;
         SetupArena();
     }
 
@@ -84,14 +90,16 @@ public class BattleManager : MonoBehaviour
             p.transform.parent = temp.transform;
             queue.Add(p);
 
+            /*
             #region AllyUI
             GameObject p_characterPanel = Instantiate(_characterPanel, _battleUI.transform);
             p_characterPanel.transform.SetParent(_battleUI.transform);
-            
             p_characterPanel.transform.localPosition = new Vector3(1075f - (index*325f), -420f, 0f);
+
             p.entityInfo = p_characterPanel.GetComponent<UpdateInfo>();
-            p.entityInfo.SetInfo(p.Name, p.Level, p.CurrentHP, p.MaxHP, p.CurrentMana, p.MaxMana);
+            p.entityInfo.SetInfo(p.Name, p.Level, p.CurrentHP, p.MaxHP);
             #endregion
+            */
             index++;
         }
         index = 1;
@@ -101,9 +109,11 @@ public class BattleManager : MonoBehaviour
             GameObject temp = GameObject.Find("Enemy" + index);
             Enemy e = Instantiate(GameManager.Instance.entity[enemy.Name], temp.transform).GetComponent<Enemy>();
 
+            
             GameObject e_characterPanel = Instantiate(_enemyPanel, temp.transform);
             e.entityInfo = e_characterPanel.GetComponent<UpdateInfo>();
             e.entityInfo.SetEnemyInfo(e.Name, e.CurrentHP, e.MaxHP);
+            
 
             e.Name += $" {index}";
             e.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
@@ -112,9 +122,21 @@ public class BattleManager : MonoBehaviour
             index++;
         }
         Debug.Log("Jeszcze �yj� #1");
-        //Fight();
+
+        foreach (Creature q in queue)
+            q.SetInitiative();
+
+        queue.Sort((x, y) => y.InitiativeThisFight.CompareTo(x.InitiativeThisFight));
+        _queue = new Queue<Creature>(queue);
+
+        CreateTokens();
         _battleState = BattleState.Battle;
-        //isSetup = true;
+        StartNextTurn();
+    }
+
+    private void CreateTokens()
+    {
+        initiativeTrackerManager.CreateTokens(queue);
     }
 
     private string action = "";
@@ -124,32 +146,54 @@ public class BattleManager : MonoBehaviour
     int enemiesDeaths = 0;
     #endregion
 
-    #region WorkingWithoutDelay
+    #region WorkingWithDelay
+    /*
     void Fight()
     {
-        //Debug.Log(isSomeonesTurn);
         if (isSomeonesTurn) return;
 
         foreach(Creature c in queue)
         {
-            animator = GetComponent<Animator>();
-            c.tracker += Mathf.RoundToInt(((c.Dexterity + c.Strength) * 0.25f + c.SpeedBonus)); 
-            //Debug.Log($"{c.Name} posiada {c.tracker} / 100 inicjatywy!");
-            //bool a = (c.tracker >= 100);
-            //Debug.Log($" Wi�cej od 100? {c.tracker} {a}");
+            if (isSomeonesTurn) return;
+            c.tracker += Mathf.RoundToInt(((c.Dexterity + c.Strength) * 0.05f + c.SpeedBonus)); 
+            ProgressTurn();
             if(c.tracker >= 100f)
             {
                 if (c.HadTurn) continue;
-                //c.tracker = 0;
                 Debug.Log($"Tura: {c.Name}");
-                isSomeonesTurn = true;
+                c.tracker = 100f;
                 if (c.GetCreatureType() == "Enemy") { _turn = Turn.Enemy; DoEnemyTurn(c); }
-                else _turn = Turn.Ally;
-                //_whoseTurn?.Invoke(c);
+                else AllyTurn();
 
             }
         }
         foreach (Creature c in queue) c.HadTurn = false;
+    }
+    */
+    
+    public void StartNextTurn()
+    {
+        if(!isSomeonesTurn && _queue.Count > 0)
+        {
+            ProgressTurn();
+            creatureThisTurn = _queue.Dequeue();
+            Debug.Log($"Tura {creatureThisTurn.Name}");
+            if (creatureThisTurn.GetCreatureType() == "Enemy")
+            {
+                _turn = Turn.Enemy;
+                DoEnemyTurn(creatureThisTurn);
+            }
+            else
+                AllyTurn();
+            
+            if(UpdateBars != null)
+                UpdateBars();
+        }
+        else if(_queue.Count <= 0)
+        {
+            _queue = new Queue<Creature>(queue);
+            StartNextTurn();
+        }
     }
 
     public void SetAction(string s)
@@ -169,25 +213,25 @@ public class BattleManager : MonoBehaviour
                 if (c.GetCreatureType() == "Enemy") enemiesDeaths++;
                 else alliesDeaths++;
 
+                initiativeTrackerManager.RemoveToken();
                 queue.Remove(c);
-                //c.gameObject.SetActive(false);
                 Destroy(c.entityInfo.gameObject);
                 Destroy(c.gameObject);
-                //Debug.Log($"{alliesDeaths} + {enemiesDeaths}");
             }
             
             if (enemiesDeaths == enemies.Count) {
                 Debug.Log("Uda�o Ci si� wygra� bitw�!");
                 _battleState = BattleState.Victory;
+                battleData.battleStatus = BattleStatus.Victory;
                 GameManager.Instance.ReturnToScene();
             }
             else if (alliesDeaths == allies.Count)
             {
                 Debug.Log("Niestety przegra�e� t� walk�!");
                 _battleState = BattleState.Defeat;
+                battleData.battleStatus = BattleStatus.Defeat;
                 GameManager.Instance.ReturnToScene();
             }
-            //Task.Delay(2000);
         }
     }
 
@@ -196,7 +240,7 @@ public class BattleManager : MonoBehaviour
         if (_battleState == BattleState.Battle)
         {
             CheckDeaths();
-            if (!isSomeonesTurn) Fight();
+            //if (!isSomeonesTurn) Fight();
             if (isSomeonesTurn && _turn == Turn.Ally && action.Length <= 0) _turnOptions = TurnOptions.Options;
             if ((_turnOptions == TurnOptions.Options || _turnOptions == TurnOptions.Target))
             {
@@ -228,31 +272,35 @@ public class BattleManager : MonoBehaviour
 
     void ManualCheck()
     {
-        Creature c = queue.Where(t => t.tracker >= 100f).ToList()[0];
-        DoTurn(c);
-        //foreach(Creature c in queue)
-        //{
-        //    if (c.tracker >= 100f)
-        //        if (c.GetCreatureType() == "Ally")
-        //            DoTurn(c);
-        //}
+        //Creature c = queue.Where(t => t.tracker >= 100f).ToList()[0];
+        DoTurn(creatureThisTurn);
+        StartNextTurn();
+    }
+
+    void AllyTurn()
+    {
+        Debug.Log("Wykona�em si�");
+        isSomeonesTurn = true;
+        _turn = Turn.Ally;
+        action = "";
+        target = null;
     }
 
     void DoTurn(Creature c)
     {
         if (action.Length > 0 && target != null)
         {
-            //Debug.Log($"Jestem w DoTurn z obiektem {c.Name}!");
             FloatingNumbers f;
             switch (action)
             {
                 case "Attack":
-                    print($"You attacked {target.GetComponent<Enemy>().Name} for {c.GetComponent<Player>().Attack()} damage!");
+                    int a = c.GetComponent<Player>().Attack();
                     c.GetComponent<Animator>().SetBool("isAttacking", true);
-                    target.GetComponent<Enemy>().TakeDamage(c.GetComponent<Player>().Attack());
                     target.GetComponent<Animator>().SetBool("isReacting",true);
+                    print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
+                    target.GetComponent<Enemy>().TakeDamage(a);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
-                    f.SetText(c.Attack(), Color.red);
+                    f.SetText(a, Color.red);
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
                     break;
                 case "Heal":
@@ -261,12 +309,14 @@ public class BattleManager : MonoBehaviour
                     target.GetComponent<Player>().Heal(c.GetComponent<Player>().Intelligence);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText(c.Intelligence, Color.green);
-                    target.GetComponent<Player>().entityInfo.UpdateHP(target.GetComponent<Player>().CurrentHP);
+                    //target.GetComponent<Player>().entityInfo.UpdateHP(target.GetComponent<Player>().CurrentHP);
                     break;
                 case "Guard":
                     print($"You will take -50% damage on enemy's next attack");
                     c.GetComponent<Animator>().SetBool("isGuarding", true);
                     c.GetComponent<Player>().Guard();
+                    f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
+                    f.SetText("Block!", Color.blue);
                     break;
             }
 
@@ -284,55 +334,58 @@ public class BattleManager : MonoBehaviour
 
     void DoEnemyTurn(Creature c)
     {
+        if(!isSomeonesTurn)
+            StartCoroutine(DelayEnemyTurn(c)); 
+    }
+
+    IEnumerator DelayEnemyTurn(Creature c)
+    {
+        isSomeonesTurn = true;
         _turnOptions = TurnOptions.Idle;
+        yield return new WaitForSeconds(2);
 
         List<Creature> insideAllies = queue.Where(t => t.GetCreatureType() == "Ally").ToList();
         List<Creature> insideEnemies = queue.Where(t => t.GetCreatureType() == "Enemy").ToList();
 
         System.Random rnd = new System.Random();
         FloatingNumbers f;
+
         switch (rnd.Next(0, 3))
         {
             case 0:
                 int att = rnd.Next(0, insideAllies.Count);
-                Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {c.Attack()} punkt�w obra�e�!");
+                int a = c.Attack();
                 c.GetComponent<Animator>().SetBool("isAttacking", true);
-                insideAllies[att].TakeDamage(c.Attack());
+                Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {a} punktow obrazen!");
+                insideAllies[att].TakeDamage(a);
                 f = Instantiate(_floatingNumbers, insideAllies[att].transform.position, Quaternion.identity);
-                f.SetText(c.Attack(), Color.red);
-                insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
+                f.SetText(a, Color.red);
+                //insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
                 break;
             case 1:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
-                Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punkt�w zdrowia");
+                Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktow zdrowia");
                 c.GetComponent<Animator>().SetBool("isHealing", true);
                 insideEnemies[0].Heal(c.Intelligence);
-                f = Instantiate(_floatingNumbers, insideAllies[0].transform.position, Quaternion.identity);
+                f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText(c.Intelligence, Color.green);
-                insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
+                //insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
                 break;
             case 2:
-                int bl = rnd.Next(0, insideEnemies.Count);
-                Debug.Log($"{c.Name} broni {insideEnemies[bl].Name} przez co ten otrzyma o po�ow� mniej obra�e�");
                 c.GetComponent<Animator>().SetBool("isGuarding", true);
-                insideEnemies[bl].Guard();
+                Debug.Log($"{c.Name} broni sie przez co ten otrzyma o polowe mniej obrazen");
+                f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
+                f.SetText("Block!", Color.blue);
+                c.Guard();
                 break;
         }
-
         c.tracker = 0;
         _turn = Turn.Idle;
         isSomeonesTurn = false;
         // c.GetComponent<Animator>().SetBool("isAttacking", false);
         // c.GetComponent<Animator>().SetBool("isHealing", false);
         // c.GetComponent<Animator>().SetBool("isGuarding", false);
+        StartNextTurn();
     }
-
-    IEnumerator FloatingNumbers()
-    {
-
-        yield return null;
-    }
-
-
     #endregion
 }

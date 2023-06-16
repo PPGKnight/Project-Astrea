@@ -49,6 +49,7 @@ MonoBehaviour:
   _playerPositionSO: {fileID: 11400000, guid: 78a851ff247933b489d5d19e6746bc56, type: 2}
   worldTime: 1
   _player: {fileID: 0}
+  activeScenes: []
   party: []
   encounters: []
 --- !u!81 &4301384663073895735

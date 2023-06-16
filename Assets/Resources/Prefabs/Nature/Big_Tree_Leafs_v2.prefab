@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 6335956155712573959}
   - component: {fileID: 7397453280412046802}
   - component: {fileID: 3049306838623456087}
+  - component: {fileID: 4054920859726029739}
   m_Layer: 0
   m_Name: Big_Tree_Leafs_v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5163089249862248808
@@ -124,7 +125,21 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &4054920859726029739
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543133986019947474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.39242512
+  m_Height: 10.457031
+  m_Direction: 1
+  m_Center: {x: -0.020000013, y: 4.9528313, z: 0.022596836}
