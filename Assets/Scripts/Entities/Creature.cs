@@ -96,6 +96,7 @@ public class Creature : MonoBehaviour
     {
         Material m = GetComponent<Renderer>().material;
         m.SetFloat("_Alpha", 255);
+        Debug.Log("Najechem ci na szmacure");
     }
 
     private void OnMouseExit()

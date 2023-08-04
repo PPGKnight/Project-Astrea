@@ -610,7 +610,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Alpha",
     "m_StageCapability": 2,
-    "m_Value": 1.0,
+    "m_Value": 12.699999809265137,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }
@@ -695,10 +695,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -141.60003662109376,
-            "y": 279.20001220703127,
-            "width": 105.60003662109375,
-            "height": 33.5999755859375
+            "x": -193.99996948242188,
+            "y": 403.9999694824219,
+            "width": 104.99996948242188,
+            "height": 34.000030517578128
         }
     },
     "m_Slots": [
