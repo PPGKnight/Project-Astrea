@@ -33,6 +33,7 @@ public class BattleManager : MonoBehaviour
     private List<Player> allies;
     private List<Enemy> enemies;
     private List<Creature> queue;
+    private Queue<Creature> _queue;
     [SerializeField] public Animator animator;
 
     private BattleState _battleState;
