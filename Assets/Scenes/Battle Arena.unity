@@ -1244,6 +1244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1015040774}
   - component: {fileID: 1015040773}
+  - component: {fileID: 1015040775}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -1264,6 +1265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 1585774440}
+  animator: {fileID: 0}
   _floatingNumbers: {fileID: 6970209644435660064, guid: ef7ceafd540eaf843bcef0e9d8e453e7,
     type: 3}
   initiativeTrackerManager: {fileID: 226135227}
@@ -1289,6 +1291,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015040775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015040772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b535bc5b7102a564094913f8f1e5cfb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051455994
 GameObject:
   m_ObjectHideFlags: 0
