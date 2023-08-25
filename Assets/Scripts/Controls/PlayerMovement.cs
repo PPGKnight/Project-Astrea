@@ -48,20 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(navPlayer.velocity.magnitude == 0)
-        {
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", false);
-        }
-        else if(navPlayer.velocity.magnitude > 0 && navPlayer.velocity.magnitude < 4f)
-        {
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isRunning", false);
-        }
-        else
-        {
-            animator.SetBool("isRunning", true);
-        }
+        MovementAnimation();
+        
         cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0;
         cameraForward = Vector3.Normalize(cameraForward);
@@ -79,6 +67,24 @@ public class PlayerMovement : MonoBehaviour
             if(keyAction.phase == InputActionPhase.Started) MoveKeybard();
             
     }
+    void MovementAnimation()
+    {
+        if (navPlayer.velocity.magnitude == 0)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+        }
+        else if (navPlayer.velocity.magnitude > 0 && navPlayer.velocity.magnitude < 4f)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator.SetBool("isRunning", true);
+        }
+    }
+
     private void MoveMouse(float speed)
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -100,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isWalking", true);
                 Stop();
                 transform.position += Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(cameraForward, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(cameraForward, Vector3.up), Time.deltaTime);
             }
             
             if (Input.GetKey("down") || Input.GetKey("s"))
@@ -108,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(-cameraForward, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-cameraForward, Vector3.up), Time.deltaTime);
             }
             
             if (Input.GetKey("left") || Input.GetKey("a"))
@@ -116,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.right * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(-Camera.main.transform.right, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-Camera.main.transform.right, Vector3.up), Time.deltaTime);
             }
            
             if (Input.GetKey("right") || Input.GetKey("d"))
@@ -124,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += Camera.main.transform.right * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.right, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Camera.main.transform.right, Vector3.up), Time.deltaTime);
             }
             i++;
         }

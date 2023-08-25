@@ -6,6 +6,11 @@ public class Minimap : MonoBehaviour
 {
     public Transform player;
 
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("MainPlayer").GetComponent<Transform>();
+    }
+
     private void LateUpdate()
     {
         Vector3 newPosition = player.position;
