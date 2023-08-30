@@ -14,10 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private InputAction walkAction;
     private InputAction runAction;
     private InputAction keyAction;
+    private InputAction interactAction;
     private Ray ray;
     private RaycastHit hit;
 
     private Vector3 cameraForward;
+    public static event Action InteractionWithNPC;
 
     [SerializeField]
     NavMeshAgent navPlayer;
@@ -35,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         walkAction = input.actions["Walk"];
         runAction = input.actions["Run"];
         keyAction = input.actions["Keys"];
+        interactAction = input.actions["Interact"];
 
         if (_instance == null)
         {
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 150f, Color.yellow);
         Debug.DrawRay(transform.position, transform.forward * 150f, Color.blue);
 
+        interactAction.performed += _ => { InteractionWithNPC?.Invoke(); };
 
         walkAction.performed += _ => { MoveMouse(3.5f); };
             runAction.performed += _ => MoveMouse(10f);
