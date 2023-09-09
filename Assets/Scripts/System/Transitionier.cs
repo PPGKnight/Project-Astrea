@@ -21,14 +21,15 @@ public class Transitionier : MonoBehaviour
 
     void LoadScene()
     {
-        GameManager.Instance.ChangePlayerPos(safeSpawns[key]);
+        //QuestManager.Instance.SaveAllQuests();
+        GameManager.Instance.ChangePlayerPos(TransitionSpawns.ReturnSpawn(key));
         if (_trans == TransitionType.Normal)
         {
             GameManager.Instance.activeScenes.Clear();
             GameManager.Instance.activeScenes.Add(_nextSceneName);
             SceneManager.LoadScene(_nextSceneName);
             //GameManager.Instance.SpawnThePlayer(false);
-            GameManager.Instance._player.GetComponent<PlayerMovement>().UpdateAgent(safeSpawns[key]);
+            GameManager.Instance._player.GetComponent<PlayerMovement>().UpdateAgent(TransitionSpawns.ReturnSpawn(key));
         }
 
         else if (_trans == TransitionType.Additive && !GameManager.Instance.activeScenes.Contains(_nextSceneName))
@@ -38,8 +39,9 @@ public class Transitionier : MonoBehaviour
             //SceneManager.SetActiveScene(SceneManager.GetSceneByName(_nextSceneName));
             StartCoroutine(Load());
         }
-        Debug.Log(safeSpawns[key]);
+        Debug.Log(TransitionSpawns.ReturnSpawn(key));
         GameManager.Instance.MovePlayerToNewPos();
+        //QuestManager.Instance.LoadAllQuests();
     }
     IEnumerator MovePlayer()
     {
@@ -87,26 +89,4 @@ public class Transitionier : MonoBehaviour
             UnloadScene();
     }
     */
-
-    Dictionary<string, Vector3> safeSpawns = new Dictionary<string, Vector3>()
-    {
-        {"InnToInn_SleepingRooms", new Vector3(0f, 1f, -1.5f)},
-        {"Inn_SleepingRoomsToInn", new Vector3(5.3f, 3f, 1f)},
-        {"InnToHendleyVillage", new Vector3(-490.5736f, -1.550712f, -693.4078f)},
-        {"HendleyVillageToInn", new Vector3(-9.897679f, 1f, 6.759513f)},
-        {"HendleyVillageToRoadToHendley", new Vector3(-230f, -3f, -275f)},
-        {"RoadToHendleyToHendleyVillage", new Vector3(76f, 2f, 76f)},
-    };
-}
-
-enum TransitionType
-{
-    Normal,
-    Additive
-}
-
-enum ActionType
-{
-    Load,
-    Unload
 }

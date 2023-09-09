@@ -3,11 +3,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-enum CreatureType
-{
-    Ally,
-    Enemy
-}
 public class Creature : MonoBehaviour
 {
     #region CreatureInfo
@@ -115,5 +110,10 @@ public class Creature : MonoBehaviour
     private void OnMouseExit()
     {
         m_outlineEventOff.Invoke();
+    }
+
+    public string ReturnName()
+    {
+        return this.Name;
     }
 }

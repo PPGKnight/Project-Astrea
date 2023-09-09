@@ -9,9 +9,3 @@ public class BattleData : ScriptableObject
     public List<Enemy> enemies;
     public BattleStatus battleStatus;
 }
-
-public enum BattleStatus
-{
-    Defeat,
-    Victory
-}

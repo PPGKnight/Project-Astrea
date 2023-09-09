@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
+    GameManager gameManager;
+
     private Vector3 cameraForward;
     public static event Action InteractionWithNPC;
 
@@ -42,15 +44,23 @@ public class PlayerMovement : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
             Destroy(this.gameObject);
 
-        DontDestroyOnLoad(this.gameObject);
+
+        if (gameManager == null)
+            gameManager = GameManager.Instance;
     }
 
     private void Update()
     {
+        if (gameManager == null)
+            gameManager = GameManager.Instance;
+
+        if (gameManager.worldTime == 0) return;
+
         MovementAnimation();
         
         cameraForward = Camera.main.transform.forward;
@@ -91,9 +101,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveMouse(float speed)
     {
+        if (gameManager.worldTime == 0) return;
+
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.LogError($"Worldtime {gameManager.worldTime}");
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
             
@@ -102,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveKeybard()
     {
+        if (gameManager.worldTime == 0) return;
         var i = 0;
         while (i < 10)
         {
@@ -150,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Stop()
     {
-        navPlayer.ResetPath();
+      navPlayer.ResetPath();
     }
     private void StopAnim()
     {

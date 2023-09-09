@@ -1,9 +1,10 @@
+VAR DialogueID = "001_GatherForSmith"
 As you walk into the smithy you're greeted by a resting blacksmith. He notices you right away.
 "Oy you need something?"
 
-*"Gary forgot something for you and told me to come here."
++"Gary forgot something for you and told me to come here."
  ->tellthetruth
-*"I've reminded Gary that he was suppoused to bring you something."
++"I've reminded Gary that he was suppoused to bring you something."
  ->lieabit
  
  ===tellthetruth===

@@ -64,6 +64,7 @@ public class InitiativeTrackerManager : MonoBehaviour
             }
         }
 
+        SetIniBar();
     }
     /*
     void UpdateTokensPosition()

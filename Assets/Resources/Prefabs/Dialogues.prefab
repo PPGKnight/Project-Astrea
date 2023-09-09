@@ -1105,6 +1105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1a135f494a8604b83c3a1f76a0de82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueEventSystem: {fileID: 3457240502522063660}
   dialoguePanel: {fileID: 3457240502656272169}
   dialogueText: {fileID: 3457240502567763182}
   continueIcon: {fileID: 3457240502047632430}
@@ -1764,7 +1765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 382837662949773196}
   m_Layer: 0
-  m_Name: DialogueManager
+  m_Name: Dialogues
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

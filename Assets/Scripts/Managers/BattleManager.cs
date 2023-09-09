@@ -140,14 +140,16 @@ public class BattleManager : MonoBehaviour
         foreach (Creature c in queue) c.HadTurn = false;
     }
     */
-    
+
     public void StartNextTurn()
     {
+        if (_battleState == BattleState.Victory || _battleState == BattleState.Defeat) return;
         CheckDeaths();
         if(!isSomeonesTurn && _queue.Count > 0)
         {
-            ProgressTurn();
+            ProgressTurn?.Invoke();
             creatureThisTurn = _queue.Dequeue();
+            if (creatureThisTurn.IsDead() || creatureThisTurn == null) StartNextTurn();
             Debug.Log($"Tura {creatureThisTurn.Name}");
             if (creatureThisTurn.GetCreatureType() == "Enemy")
             {
@@ -194,16 +196,22 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Udalo Ci sie wygrac bitwe!");
                 _battleState = BattleState.Victory;
                 battleData.battleStatus = BattleStatus.Victory;
-                GameManager.Instance.ReturnToScene();
+                LeaveBattle();
             }
             else if (alliesDeaths == allies.Count)
             {
                 Debug.Log("Niestety przegrales te walke!");
                 _battleState = BattleState.Defeat;
                 battleData.battleStatus = BattleStatus.Defeat;
-                GameManager.Instance.ReturnToScene();
+                LeaveBattle();
             }
         }
+    }
+
+    void LeaveBattle()
+    {
+        StopAllCoroutines();
+        GameManager.Instance.ReturnToScene();
     }
 
     private void Update()
@@ -302,7 +310,7 @@ public class BattleManager : MonoBehaviour
     {
         isSomeonesTurn = true;
         _turnOptions = TurnOptions.Idle;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         List<Creature> insideAllies = queue.Where(t => t.GetCreatureType() == "Ally").ToList();
         List<Creature> insideEnemies = queue.Where(t => t.GetCreatureType() == "Enemy").ToList();
@@ -377,7 +385,7 @@ public class BattleManager : MonoBehaviour
             yield return null;
         }
         a.SetBool(animationName, false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.2f);
     }
     #endregion
 }
