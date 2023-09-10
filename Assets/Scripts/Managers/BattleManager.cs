@@ -3,63 +3,33 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using UnityEngine.UI;
+using System;
 
-public enum BattleState
-    {
-        None,
-        Setup,
-        Battle,
-        Victory,
-        Defeat
-    }
-
-public enum Turn
-{
-    Idle,
-    Enemy,
-    Ally
-}
-
-public enum TurnOptions
-{
-    Idle,
-    Options,
-    Target
-}
 public class BattleManager : MonoBehaviour
 {
-    [SerializeField]
-    private Camera m_camera;
-    private List<Player> allies;
-    private List<Enemy> enemies;
-    private List<Creature> queue;
-    private Queue<Creature> _queue;
+    [SerializeField] Camera m_camera;
+    List<Player> allies;
+    List<Enemy> enemies;
+    List<Creature> queue;
+    Queue<Creature> _queue;
     [SerializeField] public Animator animator;
 
-    private BattleState _battleState;
-    private Turn _turn;
-    private TurnOptions _turnOptions;
+    BattleState _battleState;
+    Turn _turn;
+    TurnOptions _turnOptions;
 
     public FloatingNumbers _floatingNumbers;
     public InitiativeTrackerManager initiativeTrackerManager;
 
-    public delegate void ProgressTokens();
-    public static event ProgressTokens ProgressTurn;
+    public static event Action ProgressTurn;
+    public static event Action UpdateBars;
 
-    public delegate void UpdateHpBars();
-    public static event UpdateHpBars UpdateBars;
-
-    [SerializeField]    
-    private BattleData battleData;
-    [SerializeField]
-    private Canvas _battleUI;
-    [SerializeField]
-    private GameObject _characterPanel;
-    [SerializeField]
-    private GameObject _enemyPanel;
-    [SerializeField]
-    private Canvas _battleOptions;
-    private Creature creatureThisTurn;
+    [SerializeField] BattleData battleData;
+    [SerializeField] Canvas _battleUI;
+    [SerializeField] GameObject _characterPanel;
+    [SerializeField] GameObject _enemyPanel;
+    [SerializeField] Canvas _battleOptions;
+    Creature creatureThisTurn;
 
     #region Setup
     private void Awake()
@@ -122,7 +92,6 @@ public class BattleManager : MonoBehaviour
             queue.Add(e);
             index++;
         }
-        Debug.Log("Jeszcze �yj� #1");
 
         foreach (Creature q in queue)
             q.SetInitiative();
@@ -135,7 +104,7 @@ public class BattleManager : MonoBehaviour
         StartNextTurn();
     }
 
-    private void CreateTokens()
+    void CreateTokens()
     {
         initiativeTrackerManager.CreateTokens(queue);
     }
@@ -171,13 +140,16 @@ public class BattleManager : MonoBehaviour
         foreach (Creature c in queue) c.HadTurn = false;
     }
     */
-    
+
     public void StartNextTurn()
     {
+        if (_battleState == BattleState.Victory || _battleState == BattleState.Defeat) return;
+        CheckDeaths();
         if(!isSomeonesTurn && _queue.Count > 0)
         {
-            ProgressTurn();
+            ProgressTurn?.Invoke();
             creatureThisTurn = _queue.Dequeue();
+            if (creatureThisTurn.IsDead() || creatureThisTurn == null) StartNextTurn();
             Debug.Log($"Tura {creatureThisTurn.Name}");
             if (creatureThisTurn.GetCreatureType() == "Enemy")
             {
@@ -200,7 +172,7 @@ public class BattleManager : MonoBehaviour
     public void SetAction(string s)
     {
         action = s;
-        Debug.Log($"Ustawiono akcj� na {action}");
+        Debug.Log($"Ustawiono akcje na {action}");
         _turnOptions = TurnOptions.Target;
     }
 
@@ -210,7 +182,7 @@ public class BattleManager : MonoBehaviour
         {        
             Creature c = queue[t];
             if (c.IsDead()) { 
-                Debug.Log($"{c.Name} zosta� zg�adzony!");
+                Debug.Log($"{c.Name} zostal zgladzony!");
                 if (c.GetCreatureType() == "Enemy") enemiesDeaths++;
                 else alliesDeaths++;
 
@@ -221,73 +193,71 @@ public class BattleManager : MonoBehaviour
             }
             
             if (enemiesDeaths == enemies.Count) {
-                Debug.Log("Uda�o Ci si� wygra� bitw�!");
+                Debug.Log("Udalo Ci sie wygrac bitwe!");
                 _battleState = BattleState.Victory;
                 battleData.battleStatus = BattleStatus.Victory;
-                GameManager.Instance.ReturnToScene();
+                LeaveBattle();
             }
             else if (alliesDeaths == allies.Count)
             {
-                Debug.Log("Niestety przegra�e� t� walk�!");
+                Debug.Log("Niestety przegrales te walke!");
                 _battleState = BattleState.Defeat;
                 battleData.battleStatus = BattleStatus.Defeat;
-                GameManager.Instance.ReturnToScene();
+                LeaveBattle();
             }
         }
+    }
+
+    void LeaveBattle()
+    {
+        StopAllCoroutines();
+        GameManager.Instance.ReturnToScene();
     }
 
     private void Update()
     {
-        if (_battleState == BattleState.Battle)
-        {
-            CheckDeaths();
-            //if (!isSomeonesTurn) Fight();
-            if (isSomeonesTurn && _turn == Turn.Ally && action.Length <= 0) _turnOptions = TurnOptions.Options;
-            if ((_turnOptions == TurnOptions.Options || _turnOptions == TurnOptions.Target))
-            {
+        if (isSomeonesTurn && _turn == Turn.Ally && action.Length <= 0) _turnOptions = TurnOptions.Options;
+        
+        if ((_turnOptions == TurnOptions.Options || _turnOptions == TurnOptions.Target))
                 _battleOptions.gameObject.SetActive(true);
-                if (Input.GetMouseButtonDown(0))
-                {
-                    Debug.Log($"Klik {_turnOptions}");
-                    if (_turnOptions == TurnOptions.Target)
-                    {
-                        Debug.Log("Target");
-                        Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                        {
-                            if (hit.transform.CompareTag("Enemy"))
-                                Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
-                            if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
-                                Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
-
-                            target = hit.transform.gameObject;
-                        }
-                    }
-                    if (action.Length > 0 && target != null && _turn == Turn.Ally) ManualCheck();
-                }
-            }
-            else _battleOptions.gameObject.SetActive(false);
-        }
+        else _battleOptions.gameObject.SetActive(false);
+        
     }
 
-    void ManualCheck()
+    void SelectOptions()
     {
-        //Creature c = queue.Where(t => t.tracker >= 100f).ToList()[0];
-        DoTurn(creatureThisTurn);
-        StartNextTurn();
+        if (_battleState != BattleState.Battle) return;
+        
+        Debug.Log($"Klik {_turnOptions}");
+        if (_turnOptions == TurnOptions.Target)
+        {
+          Debug.Log("Target");
+          Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
+          RaycastHit hit;
+          if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+          {
+            if (hit.transform.CompareTag("Enemy"))
+              Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
+            if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
+              Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
+
+            target = hit.transform.gameObject;
+            StartCoroutine(DoTurn(creatureThisTurn));
+            _turnOptions = TurnOptions.Idle;
+            }
+        }
     }
 
     void AllyTurn()
     {
-        Debug.Log("Wykona�em si�");
+        Debug.Log("Wykonalem sie");
         isSomeonesTurn = true;
         _turn = Turn.Ally;
         action = "";
         target = null;
     }
 
-    void DoTurn(Creature c)
+    IEnumerator DoTurn(Creature c)
     {
         if (action.Length > 0 && target != null)
         {
@@ -296,8 +266,8 @@ public class BattleManager : MonoBehaviour
             {
                 case "Attack":
                     int a = c.GetComponent<Player>().Attack();
-                    c.GetComponent<Animator>().SetBool("isAttacking", true);
-                    target.GetComponent<Animator>().SetBool("isReacting",true);
+                    yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isAttacking"));
+                    yield return StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
                     print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
                     target.GetComponent<Enemy>().TakeDamage(a);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
@@ -306,7 +276,7 @@ public class BattleManager : MonoBehaviour
                     break;
                 case "Heal":
                     print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
-                    c.GetComponent<Animator>().SetBool("isHealing", true);
+                    yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                     target.GetComponent<Player>().Heal(c.GetComponent<Player>().Intelligence);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText(c.Intelligence, Color.green);
@@ -314,7 +284,7 @@ public class BattleManager : MonoBehaviour
                     break;
                 case "Guard":
                     print($"You will take -50% damage on enemy's next attack");
-                    c.GetComponent<Animator>().SetBool("isGuarding", true);
+                    yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                     c.GetComponent<Player>().Guard();
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText("Block!", Color.blue);
@@ -324,12 +294,9 @@ public class BattleManager : MonoBehaviour
             target = null;
             action = "";
             _turn = Turn.Idle;
-            _turnOptions = TurnOptions.Idle;
             c.tracker = 0;
             isSomeonesTurn = false;
-          //  c.GetComponent<Animator>().SetBool("isAttacking", false);
-          //  c.GetComponent<Animator>().SetBool("isHealing", false);
-          //  c.GetComponent<Animator>().SetBool("isGuarding", false);
+            StartNextTurn();
         }
     }
 
@@ -343,7 +310,7 @@ public class BattleManager : MonoBehaviour
     {
         isSomeonesTurn = true;
         _turnOptions = TurnOptions.Idle;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         List<Creature> insideAllies = queue.Where(t => t.GetCreatureType() == "Ally").ToList();
         List<Creature> insideEnemies = queue.Where(t => t.GetCreatureType() == "Enemy").ToList();
@@ -356,9 +323,10 @@ public class BattleManager : MonoBehaviour
             case 0:
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
-                c.GetComponent<Animator>().SetBool("isAttacking", true);
+                yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isAttacking"));
                 Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {a} punktow obrazen!");
                 insideAllies[att].TakeDamage(a);
+                yield return StartCoroutine(BeginAnimation(insideAllies[att].GetComponent<Animator>(), "isReacting"));
                 f = Instantiate(_floatingNumbers, insideAllies[att].transform.position, Quaternion.identity);
                 f.SetText(a, Color.red);
                 //insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
@@ -366,14 +334,15 @@ public class BattleManager : MonoBehaviour
             case 1:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
                 Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktow zdrowia");
-                c.GetComponent<Animator>().SetBool("isHealing", true);
+                yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                 insideEnemies[0].Heal(c.Intelligence);
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText(c.Intelligence, Color.green);
                 //insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
                 break;
             case 2:
-                c.GetComponent<Animator>().SetBool("isGuarding", true);
+                //c.GetComponent<Animator>().SetBool("isGuarding", true);
+                yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                 Debug.Log($"{c.Name} broni sie przez co ten otrzyma o polowe mniej obrazen");
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText("Block!", Color.blue);
@@ -383,10 +352,40 @@ public class BattleManager : MonoBehaviour
         c.tracker = 0;
         _turn = Turn.Idle;
         isSomeonesTurn = false;
-        // c.GetComponent<Animator>().SetBool("isAttacking", false);
-        // c.GetComponent<Animator>().SetBool("isHealing", false);
-        // c.GetComponent<Animator>().SetBool("isGuarding", false);
         StartNextTurn();
+    }
+    #endregion
+
+    #region Event-based
+    bool isAnimating = false;
+
+    private void OnEnable()
+    {
+        CombatAnimationListener.AnimationFinished += AnimationEnded;
+        CombatMouseListener.MouseClicked += SelectOptions;
+    }
+
+    private void OnDisable()
+    {
+        CombatAnimationListener.AnimationFinished -= AnimationEnded;
+        CombatMouseListener.MouseClicked -= SelectOptions;
+    }
+
+    void AnimationEnded()
+    {
+        isAnimating = false;
+    }
+
+    IEnumerator BeginAnimation(Animator a, string animationName)
+    {
+        isAnimating = true;
+        a.SetBool(animationName, true);
+        while (isAnimating)
+        {
+            yield return null;
+        }
+        a.SetBool(animationName, false);
+        yield return new WaitForSeconds(.2f);
     }
     #endregion
 }

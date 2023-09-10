@@ -8,7 +8,7 @@ MonoImporter:
   - _playerPositionSO: {fileID: 11400000, guid: 78a851ff247933b489d5d19e6746bc56,
       type: 2}
   - _player: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: -20
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

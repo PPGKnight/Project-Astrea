@@ -14,10 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private InputAction walkAction;
     private InputAction runAction;
     private InputAction keyAction;
+    private InputAction interactAction;
     private Ray ray;
     private RaycastHit hit;
 
+    GameManager gameManager;
+
     private Vector3 cameraForward;
+    public static event Action InteractionWithNPC;
 
     [SerializeField]
     NavMeshAgent navPlayer;
@@ -35,33 +39,30 @@ public class PlayerMovement : MonoBehaviour
         walkAction = input.actions["Walk"];
         runAction = input.actions["Run"];
         keyAction = input.actions["Keys"];
+        interactAction = input.actions["Interact"];
 
         if (_instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
             Destroy(this.gameObject);
 
-        DontDestroyOnLoad(this.gameObject);
+
+        if (gameManager == null)
+            gameManager = GameManager.Instance;
     }
 
     private void Update()
     {
-        if(navPlayer.velocity.magnitude == 0)
-        {
-            animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", false);
-        }
-        else if(navPlayer.velocity.magnitude > 0 && navPlayer.velocity.magnitude < 4f)
-        {
-            animator.SetBool("isWalking", true);
-            animator.SetBool("isRunning", false);
-        }
-        else
-        {
-            animator.SetBool("isRunning", true);
-        }
+        if (gameManager == null)
+            gameManager = GameManager.Instance;
+
+        if (gameManager.worldTime == 0) return;
+
+        MovementAnimation();
+        
         cameraForward = Camera.main.transform.forward;
         cameraForward.y = 0;
         cameraForward = Vector3.Normalize(cameraForward);
@@ -69,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 150f, Color.yellow);
         Debug.DrawRay(transform.position, transform.forward * 150f, Color.blue);
 
+        interactAction.performed += _ => { InteractionWithNPC?.Invoke(); };
 
         walkAction.performed += _ => { MoveMouse(3.5f); };
             runAction.performed += _ => MoveMouse(10f);
@@ -79,11 +81,32 @@ public class PlayerMovement : MonoBehaviour
             if(keyAction.phase == InputActionPhase.Started) MoveKeybard();
             
     }
+    void MovementAnimation()
+    {
+        if (navPlayer.velocity.magnitude == 0)
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
+        }
+        else if (navPlayer.velocity.magnitude > 0 && navPlayer.velocity.magnitude < 4f)
+        {
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isRunning", false);
+        }
+        else
+        {
+            animator.SetBool("isRunning", true);
+        }
+    }
+
     private void MoveMouse(float speed)
     {
+        if (gameManager.worldTime == 0) return;
+
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
+            Debug.LogError($"Worldtime {gameManager.worldTime}");
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
             
@@ -92,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveKeybard()
     {
+        if (gameManager.worldTime == 0) return;
         var i = 0;
         while (i < 10)
         {
@@ -100,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isWalking", true);
                 Stop();
                 transform.position += Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(cameraForward, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(cameraForward, Vector3.up), Time.deltaTime);
             }
             
             if (Input.GetKey("down") || Input.GetKey("s"))
@@ -108,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(-cameraForward, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-cameraForward, Vector3.up), Time.deltaTime);
             }
             
             if (Input.GetKey("left") || Input.GetKey("a"))
@@ -116,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.right * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(-Camera.main.transform.right, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-Camera.main.transform.right, Vector3.up), Time.deltaTime);
             }
            
             if (Input.GetKey("right") || Input.GetKey("d"))
@@ -124,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += Camera.main.transform.right * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.right, Vector3.up);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Camera.main.transform.right, Vector3.up), Time.deltaTime);
             }
             i++;
         }
@@ -140,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Stop()
     {
-        navPlayer.ResetPath();
+      navPlayer.ResetPath();
     }
     private void StopAnim()
     {

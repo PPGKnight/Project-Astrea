@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
@@ -7,16 +5,17 @@ using Cinemachine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField]
-    private CinemachineFreeLook cam;
+    CinemachineFreeLook cam;
+
     [SerializeField]
     private float sensitivity = 0.006f;
 
-    private PlayerInput input;
-    private InputAction rotateCameraAction;
-    private InputAction zoomCameraAction;
-    private GameObject player;
-    private int mousePosX;
-    private int FOV = 40;
+    PlayerInput input;
+    InputAction rotateCameraAction;
+    InputAction zoomCameraAction;
+    GameObject player;
+    int mousePosX;
+    int FOV = 40;
     bool isHeld = false;
 
 
@@ -31,6 +30,28 @@ public class CameraControl : MonoBehaviour
         cam.LookAt = player.transform;
     }
 
+    private void Start()
+    {
+        CinemachineCore.GetInputAxis = CustomAxis;
+    }
+
+    float CustomAxis(string axis)
+    {
+        if (axis == "Horizontal")
+            if (isHeld)
+                return UnityEngine.Input.GetAxis(axis);
+            else
+                return 0;
+
+        if (axis == "Vertical")
+            if (isHeld)
+                return UnityEngine.Input.GetAxis(axis);
+            else
+                return 0;
+
+        return UnityEngine.Input.GetAxis(axis);
+    }
+
     private void Update()
     {
         rotateCameraAction.started += _ => { mousePosX = Mathf.RoundToInt(Input.mousePosition.x);  isHeld = true; };
@@ -38,15 +59,23 @@ public class CameraControl : MonoBehaviour
 
         zoomCameraAction.performed += _ => {
             if (zoomCameraAction.ReadValue<float>() > 0)
-                if (cam.m_Lens.FieldOfView <= 55)
-                    cam.m_Lens.FieldOfView += 5;
+                if (cam.m_Lens.FieldOfView >= 25)
+                    cam.m_Lens.FieldOfView -= 5;
 
             if (zoomCameraAction.ReadValue<float>() < 0)
-                if(cam.m_Lens.FieldOfView >= 25)
-                    cam.m_Lens.FieldOfView -= 5;
+                if(cam.m_Lens.FieldOfView <= 55)
+                    cam.m_Lens.FieldOfView += 5;
         };
-        
+
+        if (!isHeld)
+        {
+            cam.m_XAxis.m_MaxSpeed = 0f;
+        }
+
         if (isHeld)
+        {
+            cam.m_XAxis.m_MaxSpeed = 15f;
             cam.m_XAxis.Value = Mathf.RoundToInt((Input.mousePosition.x - mousePosX) * sensitivity);
+        }
     }
 }

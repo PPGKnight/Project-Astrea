@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         if(_instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(this.gameObject);
             //ascene = SceneManager.GetActiveScene().name;
             //_player.transform.position = Vector3.zero;
         }
@@ -59,7 +60,6 @@ public class GameManager : MonoBehaviour
                 if (o.name == _battleData.eID.ToString())
                     o.SetActive(false);
 
-        DontDestroyOnLoad(this);
     }
     public void SpawnThePlayer(bool keepPosition)
     {
@@ -67,12 +67,12 @@ public class GameManager : MonoBehaviour
     }
     public async Task SpawnPlayer(bool keepPosition)
     {
-        Debug.Log("jestem");
+        //Debug.Log("jestem");
         if (_player == null)
         {
             _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), keepPosition ? _playerPositionSO.GetPlayerPosition() : _playerPositionSO.spawnPoint[SceneManager.GetActiveScene().name], Quaternion.identity);
             player = _player.GetComponent<Player>();
-            Debug.Log("Stworzylem");
+            //Debug.Log("Stworzylem");
         }
         await Task.Run(() =>
         {
@@ -83,20 +83,25 @@ public class GameManager : MonoBehaviour
     public void ReturnToScene()
     {
         SceneManager.LoadScene(_playerPositionSO.returnToScene);
+        DialogueManager.Instance.gameObject.transform.parent.Find("EventSystem").gameObject.SetActive(true);
         worldTime = 1;
-        _player.SetActive(true);
         if (_battleData.battleStatus == BattleStatus.Victory)
             Check();
+
+        _player.SetActive(true);
+        //if (_battleData.dialogue != null)
+           // _battleData.dialogue.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void Check()
     {
         Debug.Log($"Encounter: {_battleData.eID}");
-        if (_battleData.battleStatus == BattleStatus.Victory)
+        /*if (_battleData.battleStatus == BattleStatus.Victory)
         {
             GameObject g = GameObject.Find(_battleData.eID);
             g.SetActive(false);
-        }
+        }*/
+        EncounterList.Instance.SetEncounter(_battleData.eID);
     }
 
     public void BattleStart(Enemy[] enemy, string eid, string arenaName)
@@ -120,6 +125,7 @@ public class GameManager : MonoBehaviour
         //_player.GetComponent<NavMeshAgent>().Warp(new Vector3(0f, -10f, 0f));
         //player = null;
         //_player = null;
+        DialogueManager.Instance.gameObject.transform.parent.Find("EventSystem").gameObject.SetActive(false);
         SceneManager.LoadScene(arenaName);
         _player.SetActive(false);
     }

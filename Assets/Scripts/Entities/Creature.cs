@@ -1,11 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-enum CreatureType
-{
-    Ally,
-    Enemy
-}
 public class Creature : MonoBehaviour
 {
     #region CreatureInfo
@@ -92,16 +89,31 @@ public class Creature : MonoBehaviour
     }
 
 
+    [SerializeField] List<GameObject> outlineMaterials;
+    public UnityEvent m_outlineEventOn, m_outlineEventOff;
+
+
+    private void Start()
+    {
+        foreach (GameObject mat in outlineMaterials)
+        {
+            m_outlineEventOn.AddListener(mat.GetComponent<OutlineCS>().AlphaOn);
+            m_outlineEventOff.AddListener(mat.GetComponent<OutlineCS>().AlphaOff);
+        }
+    }
+
     private void OnMouseOver()
     {
-        Material m = GetComponent<Renderer>().material;
-        m.SetFloat("_Alpha", 255);
-        Debug.Log("Najechem ci na szmacure");
+        m_outlineEventOn.Invoke();
     }
 
     private void OnMouseExit()
     {
-        Material m = GetComponent<Renderer>().material;
-        m.SetFloat("_Alpha", 0);
+        m_outlineEventOff.Invoke();
+    }
+
+    public string ReturnName()
+    {
+        return this.Name;
     }
 }

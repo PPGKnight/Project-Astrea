@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Ally
   - PlayerCamera
+  - Managers
   layers:
   - Default
   - TransparentFX
