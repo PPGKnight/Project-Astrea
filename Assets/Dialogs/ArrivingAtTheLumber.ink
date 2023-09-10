@@ -1,3 +1,5 @@
+VAR DialogueID = "002_ArrivingAtTheLumber"
+
 As you aproach the house of the lumberjack, you notice few people standing near the door.
 "Andrey open the door, We know you're there!"
 You can notice that the men are armed and they don't look too friendly.
@@ -21,5 +23,5 @@ As you aproach them, they notice you.
 ->after
 
 ===after===
-As you watch the bandits scatter, the lumberjack exits his cabin and he looks at you.
+#fight:002_LumbererEncounter
     -> END

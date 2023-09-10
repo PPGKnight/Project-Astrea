@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public class BattleManager : MonoBehaviour
 {
@@ -58,7 +59,8 @@ public class BattleManager : MonoBehaviour
             Creature p = Instantiate(GameManager.Instance.entity[player.Name], temp.transform).GetComponent<Player>();
             p.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
             p.transform.transform.localScale = new Vector3(1f, 2f, 1f);
-            p.transform.parent = temp.transform;
+            p.transform.rotation = temp.transform.rotation;
+            //p.transform.parent = temp.transform;
             queue.Add(p);
 
             /*
@@ -78,6 +80,7 @@ public class BattleManager : MonoBehaviour
         {
             animator = GetComponent<Animator>();
             GameObject temp = GameObject.Find("Enemy" + index);
+            //Enemy e = Instantiate(GameManager.Instance.entity[enemy.Name], temp.transform).GetComponent<Enemy>();
             Enemy e = Instantiate(GameManager.Instance.entity[enemy.Name], temp.transform).GetComponent<Enemy>();
 
             
@@ -88,7 +91,8 @@ public class BattleManager : MonoBehaviour
 
             e.Name += $" {index}";
             e.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
-            e.transform.parent = temp.transform;
+            e.transform.rotation = temp.transform.rotation;
+            //e.transform.parent = temp.transform;
             queue.Add(e);
             index++;
         }
@@ -236,15 +240,18 @@ public class BattleManager : MonoBehaviour
           RaycastHit hit;
           if (Physics.Raycast(ray, out hit, Mathf.Infinity))
           {
-            if (hit.transform.CompareTag("Enemy"))
-              Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
-            if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
-              Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
+            if(hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("MainPlayer"))
+            {
+                if (hit.transform.CompareTag("Enemy"))
+                  Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
+                if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
+                  Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
 
-            target = hit.transform.gameObject;
-            StartCoroutine(DoTurn(creatureThisTurn));
-            _turnOptions = TurnOptions.Idle;
+                target = hit.transform.gameObject;
+                StartCoroutine(DoTurn(creatureThisTurn));
+                _turnOptions = TurnOptions.Idle;
             }
+          }
         }
     }
 
@@ -262,12 +269,17 @@ public class BattleManager : MonoBehaviour
         if (action.Length > 0 && target != null)
         {
             FloatingNumbers f;
+            Coroutine coro;
             switch (action)
             {
                 case "Attack":
                     int a = c.GetComponent<Player>().Attack();
-                    yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isAttacking"));
-                    yield return StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
+                    Transform t = GameObject.Find(target.gameObject.transform.parent.name + "Hit").transform;
+                    yield return new WaitForSeconds(0.1f);
+                    yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
+                    StopCoroutine(coro);
+                    yield return coro = StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
+                    StopCoroutine(coro);
                     print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
                     target.GetComponent<Enemy>().TakeDamage(a);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
@@ -276,7 +288,8 @@ public class BattleManager : MonoBehaviour
                     break;
                 case "Heal":
                     print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
-                    yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
+                    yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
+                    StopCoroutine(coro);
                     target.GetComponent<Player>().Heal(c.GetComponent<Player>().Intelligence);
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText(c.Intelligence, Color.green);
@@ -284,13 +297,13 @@ public class BattleManager : MonoBehaviour
                     break;
                 case "Guard":
                     print($"You will take -50% damage on enemy's next attack");
-                    yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
+                    yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
+                    StopCoroutine(coro);
                     c.GetComponent<Player>().Guard();
                     f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
                     f.SetText("Block!", Color.blue);
                     break;
             }
-
             target = null;
             action = "";
             _turn = Turn.Idle;
@@ -317,16 +330,21 @@ public class BattleManager : MonoBehaviour
 
         System.Random rnd = new System.Random();
         FloatingNumbers f;
+        Coroutine coro;
 
-        switch (rnd.Next(0, 3))
+        switch (rnd.Next(0, 1))
         {
             case 0:
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
-                yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isAttacking"));
+                Transform t = GameObject.Find(insideAllies[att].gameObject.transform.parent.name + "Hit").transform;
+                yield return new WaitForSeconds(0.1f);
+                yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
+                StopCoroutine(coro);
                 Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {a} punktow obrazen!");
                 insideAllies[att].TakeDamage(a);
-                yield return StartCoroutine(BeginAnimation(insideAllies[att].GetComponent<Animator>(), "isReacting"));
+                yield return coro = StartCoroutine(BeginAnimation(insideAllies[att].GetComponent<Animator>(), "isReacting"));
+                StopCoroutine(coro);
                 f = Instantiate(_floatingNumbers, insideAllies[att].transform.position, Quaternion.identity);
                 f.SetText(a, Color.red);
                 //insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
@@ -334,7 +352,8 @@ public class BattleManager : MonoBehaviour
             case 1:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
                 Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktow zdrowia");
-                yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
+                yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
+                StopCoroutine(coro);
                 insideEnemies[0].Heal(c.Intelligence);
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText(c.Intelligence, Color.green);
@@ -342,7 +361,8 @@ public class BattleManager : MonoBehaviour
                 break;
             case 2:
                 //c.GetComponent<Animator>().SetBool("isGuarding", true);
-                yield return StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
+                yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
+                StopCoroutine(coro);
                 Debug.Log($"{c.Name} broni sie przez co ten otrzyma o polowe mniej obrazen");
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText("Block!", Color.blue);
@@ -384,6 +404,23 @@ public class BattleManager : MonoBehaviour
         {
             yield return null;
         }
+        a.SetBool(animationName, false);
+        yield return new WaitForSeconds(.2f);
+    }
+
+    public float DebugMoveWaitForSeconds = 1.75f;
+    IEnumerator BeginAnimationB(Animator a, string animationName, Transform attacker, Transform attackPosition)
+    {
+        Vector3 original = attacker.position;
+        isAnimating = true;
+        a.SetBool(animationName, true);
+        yield return new WaitForSeconds(DebugMoveWaitForSeconds);
+        attacker.DOMove(attackPosition.position, 0.5f);
+        while (isAnimating)
+        {
+            yield return null;
+        }
+        attacker.DOMove(original, 0.5f);
         a.SetBool(animationName, false);
         yield return new WaitForSeconds(.2f);
     }

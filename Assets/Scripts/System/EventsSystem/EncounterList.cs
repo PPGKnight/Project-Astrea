@@ -21,7 +21,8 @@ public class EncounterList : MonoBehaviour
     // true = walka wygrana
     Dictionary<string, bool> encounterList = new Dictionary<string, bool>{
       {"TavernTutorial1", false},  
-      {"TavernTutorial2", false}  
+      {"TavernTutorial2", false},
+      {"002_LumbererEncounter", false}
     };
 
     public bool GetEncounter(string s)

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cda3c6eedeb0564b932b59ace829480, type: 3}
+  m_Name: 002_CheckLumbererForTheSmith
+  m_EditorClassIdentifier: 
+  <id>k__BackingField: 002_CheckLumbererForTheSmith
+  displayName: Check the lumberer for the smith
+  levelRequirement: 0
+  questPrerequisites:
+  - {fileID: 11400000, guid: 91f5ef88a8570da4f9ce7bc260bb2cd1, type: 2}
+  dialoguePrerequisites: []
+  encounterPrerequisites: []
+  questStepPrefabs:
+  - {fileID: 8470484204830850680, guid: 00b673831dbbbc34cbbb6bd8e9298d20, type: 3}
+  goldReward: 0
+  experienceReward: 0

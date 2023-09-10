@@ -5,10 +5,13 @@ using UnityEngine;
 public class DialogueList
 { 
     static Dictionary<string, bool> DIALOGUE_LIST = new Dictionary<string, bool>{
-        {"TavernTutorialPreFight", true},
-        {"TavernTutorialPostFight", true},
+        {"TavernTutorialPreFight", false},
+        {"TavernTutorialPostFight", false},
         {"TavernTourWithGary", false},
-        {"001_GatherForSmith", false}
+        {"001_GatherForSmith", false},
+        {"002_CheckLumbererForTheSmith", false},
+        {"002_ArrivingAtTheLumber", false},
+        {"002_AfterTheFight", false}
     };
 
     public void UpdateDialogue(string key)
