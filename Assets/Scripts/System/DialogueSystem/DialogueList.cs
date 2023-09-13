@@ -5,8 +5,8 @@ using UnityEngine;
 public class DialogueList
 { 
     static Dictionary<string, bool> DIALOGUE_LIST = new Dictionary<string, bool>{
-        {"TavernTutorialPreFight", false},
-        {"TavernTutorialPostFight", false},
+        {"TavernTutorialPreFight", true},
+        {"TavernTutorialPostFight", true},
         {"TavernTourWithGary", false},
         {"001_GatherForSmith", false},
         {"002_CheckLumbererForTheSmith", false},
