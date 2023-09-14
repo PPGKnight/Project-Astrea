@@ -22,6 +22,7 @@ public class EncounterList : MonoBehaviour
     Dictionary<string, bool> encounterList = new Dictionary<string, bool>{
       {"TavernTutorial1", false},  
       {"TavernTutorial2", false},
+      {"002_LumbererRoadblock", false},
       {"002_LumbererEncounter", false}
     };
 
