@@ -13,15 +13,11 @@ As you aproach them, they notice you.
 ->Fight
 
 ===Asked===
-"You look like you do have something in your pouch. And I think we're gonna take it. Get'em boys."
-->after
+"You look like you do have something in your pouch. And I think we're gonna take it. Get'em boys." #fight:002_LumbererEncounter
+-> END
 ===Trouble===
-"Well I think the trouble has found you. Get'em boys."
-->after
+"Well I think the trouble has found you. Get'em boys." #fight:002_LumbererEncounter
+-> END
 ===Fight===
-"If you're looking for a fight... I think we can deliver."
-->after
-
-===after===
-#fight:002_LumbererEncounter
-    -> END
+"If you're looking for a fight... I think we can deliver." #fight:002_LumbererEncounter
+-> END

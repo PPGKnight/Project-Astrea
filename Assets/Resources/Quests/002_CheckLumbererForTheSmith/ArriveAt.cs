@@ -5,6 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class ArriveAt : QuestStep
 {
+    /*[SerializeField] Vector3 stepPosition;
+    [SerializeField] Vector3 stepScale;
+
+    public Vector3 GetPosition()
+    {
+        return stepPosition;
+    }
+
+    public Vector3 GetScale()
+    {
+        return stepScale;
+    }*/
+
+
     bool isVisited = false;
 
     private void OnTriggerEnter(Collider other)

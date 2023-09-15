@@ -4,7 +4,7 @@ VAR PlayerName = "Default"
 As you watch the bandits scatter, the lumberjack exits his cabin and he looks at you.
 "Thank you for taking care of them, but I'm afraid it's wasn't the last time I saw them. The name is Andrey."
 
-*"I'm [PlayerName], pleasure to meet you."
+*"I'm {PlayerName}, pleasure to meet you."
 ->Name
 ===Name===
 "Great, now that we have pleasantries out of the way tell me what made you come here."

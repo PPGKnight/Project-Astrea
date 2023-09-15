@@ -7,7 +7,7 @@ public class DialogueChecker : MonoBehaviour
     [SerializeField] GameObject dialogueTrigger;
     [SerializeField] List<string> dialogueRequirements;
     [SerializeField] List<string> encounterRequirements;
-    [SerializeField] List<string> questRequirements;
+    [SerializeField] List<QuestSO> questRequirements;
 
 
     bool canBeActive = true;
@@ -28,10 +28,12 @@ public class DialogueChecker : MonoBehaviour
 
     public void CheckAll()
     {
+        canBeActive = true;
         CheckDialogue();
         CheckEncounter();
+        CheckQuest();
+        Debug.Log($"{gameObject.name} zwraca {canBeActive}");
         dialogueTrigger.SetActive(canBeActive);
-       // CheckQuest();
     }
 
     void CheckDialogue()
@@ -78,9 +80,9 @@ public class DialogueChecker : MonoBehaviour
     {
         if (questRequirements.Count > 0)
         {
-            foreach (var r in questRequirements)
+            foreach (QuestSO r in questRequirements)
             {
-                if (!DialogueManager.Instance.dialogueList.CheckIfCompleted(r))
+                if (QuestManager.Instance.CheckQuestState(r.id) != QuestState.Completed)
                     canBeActive = false;
             }
         }

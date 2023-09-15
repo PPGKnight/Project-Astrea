@@ -1442,6 +1442,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 511144619039757856}
     m_Modifications:
+    - target: {fileID: 5408634322402250625, guid: 537871cc3f51a7d47877f79bb6e0b7d5,
+        type: 3}
+      propertyPath: _allyPosition
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408634322606140077, guid: 537871cc3f51a7d47877f79bb6e0b7d5,
+        type: 3}
+      propertyPath: _allyPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5408634323275285422, guid: 537871cc3f51a7d47877f79bb6e0b7d5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1551,6 +1561,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HpBars
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408634323364792851, guid: 537871cc3f51a7d47877f79bb6e0b7d5,
+        type: 3}
+      propertyPath: _allyPosition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408634323488003798, guid: 537871cc3f51a7d47877f79bb6e0b7d5,
+        type: 3}
+      propertyPath: _allyPosition
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 537871cc3f51a7d47877f79bb6e0b7d5, type: 3}

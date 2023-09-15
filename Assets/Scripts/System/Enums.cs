@@ -55,7 +55,8 @@ public enum QuestState
     Can_Start,
     In_Progress,
     Can_Finish,
-    Completed
+    Completed,
+    Hidden
 }
 
 public enum DialogueTriggerType

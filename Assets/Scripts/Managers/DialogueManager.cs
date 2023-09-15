@@ -160,7 +160,9 @@ public class DialogueManager : MonoBehaviour
     IEnumerator ExitDialogue()
     {
         yield return new WaitForSeconds(0.2f);
-        dialogueList.UpdateDialogue(dialogue_name);
+
+        if(dialogue_name != null && dialogue_name != "")
+            dialogueList.UpdateDialogue(dialogue_name);
         GameManager.Instance.worldTime = 1;
 
         isDialogue = false;
@@ -221,14 +223,21 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case FIGHT_TAG:
                     GameObject o = GameObject.Find(tagValue);
-                    Debug.Log(o);
+                    Debug.Log($"Uruchamiam walke {o.name}");
                     StartCoroutine(PrepareToFight(o));
                     break;
                 case TELEPORT_TAG:
                     string[] strings = tagValue.Split('_');
                     Debug.LogWarning($"{strings[0]} {strings[1]}");
                     PlayerMovement getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
-                    if (getobject == null) Debug.LogError("Chuj by to");
+                    if (getobject == null)
+                    {
+                        getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
+                        Debug.LogError("Chuj by to");
+
+                        if (GameManager.Instance._player == null) Debug.LogError("GM Player chuj");
+                        else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
+                    }
                     TeleportTo(getobject, TransitionSpawns.ReturnSpawn(strings[1]));
                     break;
                 default:

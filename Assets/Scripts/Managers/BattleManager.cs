@@ -57,8 +57,8 @@ public class BattleManager : MonoBehaviour
             animator = GetComponent<Animator>();
             GameObject temp = GameObject.Find("Ally" + index);
             Creature p = Instantiate(GameManager.Instance.entity[player.Name], temp.transform).GetComponent<Player>();
-            p.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
-            p.transform.transform.localScale = new Vector3(1f, 2f, 1f);
+            p.transform.transform.localPosition = new Vector3(0f, 1f, 0f);
+            p.transform.transform.localScale = new Vector3(1f, 1f, 1f);
             p.transform.rotation = temp.transform.rotation;
             //p.transform.parent = temp.transform;
             queue.Add(p);
@@ -90,7 +90,7 @@ public class BattleManager : MonoBehaviour
             
 
             e.Name += $" {index}";
-            e.transform.transform.localPosition = new Vector3(0f, 2f, 0f);
+            e.transform.transform.localPosition = new Vector3(0f, 0f, 0f);
             e.transform.rotation = temp.transform.rotation;
             //e.transform.parent = temp.transform;
             queue.Add(e);
@@ -282,7 +282,7 @@ public class BattleManager : MonoBehaviour
                     StopCoroutine(coro);
                     print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
                     target.GetComponent<Enemy>().TakeDamage(a);
-                    f = Instantiate(_floatingNumbers, target.transform.position, Quaternion.identity);
+                    f = Instantiate(_floatingNumbers, target.transform.position, target.transform.parent.rotation);
                     f.SetText(a, Color.red);
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
                     break;

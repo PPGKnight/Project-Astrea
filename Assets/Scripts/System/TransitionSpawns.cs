@@ -7,8 +7,8 @@ public static class TransitionSpawns
     {
         {"InnToInn_SleepingRooms", new Vector3(0f, 1f, -1.5f)},
         {"Inn_SleepingRoomsToInn", new Vector3(5.3f, 3f, 1f)},
-        {"InnToHendleyVillage", new Vector3(-487.799988f,-5.159f,-687.580017f)},
-        {"HendleyVillageToInn", new Vector3(-4.11800003f,0f,2.66599989f)},
+        {"InnToHendleyVillage", new Vector3(-489.1f, -5.159f, -687.34f)},
+        {"HendleyVillageToInn", new Vector3(-4.118f, 0f, 1.77f)},
         {"HendleyVillageToRoadToHendley", new Vector3(-230f, -3f, -275f)},
         {"RoadToHendleyToHendleyVillage", new Vector3(76f, 2f, 76f)},
         {"HendleyMarket", new Vector3(-499.209991f,-5.19700003f,-664.940002f)},

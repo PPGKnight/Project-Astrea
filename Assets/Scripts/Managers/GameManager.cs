@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     private Player player;
 
+    public List<string> Inventory;
+
     [SerializeField]
     public List<string> activeScenes;
 
@@ -135,7 +137,12 @@ public class GameManager : MonoBehaviour
         entity = new Dictionary<string, GameObject>()
         {
             {"Gracz", Resources.Load<GameObject>("Prefabs/PlayerModel")},
-            {"Big Bad", Resources.Load<GameObject>("Prefabs/Enemy")}
+            {"Cabbage Man", Resources.Load<GameObject>("Prefabs/Characters/Cabbage_Man")},
+            {"Baker", Resources.Load<GameObject>("Prefabs/Characters/Baker")}, 
+            {"Bandit Josh", Resources.Load<GameObject>("Prefabs/Characters/M_Vest_Green_Blonde")},
+            {"Bandit Andrew", Resources.Load<GameObject>("Prefabs/Characters/M_Vest_Red")},
+            {"Bandit Catherin", Resources.Load<GameObject>("Prefabs/Characters/W_NoVest_Dark")},
+            {"Bandit Louise", Resources.Load<GameObject>("Prefabs/Characters/W_Vest_Green")},
         };
     }
 

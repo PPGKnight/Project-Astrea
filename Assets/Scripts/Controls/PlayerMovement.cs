@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.LogError($"Worldtime {gameManager.worldTime}");
+            //Debug.LogError($"Worldtime {gameManager.worldTime}");
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
             

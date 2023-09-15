@@ -158,6 +158,7 @@ public class QuestManager : MonoBehaviour
         ClaimRewards(quest);
         ChangeQuestState(quest.info.id, QuestState.Completed);
         Debug.LogWarning($"Zakonczono quest '{quest.info.displayName}'");
+        DialogueManager.Instance.CheckRequirements();
     }
 
     private void ClaimRewards(Quest quest)
@@ -196,7 +197,7 @@ public class QuestManager : MonoBehaviour
         return idToQuestMap;
     }
 
-    private Quest GetQuestById(string id)
+    public Quest GetQuestById(string id)
     {
         Quest quest = questMap[id];
         if (quest == null)

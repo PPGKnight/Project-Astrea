@@ -28,7 +28,15 @@ public class EncounterList : MonoBehaviour
 
     public bool GetEncounter(string s)
     {
-        return encounterList[s];
+        if (s.Contains("&"))
+        {
+            Debug.Log(s);
+            s = s.Remove(s.Length-1);
+            Debug.Log(s);
+            return (encounterList[s + "1"] || encounterList[s + "2"]);
+        }
+        else
+            return encounterList[s];
     }
 
     public void SetEncounter(string s)

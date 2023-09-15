@@ -38,6 +38,9 @@ public class QuestIcon : MonoBehaviour
             case QuestState.Completed:
                 Debug.Log("Complete");
                 break;
+            case QuestState.Hidden:
+                Debug.Log("Hidden");
+                break;
             default:
                 Debug.LogWarning("Quest State not recognized by switch statement for quest icon: " + newState);
                 break;
