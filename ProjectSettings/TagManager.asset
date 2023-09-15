@@ -8,6 +8,8 @@ TagManager:
   - MainPlayer
   - Enemy
   - Ally
+  - PlayerCamera
+  - Managers
   layers:
   - Default
   - TransparentFX
@@ -15,9 +17,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - MinimapIcons
+  - MapGeometry
   - 
   - 
   - 

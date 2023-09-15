@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 5848745da1087fd41b45106ef6e218e4
+guid: 395b037ea64283a48a87cb4e236d329a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Inn_Color
+    second: {fileID: 2800000, guid: f0a5b462306477b4fa588f10c7969a45, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

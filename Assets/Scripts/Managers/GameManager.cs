@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -12,16 +12,21 @@ public class GameManager : MonoBehaviour
     BattleData _battleData;
 
     [SerializeField]
-    PlayerPositionSO _playerPositionSO;
+    public PlayerPositionSO _playerPositionSO;
 
     public int worldTime = 1;
 
     public Dictionary<string, GameObject> entity;
 
     [SerializeField]
-    private GameObject _player;
+    public GameObject _player;
 
     private Player player;
+
+    public List<string> Inventory;
+
+    [SerializeField]
+    public List<string> activeScenes;
 
     public List<Player> party;
 
@@ -34,33 +39,42 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _ = SpawnPlayer();
         if(_instance == null)
         {
             _instance = this;
-            _player.transform.position = Vector3.zero;
+            DontDestroyOnLoad(this.gameObject);
+            //ascene = SceneManager.GetActiveScene().name;
+            //_player.transform.position = Vector3.zero;
         }
         else
             Destroy(this.gameObject);
 
+        SpawnThePlayer(false);
         Populate();
         party.Add(Resources.Load<Player>("Prefabs/PlayerModel"));
 
         encounters = GameObject.FindGameObjectsWithTag("Encounter");
+
+        activeScenes.Add(SceneManager.GetActiveScene().name);
 
         if (SceneManager.GetActiveScene().name == "Testing Ground")
             foreach (GameObject o in encounters)
                 if (o.name == _battleData.eID.ToString())
                     o.SetActive(false);
 
-        DontDestroyOnLoad(this);
     }
-    private async Task SpawnPlayer()
+    public void SpawnThePlayer(bool keepPosition)
     {
+        _ = SpawnPlayer(keepPosition);
+    }
+    public async Task SpawnPlayer(bool keepPosition)
+    {
+        //Debug.Log("jestem");
         if (_player == null)
         {
-            _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), _playerPositionSO.GetPlayerPosition(), Quaternion.identity);
+            _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), keepPosition ? _playerPositionSO.GetPlayerPosition() : _playerPositionSO.spawnPoint[SceneManager.GetActiveScene().name], Quaternion.identity);
             player = _player.GetComponent<Player>();
+            //Debug.Log("Stworzylem");
         }
         await Task.Run(() =>
         {
@@ -68,37 +82,31 @@ public class GameManager : MonoBehaviour
         });
         player.Stats();
     }
-    #region LoadPlayer
-    //private async Task LoadPlayer()
-    //{
-    //    await Task.Delay(2000);
-    //    _player = null;
-    //    player = null;
-    //    if (_player == null)
-    //    {
-    //        _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), new Vector3(0f, 0f, 0f), Quaternion.identity);
-    //        player = _player.GetComponent<Player>();
-    //    }
-    //    //_player.transform.position = _playerPositionSO.GetPlayerPosition();
-    //    _player.transform.position = new Vector3(-6f, 2.17f, 2f);
-    //    _player.transform.rotation = _playerPositionSO.GetPlayerRotation();
-    //    _player.transform.localScale = _playerPositionSO.GetPlayerLocalScale();
-    //}
-    #endregion
     public void ReturnToScene()
     {
         SceneManager.LoadScene(_playerPositionSO.returnToScene);
-        //_ = LoadPlayer();
+        DialogueManager.Instance.gameObject.transform.parent.Find("EventSystem").gameObject.SetActive(true);
+        worldTime = 1;
+        if (_battleData.battleStatus == BattleStatus.Victory)
+            Check();
+
+        _player.SetActive(true);
+        //if (_battleData.dialogue != null)
+           // _battleData.dialogue.GetComponent<BoxCollider>().enabled = true;
     }
 
     public void Check()
     {
-        
-        Debug.Log($"Encounter_{_battleData.eID}");
-        GameObject.Find($"Encounter_{_battleData.eID}").SetActive(false);
+        Debug.Log($"Encounter: {_battleData.eID}");
+        /*if (_battleData.battleStatus == BattleStatus.Victory)
+        {
+            GameObject g = GameObject.Find(_battleData.eID);
+            g.SetActive(false);
+        }*/
+        EncounterList.Instance.SetEncounter(_battleData.eID);
     }
 
-    public void BattleStart(Enemy[] enemy, int eid)
+    public void BattleStart(Enemy[] enemy, string eid, string arenaName)
     {
         _battleData.allies.Clear();
         _battleData.enemies.Clear();
@@ -116,9 +124,12 @@ public class GameManager : MonoBehaviour
         _playerPositionSO.SetPosition(_player.transform.position, _player.transform.rotation, _player.transform.localScale);
         _playerPositionSO.returnToScene = SceneManager.GetActiveScene().name;
         _battleData.eID = eid;
-        player = null;
-        _player = null;
-        SceneManager.LoadScene("Battle Arena");
+        //_player.GetComponent<NavMeshAgent>().Warp(new Vector3(0f, -10f, 0f));
+        //player = null;
+        //_player = null;
+        DialogueManager.Instance.gameObject.transform.parent.Find("EventSystem").gameObject.SetActive(false);
+        SceneManager.LoadScene(arenaName);
+        _player.SetActive(false);
     }
 
     public void Populate()
@@ -126,7 +137,24 @@ public class GameManager : MonoBehaviour
         entity = new Dictionary<string, GameObject>()
         {
             {"Gracz", Resources.Load<GameObject>("Prefabs/PlayerModel")},
-            {"Big Bad", Resources.Load<GameObject>("Prefabs/Enemy")}
+            {"Cabbage Man", Resources.Load<GameObject>("Prefabs/Characters/Cabbage_Man")},
+            {"Baker", Resources.Load<GameObject>("Prefabs/Characters/Baker")}, 
+            {"Bandit Josh", Resources.Load<GameObject>("Prefabs/Characters/M_Vest_Green_Blonde")},
+            {"Bandit Andrew", Resources.Load<GameObject>("Prefabs/Characters/M_Vest_Red")},
+            {"Bandit Catherin", Resources.Load<GameObject>("Prefabs/Characters/W_NoVest_Dark")},
+            {"Bandit Louise", Resources.Load<GameObject>("Prefabs/Characters/W_Vest_Green")},
         };
+    }
+
+    public void ChangePlayerPos(Vector3 newPos)
+    {
+        Debug.Log(newPos);
+        _playerPositionSO.SetOnlyPosition(newPos);
+    }
+
+    public void MovePlayerToNewPos()
+    {
+        Debug.Log(_playerPositionSO.GetPlayerPosition());
+        _player.transform.position.Set(_playerPositionSO.GetPlayerPosition().x, _playerPositionSO.GetPlayerPosition().y, _playerPositionSO.GetPlayerPosition().z);
     }
 }

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthBarShrink : MonoBehaviour
 {
+    public AllyPosition _allyPosition;
     private const float DAMAGED_HEALTH_TIMER_MAX = 1f;
     private Image barImage;
     private Image damagedBarImage;
@@ -19,11 +21,20 @@ public class HealthBarShrink : MonoBehaviour
 
     private void Start()
     {
-        healthSystem = new HealthBarSystem(100);
-        SetHealth(healthSystem.GetHealthNormalized());
-        healthSystem.OnDamaged += HealthSystem_OnDamaged;
-        healthSystem.OnHealed += HealthSystem_OnHealed;
-        damagedBarImage.fillAmount = barImage.fillAmount;
+        Player? ally = GameObject.Find("Ally"+(int)_allyPosition).GetComponentInChildren<Player>();
+        Debug.Log($"Kurwo {ally}");
+        if (ally != null)
+        {
+            gameObject.SetActive(true);
+            Debug.Log(ally);
+            healthSystem = new HealthBarSystem(ally);
+            SetHealth(healthSystem.GetHealthNormalized());
+            healthSystem.OnDamaged += HealthSystem_OnDamaged;
+            healthSystem.OnHealed += HealthSystem_OnHealed;
+            damagedBarImage.fillAmount = barImage.fillAmount;
+        }
+        else
+            gameObject.SetActive(false);
     }
 
     private void Update()
@@ -48,6 +59,7 @@ public class HealthBarShrink : MonoBehaviour
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
         damagedHealthShrinkTimer = DAMAGED_HEALTH_TIMER_MAX;
+        Debug.Log($"Shrinking to {healthSystem.GetHealthNormalized()}");
         SetHealth(healthSystem.GetHealthNormalized());
     }
 
@@ -55,4 +67,12 @@ public class HealthBarShrink : MonoBehaviour
     {
         barImage.fillAmount = healthNormalized;
     }
+}
+
+public enum AllyPosition
+{
+    Position_1 = 1,
+    Position_2 = 2,
+    Position_3 = 3,
+    Position_4 = 4
 }

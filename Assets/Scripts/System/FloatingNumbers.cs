@@ -18,14 +18,15 @@ public class FloatingNumbers : MonoBehaviour
     void Start()
     {
         iniPos = transform.position;
-        iniPos.y += 3f;
+        iniPos.y += 1f;
         float dir = Random.rotation.eulerAngles.z;
         float dist = Random.Range(minDist, maxDist);
         targetPos = iniPos + (Quaternion.Euler(0,0, dir) * new Vector3(dist, dist, 0f));
         targetPos.y = iniPos.y + dist;
 
         //transform.LookAt(2 * transform.position - Camera.main.transform.position);
-        transform.Rotate(25f, -90f, 0f);
+        //transform.Rotate(25, Camera.main.transform.rotation.y - 360, 0);
+        transform.Rotate(0f, 180f, 0f);
         transform.localScale = Vector3.zero;
 
         //TweenMove();
@@ -53,12 +54,17 @@ public class FloatingNumbers : MonoBehaviour
         else if (timer > fraction) text.color = Color.Lerp(text.color, Color.clear, (timer - fraction) / (lifetime - fraction));
 
         transform.position = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
-        transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, Mathf.Sin(timer / lifetime));
+        transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(0.5f, 0.5f, 0.5f), Mathf.Sin(timer / lifetime));
     }
 
-    public void SetText(int damage, Color color)
+    public void SetText(int _damage, Color _color)
     {
-        text.text = damage.ToString();
-        text.color = color;
+        text.text = _damage.ToString();
+        text.color = _color;
+    }
+    public void SetText(string _text, Color _color)
+    {
+        text.text = _text;
+        text.color = _color;
     }
 }

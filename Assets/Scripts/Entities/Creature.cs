@@ -1,10 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-enum CreatureType
-{
-    Ally,
-    Enemy
-}
 public class Creature : MonoBehaviour
 {
     #region CreatureInfo
@@ -12,8 +10,6 @@ public class Creature : MonoBehaviour
     public int Level;
     public int CurrentHP;
     public int MaxHP;
-    public int CurrentMana;
-    public int MaxMana;
     public sbyte SlotsTaken = 1;
     public bool HadTurn = false;
     public int SpeedBonus = 0;
@@ -24,6 +20,8 @@ public class Creature : MonoBehaviour
     public float tracker = 0;
     [SerializeField]
     private bool _isDead = false;
+    public Sprite avatar;
+
     #nullable enable
     [HideInInspector]
     public UpdateInfo? entityInfo;
@@ -36,6 +34,7 @@ public class Creature : MonoBehaviour
     public int Intelligence;
     public int Constitution;
     public int Initiative;
+    public int InitiativeThisFight;
     #endregion
 
     private void Awake()
@@ -46,14 +45,16 @@ public class Creature : MonoBehaviour
     public virtual void UpdateStats()
     {
         MaxHP = (Constitution * 2 + Strength) * Level;
-        MaxMana = Intelligence * 3 * Level;
-        Initiative = Mathf.RoundToInt(((Dexterity - 10)/2)+SpeedBonus);
+        Initiative = (Dexterity - 10) / 2;
         CurrentHP = MaxHP;
-        CurrentMana = MaxMana;
     }
     public string GetCreatureType()
     {
         return this.creatureType.ToString();
+    }
+    public void SetInitiative()
+    {
+        InitiativeThisFight = Random.Range(1, 21) + Initiative;
     }
     public int Attack()
     {
@@ -88,15 +89,31 @@ public class Creature : MonoBehaviour
     }
 
 
+    [SerializeField] List<GameObject> outlineMaterials;
+    public UnityEvent m_outlineEventOn, m_outlineEventOff;
+
+
+    private void Start()
+    {
+        foreach (GameObject mat in outlineMaterials)
+        {
+            m_outlineEventOn.AddListener(mat.GetComponent<OutlineCS>().AlphaOn);
+            m_outlineEventOff.AddListener(mat.GetComponent<OutlineCS>().AlphaOff);
+        }
+    }
+
     private void OnMouseOver()
     {
-        Material m = GetComponent<Renderer>().material;
-        m.SetFloat("_Alpha", 255);
+        m_outlineEventOn.Invoke();
     }
 
     private void OnMouseExit()
     {
-        Material m = GetComponent<Renderer>().material;
-        m.SetFloat("_Alpha", 0);
+        m_outlineEventOff.Invoke();
+    }
+
+    public string ReturnName()
+    {
+        return this.Name;
     }
 }

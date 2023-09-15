@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0076d828bfa44404ab336c88805af9ba, type: 3}
   m_Name: BattleData
   m_EditorClassIdentifier: 
+  eID: TestEncounter
   allies:
   - {fileID: 852128914298622693, guid: 597618e86a2a7344280d3df4e87d8c80, type: 3}
   enemies:
   - {fileID: 3613461070001785044, guid: 99bc1aae1806e7349b2fb6121fc62e02, type: 3}
   - {fileID: 3613461070001785044, guid: 99bc1aae1806e7349b2fb6121fc62e02, type: 3}
-  - {fileID: 3613461070001785044, guid: 99bc1aae1806e7349b2fb6121fc62e02, type: 3}
+  battleStatus: 1
