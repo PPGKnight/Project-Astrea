@@ -30,6 +30,24 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject _characterPanel;
     [SerializeField] GameObject _enemyPanel;
     [SerializeField] Canvas _battleOptions;
+    
+    [SerializeField] GameObject CameraAlly1;
+    [SerializeField] GameObject CameraAlly2;
+    [SerializeField] GameObject CameraAlly3;
+    [SerializeField] GameObject CameraAlly4;
+    [SerializeField] GameObject CameraHitAlly1;
+    [SerializeField] GameObject CameraHitAlly2;
+    [SerializeField] GameObject CameraHitAlly3;
+    [SerializeField] GameObject CameraHitAlly4;
+    [SerializeField] GameObject CameraEnemy1;
+    [SerializeField] GameObject CameraEnemy2;
+    [SerializeField] GameObject CameraEnemy3;
+    [SerializeField] GameObject CameraEnemy4;
+    [SerializeField] GameObject CameraOverlook;
+    GameObject TemporaryCamera;
+    
+    
+    
     Creature creatureThisTurn;
 
     #region Setup
@@ -41,6 +59,8 @@ public class BattleManager : MonoBehaviour
     }
     public void Setup()
     {
+        TemporaryCamera = CameraOverlook;
+        TemporaryCamera.SetActive(true);
         _battleState = BattleState.Setup;
         this.allies = battleData.allies;
         this.enemies = battleData.enemies;
@@ -50,6 +70,7 @@ public class BattleManager : MonoBehaviour
 
     private void SetupArena()
     {
+    
         if (_battleState != BattleState.Setup) return;
         sbyte index = 1;
         foreach (Player player in allies)
@@ -257,6 +278,9 @@ public class BattleManager : MonoBehaviour
 
     void AllyTurn()
     {
+        CameraAlly1.SetActive(true);
+        TemporaryCamera.SetActive(false);
+        TemporaryCamera = CameraAlly1;
         Debug.Log("Wykonalem sie");
         isSomeonesTurn = true;
         _turn = Turn.Ally;
@@ -268,11 +292,30 @@ public class BattleManager : MonoBehaviour
     {
         if (action.Length > 0 && target != null)
         {
+        
             FloatingNumbers f;
             Coroutine coro;
             switch (action)
             {
                 case "Attack":
+                    char lastCharacter = target.GetComponent<Enemy>().Name[target.GetComponent<Enemy>().Name.Length-1];
+                    int l  = int.Parse(lastCharacter.ToString());
+                    Debug.Log($"ostatnia cyfra to {l}");  
+
+                    if(l == 1)
+                    {
+                        CameraEnemy1.SetActive(true);
+                        TemporaryCamera.SetActive(false);
+                        TemporaryCamera = CameraEnemy1;
+                    }
+                    if(l == 2)
+                    {
+                        CameraEnemy2.SetActive(true);
+                        TemporaryCamera.SetActive(false);
+                        TemporaryCamera = CameraEnemy2;
+                    }
+
+
                     int a = c.GetComponent<Player>().Attack();
                     Transform t = GameObject.Find(target.gameObject.transform.parent.name + "Hit").transform;
                     yield return new WaitForSeconds(0.1f);
@@ -287,6 +330,9 @@ public class BattleManager : MonoBehaviour
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
                     break;
                 case "Heal":
+                    CameraHitAlly1.SetActive(true);
+                    TemporaryCamera.SetActive(false);
+                    TemporaryCamera = CameraHitAlly1;
                     print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                     StopCoroutine(coro);
@@ -296,6 +342,9 @@ public class BattleManager : MonoBehaviour
                     //target.GetComponent<Player>().entityInfo.UpdateHP(target.GetComponent<Player>().CurrentHP);
                     break;
                 case "Guard":
+                    CameraHitAlly1.SetActive(true);
+                    TemporaryCamera.SetActive(false);
+                    TemporaryCamera = CameraHitAlly1;
                     print($"You will take -50% damage on enemy's next attack");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                     StopCoroutine(coro);
@@ -309,12 +358,30 @@ public class BattleManager : MonoBehaviour
             _turn = Turn.Idle;
             c.tracker = 0;
             isSomeonesTurn = false;
+            CameraOverlook.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraOverlook;
             StartNextTurn();
         }
     }
 
     void DoEnemyTurn(Creature c)
     {
+        char lastCharacter = c.Name[c.Name.Length-1];
+        int l = int.Parse(lastCharacter.ToString());
+        Debug.Log($"ostatnia cyfra to {l}");
+        if(l == 1)
+        {
+            CameraEnemy1.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraEnemy1;
+        }
+        if(l == 2)
+        {
+            CameraEnemy2.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraEnemy2;
+        }
         if(!isSomeonesTurn)
             StartCoroutine(DelayEnemyTurn(c)); 
     }
@@ -332,9 +399,13 @@ public class BattleManager : MonoBehaviour
         FloatingNumbers f;
         Coroutine coro;
 
-        switch (rnd.Next(0, 1))
+        switch (rnd.Next(0, 3))
         {
             case 0:
+
+                CameraHitAlly1.SetActive(true);
+                TemporaryCamera.SetActive(false);
+                TemporaryCamera = CameraHitAlly1;
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
                 Transform t = GameObject.Find(insideAllies[att].gameObject.transform.parent.name + "Hit").transform;
@@ -372,6 +443,9 @@ public class BattleManager : MonoBehaviour
         c.tracker = 0;
         _turn = Turn.Idle;
         isSomeonesTurn = false;
+        CameraOverlook.SetActive(true);
+        TemporaryCamera.SetActive(false);
+        TemporaryCamera = CameraOverlook;
         StartNextTurn();
     }
     #endregion
