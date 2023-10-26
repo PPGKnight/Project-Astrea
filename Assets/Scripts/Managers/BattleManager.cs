@@ -172,10 +172,12 @@ public class BattleManager : MonoBehaviour
         CheckDeaths();
         if(!isSomeonesTurn && _queue.Count > 0)
         {
+          
             ProgressTurn?.Invoke();
             creatureThisTurn = _queue.Dequeue();
             if (creatureThisTurn.IsDead() || creatureThisTurn == null) StartNextTurn();
             Debug.Log($"Tura {creatureThisTurn.Name}");
+            TemporaryCamera.SetActive(false);
             if (creatureThisTurn.GetCreatureType() == "Enemy")
             {
                 _turn = Turn.Enemy;
@@ -210,7 +212,7 @@ public class BattleManager : MonoBehaviour
                 Debug.Log($"{c.Name} zostal zgladzony!");
                 if (c.GetCreatureType() == "Enemy") enemiesDeaths++;
                 else alliesDeaths++;
-
+                TemporaryCamera.SetActive(false);
                 initiativeTrackerManager.RemoveToken();
                 queue.Remove(c);
                 Destroy(c.entityInfo.gameObject);
@@ -328,6 +330,7 @@ public class BattleManager : MonoBehaviour
                     f = Instantiate(_floatingNumbers, target.transform.position, target.transform.parent.rotation);
                     f.SetText(a, Color.red);
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
+                    TemporaryCamera.SetActive(false);
                     break;
                 case "Heal":
                     CameraHitAlly1.SetActive(true);
@@ -402,10 +405,13 @@ public class BattleManager : MonoBehaviour
         switch (rnd.Next(0, 3))
         {
             case 0:
-
+// camera if powinna isc tu
                 CameraHitAlly1.SetActive(true);
                 TemporaryCamera.SetActive(false);
                 TemporaryCamera = CameraHitAlly1;
+
+
+
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
                 Transform t = GameObject.Find(insideAllies[att].gameObject.transform.parent.name + "Hit").transform;
@@ -428,6 +434,7 @@ public class BattleManager : MonoBehaviour
                 insideEnemies[0].Heal(c.Intelligence);
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText(c.Intelligence, Color.green);
+                TemporaryCamera.SetActive(false);
                 //insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
                 break;
             case 2:
