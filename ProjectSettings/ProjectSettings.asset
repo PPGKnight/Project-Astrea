@@ -887,11 +887,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 40a7d50c-4fd8-4b36-932b-5a8be0ce45d3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Tales of Astrea
+  organizationId: jayblonski
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
