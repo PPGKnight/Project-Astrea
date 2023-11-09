@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
-public class GameQuit : MonoBehaviour
+public class ExitGame : MonoBehaviour
 {
     public void ButtonExit()
     {
@@ -10,6 +11,7 @@ public class GameQuit : MonoBehaviour
     }
     private IEnumerator ButtonExitCor()
     {
+        Debug.Log("GoTouchGrass");
         yield return new WaitForSeconds(0);
 
 #if UNITY_EDITOR
