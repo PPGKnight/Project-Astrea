@@ -32,6 +32,27 @@ public class BattleManager : MonoBehaviour
     [SerializeField] Canvas _battleOptions;
     Creature creatureThisTurn;
 
+    TurnManager turnManager;
+    private void OnEnable()
+    {
+        CombatAnimationListener.AnimationFinished += AnimationEnded;
+        CombatMouseListener.MouseClicked += SelectOptions;
+        //TakeDamage += DoTheDamage;
+        //HealDamage += HealTheDamage;
+        //Guard += GuardFromDamage;
+        //AdvanceLoop += Advance;
+    }
+
+    private void OnDisable()
+    {
+        CombatAnimationListener.AnimationFinished -= AnimationEnded;
+        CombatMouseListener.MouseClicked -= SelectOptions;
+        //TakeDamage -= DoTheDamage;
+        //HealDamage -= HealTheDamage;
+        //Guard -= GuardFromDamage;
+        //AdvanceLoop -= Advance;
+    }
+
     #region Setup
     private void Awake()
     {
@@ -100,6 +121,8 @@ public class BattleManager : MonoBehaviour
         foreach (Creature q in queue)
             q.SetInitiative();
 
+        //turnManager = new TurnManager(queue);
+
         queue.Sort((x, y) => y.InitiativeThisFight.CompareTo(x.InitiativeThisFight));
         _queue = new Queue<Creature>(queue);
 
@@ -145,6 +168,8 @@ public class BattleManager : MonoBehaviour
     }
     */
 
+
+    
     public void StartNextTurn()
     {
         if (_battleState == BattleState.Victory || _battleState == BattleState.Defeat) return;
@@ -379,22 +404,8 @@ public class BattleManager : MonoBehaviour
     #region Event-based
     bool isAnimating = false;
 
-    private void OnEnable()
-    {
-        CombatAnimationListener.AnimationFinished += AnimationEnded;
-        CombatMouseListener.MouseClicked += SelectOptions;
-    }
 
-    private void OnDisable()
-    {
-        CombatAnimationListener.AnimationFinished -= AnimationEnded;
-        CombatMouseListener.MouseClicked -= SelectOptions;
-    }
-
-    void AnimationEnded()
-    {
-        isAnimating = false;
-    }
+    void AnimationEnded() => isAnimating = false;
 
     IEnumerator BeginAnimation(Animator a, string animationName)
     {
@@ -424,5 +435,113 @@ public class BattleManager : MonoBehaviour
         a.SetBool(animationName, false);
         yield return new WaitForSeconds(.2f);
     }
+    #endregion
+
+
+
+
+    #region Attempt3
+    /*
+    Creature activeCreature;
+    bool isAnimating = false;
+
+    public static event Action<Creature, Creature, int> TakeDamage;
+    public static event Action<Creature, Creature> HealDamage;
+    public static event Action<Creature> Guard;
+    public static event Action AdvanceLoop;
+
+    IEnumerator CombatLoop()
+    {
+        Tuple<bool, int> result = turnManager.CheckResults();
+        if (result.Item1) FinalizeFight(result);
+        yield return true;
+
+        activeCreature = turnManager.GetCreature();
+        yield return true;
+        
+        // yield return 
+        
+        // yield return 
+        
+        // yield return 
+
+        // yield return 
+
+    }
+
+    void Advance() => CombatLoop();
+
+    public void SetAction(string s)
+    {
+        action = s;
+        Debug.Log($"Ustawiono akcje na {action}");
+        _turnOptions = TurnOptions.Target;
+    }
+
+    void FinalizeFight(Tuple<bool, int> result)
+    {
+        switch(result.Item2)
+        {
+            case 1:
+                break;
+
+            case 2:
+                break;
+        }
+    }
+
+    void SelectOptions()
+    {
+        if (_battleState != BattleState.Battle) return;
+
+        Debug.Log($"Klik {_turnOptions}");
+        if (_turnOptions == TurnOptions.Target)
+        {
+            Debug.Log("Target");
+            Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("MainPlayer"))
+                {
+                    if (hit.transform.CompareTag("Enemy"))
+                        Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
+                    if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
+                        Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
+
+                    target = hit.transform.gameObject;
+                    StartCoroutine(DoTurn(creatureThisTurn));
+                    _turnOptions = TurnOptions.Idle;
+                }
+            }
+        }
+    }
+
+    void AnimationEnded() => isAnimating = false;
+
+    void DoTheDamage(Creature attacker, Creature attacked, int damage)
+    {
+        FloatingNumbers f;
+        f = Instantiate(_floatingNumbers, attacked.transform.position, Quaternion.identity);
+        f.SetText(damage, Color.red);
+    }
+
+    void HealTheDamage(Creature healer, Creature healed)
+    {
+        FloatingNumbers f;
+        f = Instantiate(_floatingNumbers, healed.transform.position, Quaternion.identity);
+        f.SetText(healer.Intelligence, Color.green);
+    }
+
+    void GuardFromDamage(Creature guard)
+    {
+        FloatingNumbers f;
+        f = Instantiate(_floatingNumbers, guard.transform.position, Quaternion.identity);
+        f.SetText("Block", Color.blue);
+    }
+
+    List<Creature> RequestTrackerOrder() => turnManager.GetTracker();
+    */
+
     #endregion
 }

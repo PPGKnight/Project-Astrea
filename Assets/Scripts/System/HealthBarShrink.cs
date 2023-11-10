@@ -22,7 +22,6 @@ public class HealthBarShrink : MonoBehaviour
     private void Start()
     {
         Player? ally = GameObject.Find("Ally"+(int)_allyPosition).GetComponentInChildren<Player>();
-        Debug.Log($"Kurwo {ally}");
         if (ally != null)
         {
             gameObject.SetActive(true);
@@ -67,12 +66,4 @@ public class HealthBarShrink : MonoBehaviour
     {
         barImage.fillAmount = healthNormalized;
     }
-}
-
-public enum AllyPosition
-{
-    Position_1 = 1,
-    Position_2 = 2,
-    Position_3 = 3,
-    Position_4 = 4
 }
