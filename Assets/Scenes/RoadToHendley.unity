@@ -17945,6 +17945,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &371468883 stripped
@@ -19279,6 +19284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fence_Cheap (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
@@ -28588,6 +28598,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &676185398 stripped
@@ -35568,6 +35583,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &850338835 stripped
@@ -36908,6 +36928,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &884143909 stripped
@@ -37882,6 +37907,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fence_Cheap (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
@@ -51958,6 +51988,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &1242713349 stripped
@@ -54896,6 +54931,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fence_Cheap (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
@@ -59509,6 +59549,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &1460870572 stripped
@@ -63079,6 +63124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fence_Cheap (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
 --- !u!4 &1542562878 stripped
@@ -65698,6 +65748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fence_Cheap (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473106896820584610, guid: b10861a932a25f84b842e78866f5dfc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10861a932a25f84b842e78866f5dfc0, type: 3}
