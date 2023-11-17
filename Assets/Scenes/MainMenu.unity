@@ -1513,7 +1513,7 @@ GameObject:
   - component: {fileID: 727511636}
   - component: {fileID: 727511637}
   m_Layer: 5
-  m_Name: Analitics
+  m_Name: Analytics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1558,7 +1558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consentBox: {fileID: 727511635}
-  debugRemovePrefs: 1
+  debugRemovePrefs: 0
 --- !u!1 &816746979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,7 @@ GameObject:
   - component: {fileID: 939275225}
   - component: {fileID: 939275224}
   m_Layer: 5
-  m_Name: AnaliticsWindow
+  m_Name: AnalyticsWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4276,7 +4276,7 @@ GameObject:
   - component: {fileID: 1848165460}
   - component: {fileID: 1848165459}
   m_Layer: 5
-  m_Name: AnaliticsWindowBackground
+  m_Name: AnalyticsWindowBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4559,7 +4559,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1910295438}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 274757415}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1910295438
 MonoBehaviour:
   m_ObjectHideFlags: 0
