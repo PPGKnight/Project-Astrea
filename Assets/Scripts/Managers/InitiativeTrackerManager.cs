@@ -14,12 +14,16 @@ public class InitiativeTrackerManager : MonoBehaviour
     bool UpdateTokens = false;
 
     private float initiativeBarWidth;
+    private float initiativeBarHeight;
 
     void SetIniBar()
     {
-        int size = aliveCharacters.Count <= 5 ? aliveCharacters.Count : 5;
-        initiativeBar.rectTransform.sizeDelta = new Vector2(size * 100f, 100f);
-        initiativeBarWidth = initiativeBar.rectTransform.sizeDelta.x;
+        int barSize = aliveCharacters.Count <= 5 ? aliveCharacters.Count : 5;
+        //int trackerSize = BattleManager.Instance.RequestTrackerOrder().Count;
+        //int barSize = trackerSize <= 5 ? trackerSize : 5;
+        initiativeBar.rectTransform.sizeDelta = new Vector2(100f, barSize * 100f);
+        //initiativeBarWidth = initiativeBar.rectTransform.sizeDelta.x;
+        initiativeBarHeight = initiativeBar.rectTransform.sizeDelta.y;
     }
 
     private void OnEnable()
@@ -41,7 +45,7 @@ public class InitiativeTrackerManager : MonoBehaviour
         foreach (Creature c in aliveCharacters)
         {
             Image token = Instantiate(characterImage,initiativeBar.transform);
-            Vector3 r = new Vector3(100f * counter, 0f, 0f);
+            Vector3 r = new Vector3(0, -100f * counter, 0f);
             token.rectTransform.anchoredPosition = r;
             token.sprite = c.avatar;
             counter++;
@@ -50,6 +54,7 @@ public class InitiativeTrackerManager : MonoBehaviour
 
         //UpdateTokensPosition();
     }
+
 
     public void RemoveToken()
     {
@@ -68,6 +73,7 @@ public class InitiativeTrackerManager : MonoBehaviour
         UpdateTokensPosition();
     }
     /*
+     * Prototype function
     void UpdateTokensPosition()
     {
         for (int i = 0; i < aliveCharacters.Count; i++)
@@ -78,18 +84,48 @@ public class InitiativeTrackerManager : MonoBehaviour
         }
     }
     */
-
     void UpdateTokensPosition()
     {
         for (int i = 0; i < aliveCharacters.Count; i++)
         {
             RectTransform r = tokens[i].rectTransform;
-            Vector3 newPosition = new Vector3(r.anchoredPosition.x - 100f, 0f, 0f);
+            Vector3 newPosition = new Vector3(0f, r.anchoredPosition.y + 100f, 0f);
             r.anchoredPosition = newPosition;
 
-            if (r.anchoredPosition.x < 0f)
-                r.anchoredPosition = new Vector3((aliveCharacters.Count - 1) * 100f, 0f);
+            if (r.anchoredPosition.y >= 0f)
+                r.anchoredPosition = new Vector3(0f, aliveCharacters.Count * -100f, 0f);
         }
     }
 
+    /*
+     * TO DO
+    List<Creature> turnCreatures;
+
+    public void CreateTokens()
+    {
+        turnCreatures = BattleManager.Instance.RequestTrackerOrder();
+        SetIniBar();
+        int counter = 1;
+        foreach (Creature c in turnCreatures)
+        {
+            Image token = Instantiate(characterImage, initiativeBar.transform);
+            Vector3 r = new Vector3(0f, 100f * counter, 0f);
+            token.rectTransform.anchoredPosition = r;
+            token.sprite = c.avatar;
+            counter++;
+            tokens.Add(token);
+        }
+    }
+
+    void UpdateTokensPosition()
+    {
+        int counter = 1;
+        foreach (Image img in tokens)
+        {
+            RectTransform r = img.rectTransform;
+            int nextIndexPosition = img.GetComponent<Creature>.
+            Vector3 newPosition = new Vector3(0f, r.anchoredPosition.x - 100f, 0f);
+        }
+    }
+    */
 }

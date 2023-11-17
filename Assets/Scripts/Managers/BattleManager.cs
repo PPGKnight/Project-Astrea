@@ -8,6 +8,12 @@ using DG.Tweening;
 
 public class BattleManager : MonoBehaviour
 {
+    static BattleManager _instance;
+    public static BattleManager Instance
+    {
+        get { return _instance; }
+    }
+
     [SerializeField] Camera m_camera;
     List<Player> allies;
     List<Enemy> enemies;
@@ -56,6 +62,11 @@ public class BattleManager : MonoBehaviour
     #region Setup
     private void Awake()
     {
+        if (_instance == null)
+            _instance = this;
+        else
+            Destroy(gameObject);
+
         _battleState = BattleState.None;
         queue = new List<Creature>();
         Setup();
