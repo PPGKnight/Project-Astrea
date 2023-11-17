@@ -476,6 +476,7 @@ public class BattleManager : MonoBehaviour
                 StopCoroutine(coro);
                 f = Instantiate(_floatingNumbers, insideAllies[att].transform.position, Quaternion.identity);
                 f.SetText(a, Color.red);
+                TemporaryCamera.SetActive(false);
                 //insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
                 break;
             case 1:
@@ -497,6 +498,7 @@ public class BattleManager : MonoBehaviour
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText("Block!", Color.blue);
                 c.Guard();
+                TemporaryCamera.SetActive(false);
                 break;
         }
         c.tracker = 0;

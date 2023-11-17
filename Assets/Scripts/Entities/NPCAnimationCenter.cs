@@ -7,7 +7,9 @@ public class NPCAnimationCenter : MonoBehaviour
      [SerializeField] Animator animator;
      [SerializeField] int isBartering;
      [SerializeField] int isSitting;
-      [SerializeField] int isDrinking;
+     [SerializeField] int isDrinking;
+     [SerializeField] int isYelling;
+     [SerializeField] int isArguing;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,14 @@ public class NPCAnimationCenter : MonoBehaviour
         if(isDrinking == 1)
         {
             animator.SetBool("isDrinking",true);
+        }
+        if(isYelling == 1)
+        {
+            animator.SetBool("isYelling",true);
+        }
+        if(isArguing == 1)
+        {
+            animator.SetBool("isArguing",true);
         }
 
     }
