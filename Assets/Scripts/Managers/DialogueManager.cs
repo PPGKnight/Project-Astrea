@@ -233,9 +233,9 @@ public class DialogueManager : MonoBehaviour
                     if (getobject == null)
                     {
                         getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
-                        Debug.LogError("Chuj by to");
+                        Debug.LogError("PlayerMovement null");
 
-                        if (GameManager.Instance._player == null) Debug.LogError("GM Player chuj");
+                        if (GameManager.Instance._player == null) Debug.LogError("GM Player null");
                         else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
                     }
                     TeleportTo(getobject, TransitionSpawns.ReturnSpawn(strings[1]));

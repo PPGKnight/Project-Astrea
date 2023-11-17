@@ -16,6 +16,7 @@ public class TurnManager : MonoBehaviour
         foreach (Creature c in tracker)
             _ = c.GetCreatureType() == "Ally" ? alliesAlive++ : enemiesAlive++;
 
+        Debug.Log("TurnManager Created");
         Reorder();
     }
 

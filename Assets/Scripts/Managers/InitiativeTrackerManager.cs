@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class InitiativeTrackerManager : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class InitiativeTrackerManager : MonoBehaviour
 
     void SetIniBar()
     {
-        int barSize = aliveCharacters.Count <= 5 ? aliveCharacters.Count : 5;
-        //int trackerSize = BattleManager.Instance.RequestTrackerOrder().Count;
-        //int barSize = trackerSize <= 5 ? trackerSize : 5;
+        //int barSize = aliveCharacters.Count <= 5 ? aliveCharacters.Count : 5;
+        
+        int trackerSize = BattleManager.Instance.RequestTrackerOrder().Count;
+        int barSize = trackerSize <= 4 ? trackerSize : 4;
+        
         initiativeBar.rectTransform.sizeDelta = new Vector2(100f, barSize * 100f);
+        
         //initiativeBarWidth = initiativeBar.rectTransform.sizeDelta.x;
         initiativeBarHeight = initiativeBar.rectTransform.sizeDelta.y;
     }
@@ -36,6 +40,7 @@ public class InitiativeTrackerManager : MonoBehaviour
         BattleManager.ProgressTurn -= UpdateTokensPosition;
     }
 
+    /*
     public void CreateTokens(List<Creature> _creatures)
     {
         characters = new List<Creature>(_creatures);
@@ -53,9 +58,9 @@ public class InitiativeTrackerManager : MonoBehaviour
         }
 
         //UpdateTokensPosition();
-    }
+    }*/
 
-
+    /*
     public void RemoveToken()
     {
         for(int i = 0; i < characters.Count; i++)
@@ -71,7 +76,9 @@ public class InitiativeTrackerManager : MonoBehaviour
 
         SetIniBar();
         UpdateTokensPosition();
-    }
+    }*/
+
+
     /*
      * Prototype function
     void UpdateTokensPosition()
@@ -84,6 +91,7 @@ public class InitiativeTrackerManager : MonoBehaviour
         }
     }
     */
+    /*
     void UpdateTokensPosition()
     {
         for (int i = 0; i < aliveCharacters.Count; i++)
@@ -96,36 +104,80 @@ public class InitiativeTrackerManager : MonoBehaviour
                 r.anchoredPosition = new Vector3(0f, aliveCharacters.Count * -100f, 0f);
         }
     }
+    */
 
-    /*
-     * TO DO
+    
     List<Creature> turnCreatures;
+    Dictionary<Creature, Image> turnCreature = new Dictionary<Creature, Image>();
 
     public void CreateTokens()
     {
+        Debug.Log("Create");
         turnCreatures = BattleManager.Instance.RequestTrackerOrder();
         SetIniBar();
         int counter = 1;
         foreach (Creature c in turnCreatures)
         {
+            int index = turnCreatures.FindIndex(x => x == c);
+            Debug.LogError($"{c.Name} na pozycji {index}");
             Image token = Instantiate(characterImage, initiativeBar.transform);
-            Vector3 r = new Vector3(0f, 100f * counter, 0f);
+            Vector3 r = new Vector3(0f, (-100f * index) - 100f, 0f);
             token.rectTransform.anchoredPosition = r;
             token.sprite = c.avatar;
             counter++;
+            turnCreature[c] = token;
             tokens.Add(token);
         }
     }
 
     void UpdateTokensPosition()
     {
-        int counter = 1;
-        foreach (Image img in tokens)
+        Debug.Log("update");
+        List<Creature> checkOrder = BattleManager.Instance.RequestTrackerOrder();
+
+        foreach (var c in turnCreature)
         {
+            Image img = turnCreature[c.Key];
+            int index = checkOrder.FindIndex(x => x == c.Key);
+            Debug.LogError($"{c.Key.Name} na pozycji {index}");
             RectTransform r = img.rectTransform;
-            int nextIndexPosition = img.GetComponent<Creature>.
-            Vector3 newPosition = new Vector3(0f, r.anchoredPosition.x - 100f, 0f);
+
+            Vector3 newPosition;
+            if (r.anchoredPosition.y >= -100f) newPosition = new Vector3(0f, (checkOrder.Count) * -100f, 0f);
+            else newPosition = new Vector3(0f, r.anchoredPosition.y + 100f, 0f);
+
+            r.anchoredPosition = newPosition;
         }
     }
-    */
+
+    public void RemoveToken()
+    {
+        List<int> toRemove = new List<int>();
+        List<KeyValuePair<Creature, Image>> toRemoveC = new List<KeyValuePair<Creature, Image>>();
+
+        foreach (var c in turnCreature)
+        {
+            if (c.Key.IsDead())
+            {
+                int index = tokens.FindIndex(x => x == c.Value);
+                toRemove.Add(index);
+                toRemoveC.Add(c);
+            }
+        }
+
+        foreach(int i in toRemove)
+                Destroy(tokens[i].gameObject);
+
+        foreach(var c in toRemoveC)
+        {
+            BattleManager.Instance.RemoveDead(c.Key);
+            tokens.Remove(c.Value);
+            turnCreature.Remove(c.Key);
+        }
+
+        toRemove.Clear();
+        toRemoveC.Clear();
+        SetIniBar();
+        UpdateTokensPosition();
+    }
 }

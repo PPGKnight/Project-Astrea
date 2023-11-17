@@ -1766,10 +1766,10 @@ MonoBehaviour:
   _isDead: 0
   avatar: {fileID: 21300000, guid: a5124e42418d3df4bbad2b597f186d97, type: 3}
   entityInfo: {fileID: 0}
-  Strength: 16
+  Strength: 4
   Dexterity: 14
   Intelligence: 10
-  Constitution: 15
+  Constitution: 64
   Initiative: 2
   InitiativeThisFight: 0
   outlineMaterials:

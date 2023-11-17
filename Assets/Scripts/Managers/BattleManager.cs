@@ -94,17 +94,6 @@ public class BattleManager : MonoBehaviour
             p.transform.rotation = temp.transform.rotation;
             //p.transform.parent = temp.transform;
             queue.Add(p);
-
-            /*
-            #region AllyUI
-            GameObject p_characterPanel = Instantiate(_characterPanel, _battleUI.transform);
-            p_characterPanel.transform.SetParent(_battleUI.transform);
-            p_characterPanel.transform.localPosition = new Vector3(1075f - (index*325f), -420f, 0f);
-
-            p.entityInfo = p_characterPanel.GetComponent<UpdateInfo>();
-            p.entityInfo.SetInfo(p.Name, p.Level, p.CurrentHP, p.MaxHP);
-            #endregion
-            */
             index++;
         }
         index = 1;
@@ -132,7 +121,7 @@ public class BattleManager : MonoBehaviour
         foreach (Creature q in queue)
             q.SetInitiative();
 
-        //turnManager = new TurnManager(queue);
+        turnManager = new TurnManager(queue);
 
         queue.Sort((x, y) => y.InitiativeThisFight.CompareTo(x.InitiativeThisFight));
         _queue = new Queue<Creature>(queue);
@@ -144,7 +133,8 @@ public class BattleManager : MonoBehaviour
 
     void CreateTokens()
     {
-        initiativeTrackerManager.CreateTokens(queue);
+        //initiativeTrackerManager.CreateTokens(queue);
+        initiativeTrackerManager.CreateTokens();
     }
 
     private string action = "";
@@ -155,31 +145,6 @@ public class BattleManager : MonoBehaviour
     #endregion
 
     #region WorkingWithDelay
-    /*
-    void Fight()
-    {
-        if (isSomeonesTurn) return;
-
-        foreach(Creature c in queue)
-        {
-            if (isSomeonesTurn) return;
-            c.tracker += Mathf.RoundToInt(((c.Dexterity + c.Strength) * 0.05f + c.SpeedBonus)); 
-            ProgressTurn();
-            if(c.tracker >= 100f)
-            {
-                if (c.HadTurn) continue;
-                Debug.Log($"Tura: {c.Name}");
-                c.tracker = 100f;
-                if (c.GetCreatureType() == "Enemy") { _turn = Turn.Enemy; DoEnemyTurn(c); }
-                else AllyTurn();
-
-            }
-        }
-        foreach (Creature c in queue) c.HadTurn = false;
-    }
-    */
-
-
     
     public void StartNextTurn()
     {
@@ -187,7 +152,6 @@ public class BattleManager : MonoBehaviour
         CheckDeaths();
         if(!isSomeonesTurn && _queue.Count > 0)
         {
-            ProgressTurn?.Invoke();
             creatureThisTurn = _queue.Dequeue();
             if (creatureThisTurn.IsDead() || creatureThisTurn == null) StartNextTurn();
             Debug.Log($"Tura {creatureThisTurn.Name}");
@@ -199,6 +163,8 @@ public class BattleManager : MonoBehaviour
             else
                 AllyTurn();
             
+            ProgressTurn?.Invoke();
+            turnManager.NextTurn();
             if(UpdateBars != null)
                 UpdateBars();
         }
@@ -368,9 +334,15 @@ public class BattleManager : MonoBehaviour
         FloatingNumbers f;
         Coroutine coro;
 
-        switch (rnd.Next(0, 1))
+        switch (rnd.Next(0, 10))
         {
             case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
                 Transform t = GameObject.Find(insideAllies[att].gameObject.transform.parent.name + "Hit").transform;
@@ -385,7 +357,8 @@ public class BattleManager : MonoBehaviour
                 f.SetText(a, Color.red);
                 //insideAllies[att].entityInfo.UpdateHP(insideAllies[att].CurrentHP);
                 break;
-            case 1:
+            case 7:
+            case 8:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
                 Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktow zdrowia");
                 yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
@@ -395,7 +368,7 @@ public class BattleManager : MonoBehaviour
                 f.SetText(c.Intelligence, Color.green);
                 //insideEnemies[0].entityInfo.UpdateHP(insideEnemies[0].CurrentHP);
                 break;
-            case 2:
+            case 9:
                 //c.GetComponent<Animator>().SetBool("isGuarding", true);
                 yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                 StopCoroutine(coro);
@@ -551,8 +524,9 @@ public class BattleManager : MonoBehaviour
         f.SetText("Block", Color.blue);
     }
 
-    List<Creature> RequestTrackerOrder() => turnManager.GetTracker();
     */
+    public List<Creature> RequestTrackerOrder() => turnManager.GetTracker();
 
+    public void RemoveDead(Creature c) => turnManager.RemoveCreature(c);
     #endregion
 }
