@@ -498,7 +498,7 @@ public class BattleManager : MonoBehaviour
                 f = Instantiate(_floatingNumbers, insideEnemies[0].transform.position, Quaternion.identity);
                 f.SetText("Block!", Color.blue);
                 c.Guard();
-                TemporaryCamera.SetActive(false);
+                
                 break;
         }
         c.tracker = 0;
