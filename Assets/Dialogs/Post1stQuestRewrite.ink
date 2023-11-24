@@ -1,3 +1,5 @@
+VAR DialogueID = "002_CheckLumbererForTheSmith"
+
 "Ay, you're back. You got what I've asked for?"
 
 *"Yes, I have your things here."

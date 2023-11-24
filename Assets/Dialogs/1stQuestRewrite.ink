@@ -1,4 +1,4 @@
-
+VAR DialogueID = "001_GatherForSmith"
 As you step into the smithy, a blacksmith at rest notices you immediately.
 
 "Oy, you need something?"

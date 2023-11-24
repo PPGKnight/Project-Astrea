@@ -1,3 +1,4 @@
+VAR DialogueID = "002_ArrivingAtTheLumber"
 As you approach the house of the lumberjack, you notice a few people standing near the door.
 
 "Andrey, open the door! We know you're there!"
@@ -14,15 +15,11 @@ You can see that the men are armed, and they don't look too friendly. As you app
 ->Fight
 
 ===Asked===
-"You look like you do have something in your pouch. And I think we're gonna take it. Get 'em, boys."
-->after
+"You look like you do have something in your pouch. And I think we're gonna take it. Get 'em, boys."  #fight:002_LumbererEncounter
+->END
 ===Trouble===
-"Well, I think trouble has found you. Get 'em, boys."
-->after
+"Well, I think trouble has found you. Get 'em, boys."  #fight:002_LumbererEncounter
+->END
 ===Fight===
-"If you're looking for a fight... I think we can deliver."
-->after
-
-===after===
-As you watch the bandits scatter, the lumberjack exits his cabin and looks at you.
-    -> END
+"If you're looking for a fight... I think we can deliver."  #fight:002_LumbererEncounter
+->END

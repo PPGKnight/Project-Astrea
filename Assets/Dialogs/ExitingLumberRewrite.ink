@@ -1,3 +1,8 @@
+VAR DialogueID = "002_AfterTheFight"
+VAR PlayerName = "Default"
+
+===after===
+As you watch the bandits scatter, the lumberjack exits his cabin and looks at you.
 "Thank you for taking care of them, but I'm afraid it wasn't the last time I saw them. The name is Andrey."
 
 *"I'm [PlayerName], pleasure to meet you."
