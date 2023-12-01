@@ -13,6 +13,9 @@ public class HealthBarShrink : MonoBehaviour
     private float damagedHealthShrinkTimer;
     private HealthBarSystem healthSystem;
 
+    #nullable enable
+    Player? ally;
+    #nullable disable
     private void Awake()
     {
         barImage = transform.Find("bar").GetComponent<Image>();
@@ -21,7 +24,7 @@ public class HealthBarShrink : MonoBehaviour
 
     private void Start()
     {
-        Player? ally = GameObject.Find("Ally"+(int)_allyPosition).GetComponentInChildren<Player>();
+        ally = GameObject.Find("Ally"+(int)_allyPosition).GetComponentInChildren<Player>();
         if (ally != null)
         {
             gameObject.SetActive(true);

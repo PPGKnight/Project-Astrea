@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    public static event Action Combat;
     List<Creature> _trackerInOrder;
     int alliesAlive = 0;
     int enemiesAlive = 0;
@@ -37,16 +36,19 @@ public class TurnManager : MonoBehaviour
 
     public void CheckDeaths()
     {
+        bool anyDead = false;
         foreach(Creature c in _trackerInOrder)
         {
             if (c.IsDead())
             {
+                anyDead = true;
                 _ = c.GetCreatureType() == "Ally" ? alliesAlive-- : enemiesAlive--;
-                RemoveCreature(c);
                 Destroy(c.entityInfo.gameObject);
                 Destroy(c.gameObject);
             }
         }
+        _trackerInOrder.RemoveAll(c => c.IsDead());
+        if(anyDead) BattleManager.Instance.RemoveDead();
     }
 
     public Tuple<bool, int> CheckResults()
