@@ -40,7 +40,6 @@ public class DialogueManager : MonoBehaviour
     private const string TELEPORT_TAG = "teleport";
     private const string FIGHT_TAG = "fight";
     private const string OUTCOME_TAG = "changeOutcome";
-    private const string ANALYTICS_TAG = "analyticsData";
 
     [Header("Choices")]
     [SerializeField] GameObject[] choices;
@@ -224,7 +223,7 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case FIGHT_TAG:
                     GameObject o = GameObject.Find(tagValue);
-                    Debug.Log($"Starting fight: {o.name}");
+                    Debug.Log($"Uruchamiam walke {o.name}");
                     StartCoroutine(PrepareToFight(o));
                     break;
                 case TELEPORT_TAG:
@@ -234,17 +233,12 @@ public class DialogueManager : MonoBehaviour
                     if (getobject == null)
                     {
                         getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
+                        Debug.LogError("PlayerMovement null");
 
-                        if (GameManager.Instance._player == null) Debug.LogWarning("Missing Player component in GameManager successfully replaced");
+                        if (GameManager.Instance._player == null) Debug.LogError("GM Player null");
                         else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
                     }
                     TeleportTo(getobject, TransitionSpawns.ReturnSpawn(strings[1]));
-                    break;
-                case ANALYTICS_TAG:
-                    string[] data = tagValue.Split('_');
-                    AnalyticsDataEvents e;
-                    Enum.TryParse<AnalyticsDataEvents>(data[0], true, out e);
-                    AnalyticsManager.Instance.SentAnalyticsData(e, data[1]);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);

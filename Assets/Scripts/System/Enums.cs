@@ -59,6 +59,14 @@ public enum QuestState
     Hidden
 }
 
+public enum AllyPosition
+{
+    Position_1 = 1,
+    Position_2 = 2,
+    Position_3 = 3,
+    Position_4 = 4
+}
+
 public enum DialogueTriggerType
 {
     InRange,
