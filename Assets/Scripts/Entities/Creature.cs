@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,7 +24,7 @@ public class Creature : MonoBehaviour
     public Sprite avatar;
 
     #nullable enable
-    [HideInInspector]
+    //[HideInInspector]
     public UpdateInfo? entityInfo;
     #nullable disable
     #endregion
@@ -37,57 +38,7 @@ public class Creature : MonoBehaviour
     public int InitiativeThisFight;
     #endregion
 
-    private void Awake()
-    {
-        UpdateStats();
-    }
-
-    public virtual void UpdateStats()
-    {
-        MaxHP = (Constitution * 2 + Strength) * Level;
-        Initiative = (Dexterity - 10) / 2;
-        CurrentHP = MaxHP;
-    }
-    public string GetCreatureType()
-    {
-        return this.creatureType.ToString();
-    }
-    public void SetInitiative()
-    {
-        InitiativeThisFight = Random.Range(1, 21) + Initiative;
-    }
-    public int Attack()
-    {
-        return Random.Range(Mathf.FloorToInt((Strength + Dexterity) / 3), (Strength * 2) + Dexterity);
-    }
-
-    public void Heal(int h)
-    {
-        this.CurrentHP += h;
-        if (this.CurrentHP > this.MaxHP) this.CurrentHP = this.MaxHP;
-    }
-
-    public void Guard()
-    {
-        IsGuarded = true;
-    }
-
-    public bool IsDead()
-    {
-        return this._isDead;
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        this.CurrentHP -= IsGuarded ? Mathf.RoundToInt(dmg / 2) : dmg;
-        IsGuarded = false;
-
-        if(this.CurrentHP <= 0)
-        {
-            this._isDead = true;
-        }
-    }
-
+    private void Awake() => UpdateStats();
 
     [SerializeField] List<GameObject> outlineMaterials;
     public UnityEvent m_outlineEventOn, m_outlineEventOff;
@@ -101,19 +52,40 @@ public class Creature : MonoBehaviour
             m_outlineEventOff.AddListener(mat.GetComponent<OutlineCS>().AlphaOff);
         }
     }
-
-    private void OnMouseOver()
+    public virtual void UpdateStats()
     {
-        m_outlineEventOn.Invoke();
+        MaxHP = (Constitution * 2 + Strength) * Level;
+        Initiative = (Dexterity - 10) / 2;
+        CurrentHP = MaxHP;
+    }
+    public string GetCreatureType() => this.creatureType.ToString();
+    public void SetInitiative() => InitiativeThisFight = Random.Range(1, 21) + Initiative;
+    public int Attack() => Random.Range(Mathf.FloorToInt((Strength + Dexterity) / 3), (Strength * 2) + Dexterity);
+
+    public void Heal(int h)
+    {
+        this.CurrentHP += h;
+        if (this.CurrentHP > this.MaxHP) this.CurrentHP = this.MaxHP;
     }
 
-    private void OnMouseExit()
+    public void Guard() => IsGuarded = true;
+
+    public bool IsDead() => this._isDead;
+
+    public void TakeDamage(int dmg)
     {
-        m_outlineEventOff.Invoke();
+        this.CurrentHP -= IsGuarded ? Mathf.RoundToInt(dmg / 2) : dmg;
+        IsGuarded = false;
+
+        if(this.CurrentHP <= 0)
+        {
+            this._isDead = true;
+        }
     }
 
-    public string ReturnName()
-    {
-        return this.Name;
-    }
+    private void OnMouseOver() => m_outlineEventOn.Invoke();
+
+    private void OnMouseExit() => m_outlineEventOff.Invoke();
+
+    public string ReturnName() => this.Name;
 }

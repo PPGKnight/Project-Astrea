@@ -59,4 +59,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Ink
+/[Aa]ssets/Ink/Demos/
+/[Aa]ssets/Ink/Demos.meta
+
 ProjectSettings/Packages/com.unity.probuilder/Settings.json

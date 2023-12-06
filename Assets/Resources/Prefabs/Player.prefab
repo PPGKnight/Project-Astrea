@@ -3428,7 +3428,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8726117212044031616}
-  m_LocalRotation: {x: 0.44721362, y: -0.000000015389855, z: 0.000000007694927, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: 0.000000015389857, z: -0.000000007694929, w: 0.89442724}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4388,7 +4388,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8726117213825449603}
-  m_LocalRotation: {x: 0.4144284, y: 0.000000027122557, z: -0.00000001235093, w: 0.9100819}
+  m_LocalRotation: {x: 0.41442844, y: 3.1945318e-16, z: -3.0401135e-16, w: 0.9100819}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4703,6 +4703,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 511144619005083215, guid: a20e386b47b4eb94bb479ee868f7e9e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 511144619039757856, guid: a20e386b47b4eb94bb479ee868f7e9e7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4821,7 +4826,7 @@ PrefabInstance:
     - target: {fileID: 511144619178379821, guid: a20e386b47b4eb94bb479ee868f7e9e7,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 511144620058130002, guid: a20e386b47b4eb94bb479ee868f7e9e7,
         type: 3}
@@ -4829,6 +4834,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 511144620473887391, guid: a20e386b47b4eb94bb479ee868f7e9e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802303117984258849, guid: a20e386b47b4eb94bb479ee868f7e9e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131715656552786018, guid: a20e386b47b4eb94bb479ee868f7e9e7,
         type: 3}
       propertyPath: m_IsActive
       value: 0
