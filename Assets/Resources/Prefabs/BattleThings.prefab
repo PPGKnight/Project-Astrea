@@ -350,11 +350,11 @@ RectTransform:
   m_Father: {fileID: 2581640820248626828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 100}
-  m_Pivot: {x: 1.03, y: 1.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15, y: -15}
+  m_SizeDelta: {x: 200, y: 600}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &2581640819282481624
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -532,10 +532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
-  animator: {fileID: 0}
-  _floatingNumbers: {fileID: 6970209644435660064, guid: ef7ceafd540eaf843bcef0e9d8e453e7,
-    type: 3}
-  initiativeTrackerManager: {fileID: 2581640818780862514}
   battleData: {fileID: 11400000, guid: f63e6fc56128b014b8065cd4664db2ef, type: 2}
   _battleUI: {fileID: 2581640819971200670}
   _characterPanel: {fileID: 8019688275313180834, guid: 369aeb4f8d462a74d9cfbf4f74307123,
@@ -543,6 +539,9 @@ MonoBehaviour:
   _enemyPanel: {fileID: 5552811986019408124, guid: 619f6ae878cdfc0419635cfc0c766634,
     type: 3}
   _battleOptions: {fileID: 2581640820654024150}
+  _floatingNumbers: {fileID: 6970209644435660064, guid: ef7ceafd540eaf843bcef0e9d8e453e7,
+    type: 3}
+  initiativeTrackerManager: {fileID: 2581640818780862514}
   DebugMoveWaitForSeconds: 1.75
 --- !u!114 &2581640819583631246
 MonoBehaviour:
