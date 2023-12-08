@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: af822a38b875f8b48ad4ac5153dcf006,
+  m_LightingDataAsset: {fileID: 112000000, guid: b7f0e7a38c0c0f749bc50c567ac36a4b,
     type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 6d71f6d2d0afd6f42a3d5c2a0db346e0,
     type: 2}
@@ -830,7 +830,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 9.68e-43, w: -37.44571}
+  m_BoundingSphereOverride: {x: 7.96e-43, y: 1e-45, z: 1e-45, w: 8.214e-42}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1550,7 +1550,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5918e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 1.753e-41, w: 6e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1765,7 +1765,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.1e-43, y: 1.7e-43, z: 1.11e-43, w: 1.71e-43}
+  m_BoundingSphereOverride: {x: 7.96e-43, y: 0, z: 0, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2552,7 +2552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149982601}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.37, y: 14.49, z: 17.58}
+  m_LocalPosition: {x: -2.37, y: 13.049, z: 17.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2636,7 +2636,7 @@ Light:
   m_BounceIntensity: 0.28
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.927e-42, y: 6e-44, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3109,7 +3109,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.827967e+28, y: 1.83671e-40, z: 9.1812e-41, w: 4.827967e+28}
+  m_BoundingSphereOverride: {x: 1.9985e-41, y: 2.1e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -4606,7 +4606,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.173e-41, y: 6e-44, z: 9.68e-43, w: 0}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -13567,7 +13567,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.827967e+28, y: 1.83671e-40, z: 9.1812e-41, w: 4.827967e+28}
+  m_BoundingSphereOverride: {x: 2.787e-42, y: 2.1e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -13697,7 +13697,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.68e-43, y: 1.11e-43, z: 1.7e-43, w: 1.12e-43}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -15566,7 +15566,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.039999988, y: 887.58746, z: 0.04, w: 6e-45}
+  m_BoundingSphereOverride: {x: 2.885e-42, y: 2.1e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -19583,7 +19583,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 4.905427e+30}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -21831,7 +21831,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.67e-43, y: 0, z: 0, w: -6.6066336e-19}
+  m_BoundingSphereOverride: {x: 2.0344e-41, y: 2.1e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -23009,7 +23009,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.67e-43, y: 0, z: 0, w: -6.5939447e-19}
+  m_BoundingSphereOverride: {x: NaN, y: 0, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -23660,7 +23660,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.039999988, y: 887.58746, z: 0.04, w: 6e-45}
+  m_BoundingSphereOverride: {x: 3.009e-42, y: 2.1e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -23866,7 +23866,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh48470
+  m_Name: pb_Mesh31386
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27118,7 +27118,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.039999988, y: 887.58746, z: 0.04, w: 6e-45}
+  m_BoundingSphereOverride: {x: NaN, y: 8.217e-42, z: NaN, w: NaN}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -28247,7 +28247,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.039999988, y: 887.58746, z: 0.04, w: 6e-45}
+  m_BoundingSphereOverride: {x: 223.30965, y: 2.1e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
