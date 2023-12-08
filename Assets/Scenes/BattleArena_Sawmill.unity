@@ -8246,6 +8246,16 @@ PrefabInstance:
       propertyPath: m_StaticShadowCaster
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5543133986019947474, guid: 81124d98c93559846b503c67689823ac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335956155712573959, guid: 81124d98c93559846b503c67689823ac,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81124d98c93559846b503c67689823ac, type: 3}
 --- !u!4 &921343540 stripped
@@ -16694,6 +16704,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Big_Tree_Leafs_v2 (83)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543133986019947474, guid: 81124d98c93559846b503c67689823ac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335956155712573959, guid: 81124d98c93559846b503c67689823ac,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5543133986019947474, guid: 81124d98c93559846b503c67689823ac,
         type: 3}
