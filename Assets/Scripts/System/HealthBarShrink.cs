@@ -24,7 +24,9 @@ public class HealthBarShrink : MonoBehaviour
 
     private void Start()
     {
-        ally = GameObject.Find("Ally"+(int)_allyPosition).GetComponentInChildren<Player>();
+        if (SceneManager.GetActiveScene().name.Split("_")[0] == "BattleArena")
+            ally = GameObject.Find("Ally"+(int)_allyPosition).GetComponentInChildren<Player>();
+
         if (ally != null)
         {
             gameObject.SetActive(true);

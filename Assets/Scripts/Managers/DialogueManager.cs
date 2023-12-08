@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject dialogueEventSystem;
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI dialogueText;
+    [SerializeField] TextMeshProUGUI dialogueSpeaker;
     [SerializeField] GameObject continueIcon;
 
     Story currentStory;
@@ -149,6 +150,7 @@ public class DialogueManager : MonoBehaviour
                 StartCoroutine(ExitDialogue());
             else
             {
+                //Debug.LogError(currentStory.currentTags[0]);
                 HandleTags(currentStory.currentTags);
                 goToNextLine = StartCoroutine(DisplayLine(newLine));
             }
@@ -172,6 +174,7 @@ public class DialogueManager : MonoBehaviour
         currentStory = null;
         canFight = true;
         dialogue_name = "";
+        dialogueSpeaker.text = "";
     }
 
     IEnumerator DisplayLine(string nextLine)
@@ -218,6 +221,9 @@ public class DialogueManager : MonoBehaviour
             // handle the tag
             switch (tagKey)
             {
+                case SPEAKER_TAG:
+                    dialogueSpeaker.text = tagValue.Replace("_", " ");
+                    break;
                 case OUTCOME_TAG:
                     outcome = Int32.Parse(tagValue);
                     break;

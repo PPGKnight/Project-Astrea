@@ -6,7 +6,7 @@ using UnityEngine.Video;
 
 public class MainMenu : MonoBehaviour
 {
-    public void NewGame() => SceneManager.LoadScene(1);
+    public void NewGame() => LoadingScreenManager.Instance.LoadScene("Inn");
 
     // TODO: Save and Continue
     // public void ContinueGame();

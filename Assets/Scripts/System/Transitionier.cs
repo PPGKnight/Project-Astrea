@@ -12,6 +12,9 @@ public class Transitionier : MonoBehaviour
     ActionType _action;
 
     [SerializeField]
+    WithLoadingScreen _wLS;
+
+    [SerializeField]
     string _previousSceneName;
 
     [SerializeField]
@@ -75,7 +78,10 @@ public class Transitionier : MonoBehaviour
 
         if (other.CompareTag("MainPlayer"))
             if (_action == ActionType.Load)
-                LoadScene();
+                if(_wLS == WithLoadingScreen.YES)
+                    LoadingScreenManager.Instance.LoadSceneWithMove(_nextSceneName, key);
+                else
+                   LoadScene();
             else
                 UnloadScene();
     }
@@ -89,4 +95,10 @@ public class Transitionier : MonoBehaviour
             UnloadScene();
     }
     */
+}
+
+public enum WithLoadingScreen
+{
+    NO,
+    YES
 }

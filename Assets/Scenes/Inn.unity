@@ -12041,6 +12041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trans: 0
   _action: 0
+  _wLS: 1
   _previousSceneName: Inn
   _nextSceneName: HendleyVillage
 --- !u!65 &1324764637
@@ -17897,6 +17898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trans: 0
   _action: 0
+  _wLS: 0
   _previousSceneName: Inn
   _nextSceneName: Inn_SleepingRooms
 --- !u!65 &1963524262

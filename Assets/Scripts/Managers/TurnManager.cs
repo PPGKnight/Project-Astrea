@@ -43,8 +43,9 @@ public class TurnManager : MonoBehaviour
             {
                 anyDead = true;
                 _ = c.GetCreatureType() == "Ally" ? alliesAlive-- : enemiesAlive--;
-                Destroy(c.entityInfo.gameObject);
-                Destroy(c.gameObject);
+                if(c.GetCreatureType() == "Enemy") Destroy(c.entityInfo.gameObject);
+                //Destroy(c.gameObject);
+                c.GetComponent<Animator>().Play("Stunned");
             }
         }
         _trackerInOrder.RemoveAll(c => c.IsDead());

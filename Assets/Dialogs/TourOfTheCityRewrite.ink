@@ -1,8 +1,7 @@
 VAR DialogueID = "TavernTourWithGary"
 As you both exit the tavern, you find yourselves in the middle of a small village. Gary steps before you and says, "Let's start with the main market." #teleport:MainPlayer_HendleyMarket
-
-    #teleport:MainPlayer_HendleySmith
-Gary leads you to one of the buildings on the main square, where the sound of metal hitting metal fills the air. "This is the Smith's workshop. If you ever need your weapons fixed or sharpened, you just need to come here."
+Gary leads you to one of the buildings on the main square, where the sound of metal hitting metal fills the air. #teleport:MainPlayer_HendleySmith
+"This is the Smith's workshop. If you ever need your weapons fixed or sharpened, you just need to come here."
  
 Approaching the smithy, you see the blacksmith crafting some kind of hatchet. Gary seems to gasp when you get close to the building.
 

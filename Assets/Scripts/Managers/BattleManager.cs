@@ -157,32 +157,80 @@ public class BattleManager : MonoBehaviour
     IEnumerator BeginAnimation(Animator a, string animationName)
     {
         isAnimating = true;
+        Quaternion originRot = a.gameObject.transform.rotation;
         a.SetBool(animationName, true);
         while (isAnimating)
         {
             yield return null;
         }
         a.SetBool(animationName, false);
+        a.gameObject.transform.rotation = originRot;
         yield return new WaitForSeconds(.2f);
     }
 
-    IEnumerator BeginAnimationB(Animator a, string animationName, Transform attacker, Transform attackPosition)
+    //IEnumerator BeginAnimationB(Animator a, string animationName, Transform attacker, Transform attackPosition)
+    //{
+    //    Vector3 original = attacker.position;
+    //    isAnimating = true;
+    //    a.SetBool(animationName, true);
+    //    attacker.DOMove(attackPosition.position, 0.5f);
+    //    while (isAnimating)
+    //    {
+    //        yield return null;
+    //    }
+    //    attacker.DOMove(original, 0.5f);
+    //    Vector3 resetRot = Vector3.zero;
+    //    attacker.rotation = Quaternion.Euler(resetRot);
+    //    a.SetBool(animationName, false);
+    //    yield return new WaitForSeconds(.2f);
+    //}
+
+    IEnumerator BeginAnimationB(Animator a, string animationName, Transform attacker, Transform attackPosition, Animator b, string animationNameB)
     {
-        Vector3 original = attacker.position;
         isAnimating = true;
-        a.SetBool(animationName, true);
-        yield return new WaitForSeconds(DebugMoveWaitForSeconds);
-        attacker.DOMove(attackPosition.position, 0.5f);
+        StartCoroutine(AnimationAttack(a, animationName, attacker, attackPosition));
+        yield return new WaitForSeconds(1.4f);
+        StartCoroutine(AnimationReact(b, animationNameB));
         while (isAnimating)
         {
             yield return null;
         }
-        attacker.DOMove(original, 0.5f);
-        a.SetBool(animationName, false);
+        //a.SetBool(animationName, false);
+        //b.SetBool(animationNameB, false);
         yield return new WaitForSeconds(.2f);
     }
+
+    IEnumerator AnimationAttack(Animator a, string animName, Transform attacker, Transform pos)
+    {
+        Quaternion originRot = attacker.rotation;
+        Debug.LogWarning($"OROT: {originRot}, Rot: {attacker.rotation}");
+        Vector3 original = attacker.position;
+        //a.SetBool(animName, true);
+        a.Play("Running");
+        attacker.DOMove(pos.position, 0.5f);
+        yield return new WaitForSeconds(.3f);
+        a.Play("Hook Punch");
+        yield return new WaitForSeconds(2f);
+        a.Play("Running Backwards");
+        attacker.DOMove(original, 0.5f);
+        attacker.DORotate(Vector3.zero, .1f).OnComplete(() => {
+            attacker.rotation = originRot;
+        });
+        Vector3 resetRot = Vector3.zero;
+        Debug.LogWarning($"OROT2: {originRot}");
+        //attacker.rotation = originRot;
+        Debug.LogWarning($"Rot: {attacker.rotation}");
+        yield return null;
+    }
+
+    IEnumerator AnimationReact(Animator b, string animName)
+    {
+        //b.SetBool(animName, true);
+        b.Play("Reaction");
+        yield return null;
+    }
     #endregion
-    
+
     #region CombatLoop
     void CombatLoop()
     {
@@ -259,7 +307,7 @@ public class BattleManager : MonoBehaviour
                 battleData.battleStatus = BattleStatus.Victory;
                 break;
         }
-        LeaveBattle();
+        StartCoroutine(LeaveBattle());
     }
 
     void SelectOptions()
@@ -274,7 +322,7 @@ public class BattleManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("MainPlayer"))
+                if ((hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("MainPlayer")) && !hit.transform.GetComponent<Creature>().IsDead())
                 {
                     if (hit.transform.CompareTag("Enemy"))
                         Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
@@ -311,9 +359,10 @@ public class BattleManager : MonoBehaviour
                     int a = c.GetComponent<Player>().Attack();
                     Transform t = GameObject.Find(target.gameObject.transform.parent.name + "Hit").transform;
                     yield return new WaitForSeconds(0.1f);
-                    yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
-                    StopCoroutine(coro);
-                    yield return coro = StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
+                    //yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
+                    //StopCoroutine(coro);
+                    //yield return coro = StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
+                    yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t, target.GetComponent<Animator>(), "isReacting"));
                     StopCoroutine(coro);
                     print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
                     target.GetComponent<Enemy>().TakeDamage(a);
@@ -380,12 +429,13 @@ public class BattleManager : MonoBehaviour
                 Debug.Log($"Damage active: {activeCreature.Attack()}");
                 Transform t = GameObject.Find(insideAllies[att].gameObject.transform.parent.name + "Hit").transform;
                 yield return new WaitForSeconds(0.1f);
-                yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
+                //yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
+                //StopCoroutine(coro);
+                //yield return coro = StartCoroutine(BeginAnimation(insideAllies[att].GetComponent<Animator>(), "isReacting"));
+                yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t, insideAllies[att].GetComponent<Animator>(), "isReacting"));
                 StopCoroutine(coro);
                 Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {a} punktow obrazen!");
                 insideAllies[att].TakeDamage(a);
-                yield return coro = StartCoroutine(BeginAnimation(insideAllies[att].GetComponent<Animator>(), "isReacting"));
-                StopCoroutine(coro);
                 TakeDamage.Invoke(insideAllies[att], a);
                 break;
             case 7:
@@ -396,6 +446,7 @@ public class BattleManager : MonoBehaviour
                 StopCoroutine(coro);
                 insideEnemies[0].Heal(c.Intelligence);
                 HealDamage.Invoke(insideEnemies[0], c.Intelligence);
+                insideEnemies[0].GetComponent<Enemy>().entityInfo.UpdateHP(insideEnemies[0].GetComponent<Enemy>().CurrentHP);
                 break;
             case 9:
                 yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
@@ -440,9 +491,16 @@ public class BattleManager : MonoBehaviour
     public List<Creature> RequestTrackerOrder() => turnManager.GetTracker();
 
     public void RemoveDead() => RemoveTokens?.Invoke();
-    void LeaveBattle()
+    IEnumerator LeaveBattle()
     {
+        yield return StartCoroutine(SmallPause());
         StopAllCoroutines();
         GameManager.Instance.ReturnToScene();
+    }
+
+    IEnumerator SmallPause()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("Done");
     }
 }

@@ -46,6 +46,7 @@ public class FloatingNumbers : MonoBehaviour
     }
     void Update()
     {
+        Camera cam = Camera.main;
         timer += Time.deltaTime;
 
         float fraction = lifetime / 2f;
@@ -55,6 +56,8 @@ public class FloatingNumbers : MonoBehaviour
 
         transform.position = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
         transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(0.5f, 0.5f, 0.5f), Mathf.Sin(timer / lifetime));
+
+        transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
     }
 
     public void SetText(int _damage, Color _color)
