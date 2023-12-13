@@ -19,6 +19,23 @@ public class BattleManager : MonoBehaviour
     [SerializeField] GameObject _characterPanel;
     [SerializeField] GameObject _enemyPanel;
     [SerializeField] Canvas _battleOptions;
+
+    //camera section
+    [SerializeField] GameObject CameraAlly1;
+    [SerializeField] GameObject CameraAlly2;
+    [SerializeField] GameObject CameraAlly3;
+    [SerializeField] GameObject CameraAlly4;
+    [SerializeField] GameObject CameraHitAlly1;
+    [SerializeField] GameObject CameraHitAlly2;
+    [SerializeField] GameObject CameraHitAlly3;
+    [SerializeField] GameObject CameraHitAlly4;
+    [SerializeField] GameObject CameraEnemy1;
+    [SerializeField] GameObject CameraEnemy2;
+    [SerializeField] GameObject CameraEnemy3;
+    [SerializeField] GameObject CameraEnemy4;
+    [SerializeField] GameObject CameraOverlook;
+    GameObject TemporaryCamera;
+
     
     List<Player> allies;
     List<Enemy> enemies;
@@ -95,6 +112,8 @@ public class BattleManager : MonoBehaviour
         sbyte index = 1;
         foreach (Player player in allies)
         {
+            TemporaryCamera = CameraOverlook;
+            TemporaryCamera.SetActive(true);
             animator = GetComponent<Animator>();
             GameObject temp = GameObject.Find("Ally" + index);
             Creature p = Instantiate(GameManager.Instance.entity[player.Name], temp.transform).GetComponent<Player>();
@@ -317,6 +336,9 @@ public class BattleManager : MonoBehaviour
         Debug.Log($"Klik {_turnOptions}");
         if (_turnOptions == TurnOptions.Target)
         {
+             CameraAlly1.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraAlly1;
             Debug.Log("Target");
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -331,6 +353,7 @@ public class BattleManager : MonoBehaviour
 
                     target = hit.transform.gameObject;
                     StartCoroutine(DoTurn(activeCreature));
+                  //  TemporaryCamera.SetActive(false);
                     _turnOptions = TurnOptions.Idle;
                 }
             }
@@ -341,6 +364,9 @@ public class BattleManager : MonoBehaviour
     #region AllyTurn
     void AllyTurn()
     {
+        CameraAlly1.SetActive(true);
+        TemporaryCamera.SetActive(false);
+        TemporaryCamera = CameraAlly1;
         Debug.Log("Wykonalem sie");
         isSomeonesTurn = true;
         _turn = Turn.Ally;
@@ -351,12 +377,41 @@ public class BattleManager : MonoBehaviour
     IEnumerator DoTurn(Creature c)
     {
         if (action.Length > 0 && target != null)
-        {
+        {         
             Coroutine coro;
             switch (action)
             {
                 case "Attack":
                     int a = c.GetComponent<Player>().Attack();
+                    char lastCharacter =target.gameObject.transform.parent.name[target.gameObject.transform.parent.name.Length-1];
+                    //char lastCharacter = target.GetComponent<Enemy>().Name[target.GetComponent<Enemy>().Name.Length-1];
+                    int l  = int.Parse(lastCharacter.ToString());
+                    Debug.Log($"ostatnia cyfra to {l}");  
+
+                    if(l == 1)
+                    {
+                        CameraEnemy1.SetActive(true);
+                        TemporaryCamera.SetActive(false);
+                        TemporaryCamera = CameraEnemy1;
+                    }
+                    if(l == 2)
+                    {
+                        CameraEnemy2.SetActive(true);
+                        TemporaryCamera.SetActive(false);
+                        TemporaryCamera = CameraEnemy2;
+                    }
+                     if(l == 3)
+                    {
+                        CameraEnemy3.SetActive(true);
+                        TemporaryCamera.SetActive(false);
+                        TemporaryCamera = CameraEnemy3;
+                    }
+                     if(l == 4)
+                    {
+                        CameraEnemy4.SetActive(true);
+                        TemporaryCamera.SetActive(false);
+                        TemporaryCamera = CameraEnemy4;
+                    }
                     Transform t = GameObject.Find(target.gameObject.transform.parent.name + "Hit").transform;
                     yield return new WaitForSeconds(0.1f);
                     //yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
@@ -370,6 +425,9 @@ public class BattleManager : MonoBehaviour
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
                     break;
                 case "Heal":
+                    CameraHitAlly1.SetActive(true);
+                    TemporaryCamera.SetActive(false);
+                    TemporaryCamera = CameraHitAlly1;
                     print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                     StopCoroutine(coro);
@@ -378,6 +436,9 @@ public class BattleManager : MonoBehaviour
                     HealDamage.Invoke(target.GetComponent<Creature>(), healingAmount);
                     break;
                 case "Guard":
+                    CameraHitAlly1.SetActive(true);
+                    TemporaryCamera.SetActive(false);
+                    TemporaryCamera = CameraHitAlly1;
                     print($"You will take -50% damage on enemy's next attack");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                     StopCoroutine(coro);
@@ -390,6 +451,7 @@ public class BattleManager : MonoBehaviour
             _turn = Turn.Idle;
             c.tracker = 0;
             isSomeonesTurn = false;
+            TemporaryCamera.SetActive(false);
             AdvanceLoop.Invoke();
         }
     }
@@ -403,7 +465,34 @@ public class BattleManager : MonoBehaviour
     }
 
     IEnumerator DelayEnemyTurn(Creature c)
-    {
+    {   
+        char lastCharacter = c.gameObject.transform.parent.name[c.gameObject.transform.parent.name.Length-1];
+        int l = int.Parse(lastCharacter.ToString());
+        Debug.Log($"ostatnia cyfra to {l}");
+        if(l == 1)
+        {
+            CameraEnemy1.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraEnemy1;
+        }
+        if(l == 2)
+        {
+            CameraEnemy2.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraEnemy2;
+        }
+        if(l == 3)
+        {
+            CameraEnemy3.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraEnemy3;
+        }
+        if(l == 4)
+        {
+            CameraEnemy4.SetActive(true);
+            TemporaryCamera.SetActive(false);
+            TemporaryCamera = CameraEnemy4;
+        }
         isSomeonesTurn = true;
         _turnOptions = TurnOptions.Idle;
         yield return new WaitForSeconds(0.5f);
@@ -423,6 +512,10 @@ public class BattleManager : MonoBehaviour
             case 4:
             case 5:
             case 6:
+                CameraHitAlly1.SetActive(true);
+                TemporaryCamera.SetActive(false);
+                TemporaryCamera = CameraHitAlly1;
+
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
                 Debug.Log($"Damage c: {c.Attack()}");
@@ -459,6 +552,7 @@ public class BattleManager : MonoBehaviour
         c.tracker = 0;
         _turn = Turn.Idle;
         isSomeonesTurn = false;
+        TemporaryCamera.SetActive(false);
         AdvanceLoop.Invoke();
     }
     #endregion

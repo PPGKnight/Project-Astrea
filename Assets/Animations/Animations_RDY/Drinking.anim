@@ -48474,7 +48474,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 8.866667
+    m_StopTime: 8.9
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -96027,7 +96027,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 8.866667
+  - time: 8.9
     functionName: AnimationDone
     data: 
     objectReferenceParameter: {fileID: 0}
