@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/BattleArena_Inn.meta
 guid: ae3067af4cedff04fb669cf72ec25eb8
+========
+guid: cd7be8a84fb921d41971f5edbf1cd056
+>>>>>>>> NPC_Camera_Animation:Assets/Models/Characters/Addons.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
