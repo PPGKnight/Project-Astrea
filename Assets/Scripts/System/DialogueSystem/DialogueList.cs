@@ -18,7 +18,6 @@ public class DialogueList
     public void UpdateDialogue(string key)
     {
         DIALOGUE_LIST[key] = true;
-        Debug.Log($"Set {key} to {DIALOGUE_LIST[key]}");
         DialogueManager.Instance.CheckRequirements();
     }
 

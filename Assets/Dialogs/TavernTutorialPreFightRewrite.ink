@@ -18,7 +18,7 @@ In this moment, one of the mugs lands on your head, and you're drenched in low-q
 You stand up, wet and angry, yelling at the drunkards. They both turn red. Until one looks closer at your face.
 "You're the one that destroyed my cabbage stand!" #speaker:Cabbage_Man
 You look at him, but you can't remember his face. #speaker: 
-Both merchants look even angrier now. Prepare for a fight. #fight:TavernTutorial1 #changeOutcome:0
+Both merchants look even angrier now. Prepare for a fight. #analytics:None_of_them #fight:TavernTutorial1 #changeOutcome:0
 ->END
 
 === TalkingItOut ===
@@ -32,19 +32,19 @@ Standing up, you calmly take a cloth from the bartender, wiping your face. You j
     
 === calmingthestorm ===
 Trying to calm them, the cabbage man loses it and tries to hit the other guy. He misses, and his punch lands on your face.
-Now you're angry. Kick. Their. Asses. #fight:TavernTutorial1 #changeOutcome:0
+Now you're angry. Kick. Their. Asses. #analytics:None_of_them #fight:TavernTutorial1 #changeOutcome:0
 ->END
 
 === Cabbages4Eva ===
 Joining the cabbage seller, he looks surprised, slowly recognizing your face. Then he seems to remember.
 "You're the one that destroyed my cabbage stand!" #speaker:Cabbage_Man
 You look at him, but you can't remember his face. #speaker: 
-Both merchants look even angrier. Prepare for a fight. #fight:TavernTutorial1 #changeOutcome:0
+Both merchants look even angrier. Prepare for a fight. #analytics:Cabbage_Man_Chosen #fight:TavernTutorial1 #changeOutcome:0
 ->END
 ===FucktheCabbagesMan===
-Joining the other guy, you both insult the seller and his cabbages. He's starting to get red. After a while, he attacks you both. #fight:TavernTutorial1 #changeOutcome:1
+Joining the other guy, you both insult the seller and his cabbages. He's starting to get red. After a while, he attacks you both. #analytics:Baker_Chosen #fight:TavernTutorial1 #changeOutcome:1
 ->END
 
 === idc ===
-Sitting unmoved, you observe. Unfortunately, the arguing men turn violent, and in a blink, you're caught in a fight. #fight:TavernTutorial1 #changeOutcome:0
+Sitting unmoved, you observe. Unfortunately, the arguing men turn violent, and in a blink, you're caught in a fight. #analytics:None_of_them #fight:TavernTutorial1 #changeOutcome:0
 ->END

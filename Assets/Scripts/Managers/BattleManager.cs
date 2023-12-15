@@ -187,23 +187,6 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(.2f);
     }
 
-    //IEnumerator BeginAnimationB(Animator a, string animationName, Transform attacker, Transform attackPosition)
-    //{
-    //    Vector3 original = attacker.position;
-    //    isAnimating = true;
-    //    a.SetBool(animationName, true);
-    //    attacker.DOMove(attackPosition.position, 0.5f);
-    //    while (isAnimating)
-    //    {
-    //        yield return null;
-    //    }
-    //    attacker.DOMove(original, 0.5f);
-    //    Vector3 resetRot = Vector3.zero;
-    //    attacker.rotation = Quaternion.Euler(resetRot);
-    //    a.SetBool(animationName, false);
-    //    yield return new WaitForSeconds(.2f);
-    //}
-
     IEnumerator BeginAnimationB(Animator a, string animationName, Transform attacker, Transform attackPosition, Animator b, string animationNameB)
     {
         isAnimating = true;
@@ -214,17 +197,13 @@ public class BattleManager : MonoBehaviour
         {
             yield return null;
         }
-        //a.SetBool(animationName, false);
-        //b.SetBool(animationNameB, false);
         yield return new WaitForSeconds(.2f);
     }
 
     IEnumerator AnimationAttack(Animator a, string animName, Transform attacker, Transform pos)
     {
         Quaternion originRot = attacker.rotation;
-        Debug.LogWarning($"OROT: {originRot}, Rot: {attacker.rotation}");
         Vector3 original = attacker.position;
-        //a.SetBool(animName, true);
         a.Play("Running");
         attacker.DOMove(pos.position, 0.5f);
         yield return new WaitForSeconds(.3f);
@@ -236,15 +215,11 @@ public class BattleManager : MonoBehaviour
             attacker.rotation = originRot;
         });
         Vector3 resetRot = Vector3.zero;
-        Debug.LogWarning($"OROT2: {originRot}");
-        //attacker.rotation = originRot;
-        Debug.LogWarning($"Rot: {attacker.rotation}");
         yield return null;
     }
 
     IEnumerator AnimationReact(Animator b, string animName)
     {
-        //b.SetBool(animName, true);
         b.Play("Reaction");
         yield return null;
     }
@@ -254,7 +229,6 @@ public class BattleManager : MonoBehaviour
     void CombatLoop()
     {
         loopIndex = loopIndex > 5 ? loopIndex = 1 : loopIndex;
-        Debug.Log(loopIndex);
         switch (loopIndex)
         {
             case 1:
@@ -270,7 +244,6 @@ public class BattleManager : MonoBehaviour
                 // Get next creature
                 //Debug.Log("CombatLoop2");
                 activeCreature = turnManager.GetCreature();
-                Debug.LogError(activeCreature.Name);
                 AdvanceLoop.Invoke();
                 break;
             case 3:
@@ -300,15 +273,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void Advance()
-    {
-        Debug.Log("Advance called");
-        CombatLoop();
-    }
+    void Advance() => CombatLoop();
+
     public void SetAction(string s)
     {
         action = s;
-        Debug.Log($"Ustawiono akcje na {action}");
         _turnOptions = TurnOptions.Target;
     }
 
@@ -333,7 +302,6 @@ public class BattleManager : MonoBehaviour
     {
         if (_battleState != BattleState.Battle) return;
 
-        Debug.Log($"Klik {_turnOptions}");
         if (_turnOptions == TurnOptions.Target)
         {
              CameraAlly1.SetActive(true);

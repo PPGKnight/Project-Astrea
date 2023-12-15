@@ -46,7 +46,6 @@ public class InitiativeTrackerManager : MonoBehaviour
         foreach (Creature c in turnCreatures)
         {
             int index = turnCreatures.FindIndex(x => x == c);
-            Debug.LogError($"{c.Name} na pozycji {index}");
             Image token = Instantiate(characterImage, initiativeBar.transform);
             Vector3 r = new Vector3(0f, (-100f * index) - 100f, 0f);
             token.rectTransform.anchoredPosition = r;
@@ -60,16 +59,12 @@ public class InitiativeTrackerManager : MonoBehaviour
     void UpdateTokensPosition()
     {
         StopAllCoroutines();
-        Debug.Log("update");
         List<Creature> checkOrder = BattleManager.Instance.RequestTrackerOrder();
-        Debug.Log($"List count is {checkOrder.Count}");
-        //RemoveToken();
 
         foreach (var c in turnCreature)
         {
             Image img = turnCreature[c.Key];
             int index = checkOrder.FindIndex(x => x == c.Key);
-            Debug.LogError($"{c.Key.Name} na pozycji {index}");
             RectTransform r = img.rectTransform;
             StartCoroutine(MoveToken(r, checkOrder));
         }
@@ -127,7 +122,6 @@ public class InitiativeTrackerManager : MonoBehaviour
             Image i = turnCreature[c.Key];
             Vector3 newPos = new Vector3(0f, (-100f * temp) - 100f, 0f);
             i.rectTransform.anchoredPosition = newPos;
-            Debug.LogWarning($"{i.rectTransform.anchoredPosition} -> {newPos}");
         }
     }
 }

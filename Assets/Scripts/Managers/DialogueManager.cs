@@ -41,6 +41,8 @@ public class DialogueManager : MonoBehaviour
     private const string TELEPORT_TAG = "teleport";
     private const string FIGHT_TAG = "fight";
     private const string OUTCOME_TAG = "changeOutcome";
+    private const string ANALYTICS_TAG = "analytics";
+    private const string REWARD_TAG = "reward";
 
     [Header("Choices")]
     [SerializeField] GameObject[] choices;
@@ -206,10 +208,8 @@ public class DialogueManager : MonoBehaviour
 
     private void HandleTags(List<string> currentTags)
     {
-        // loop through each tag and handle it accordingly
         foreach (string tag in currentTags)
         {
-            // parse the tag
             string[] splitTag = tag.Split(':');
             if (splitTag.Length != 2)
             {
@@ -218,14 +218,13 @@ public class DialogueManager : MonoBehaviour
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
-            // handle the tag
             switch (tagKey)
             {
                 case SPEAKER_TAG:
                     dialogueSpeaker.text = tagValue.Replace("_", " ");
                     break;
                 case OUTCOME_TAG:
-                    outcome = Int32.Parse(tagValue);
+                    outcome = int.Parse(tagValue);
                     break;
                 case FIGHT_TAG:
                     GameObject o = GameObject.Find(tagValue);
@@ -245,6 +244,11 @@ public class DialogueManager : MonoBehaviour
                         else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
                     }
                     TeleportTo(getobject, TransitionSpawns.ReturnSpawn(strings[1]));
+                    break;
+                case ANALYTICS_TAG:
+                    string textToSend = tagValue.Replace("_", " ");
+                    Debug.LogError("Analytics send");
+                    AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.DialogueOptionChosen, textToSend);
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);

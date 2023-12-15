@@ -53,7 +53,6 @@ public class HealthBarSystem : MonoBehaviour
     {
         float f = 0f;
         f = (float)healthAmount / (float)healthAmountMax;
-        Debug.Log($"{this.healthAmount}, {this.healthAmountMax}, {f}");
         return f;
     }
 }

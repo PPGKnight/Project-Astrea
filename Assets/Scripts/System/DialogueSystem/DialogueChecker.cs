@@ -32,7 +32,6 @@ public class DialogueChecker : MonoBehaviour
         CheckDialogue();
         CheckEncounter();
         CheckQuest();
-        Debug.Log($"{gameObject.name} zwraca {canBeActive}");
         dialogueTrigger.SetActive(canBeActive);
     }
 

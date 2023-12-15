@@ -24,30 +24,32 @@ public class AnalyticsManager : MonoBehaviour
 
     private void Start()
     {
+        StartCollecting();
+        Debug.Log(PlayerPrefs.HasKey("analyticsConsent"));
+        Debug.Log(PlayerPrefs.GetInt("analyticsConsent"));
         if (!PlayerPrefs.HasKey("analyticsConsent")) return;
         if (PlayerPrefs.GetInt("analyticsConsent") == 0) return;
         AnalyticsService.Instance.StartDataCollection();
     }
 
-    Dictionary<AnalyticsDataEvents, string> dataEvents = new Dictionary<AnalyticsDataEvents, string>()
-    {
-        {AnalyticsDataEvents.Consent, "ConsentToUseAnalytics"},
-        {AnalyticsDataEvents.FirstDialogue, "BakerVsCabbageMan"},
-        {AnalyticsDataEvents.FirstQuestline, "NewJourney"}
+    Dictionary<AnalyticsDataEvents, string> event_to_param = new Dictionary<AnalyticsDataEvents, string>(){
+        { AnalyticsDataEvents.Consent, "ConsentToUseAnalytics"},
+        { AnalyticsDataEvents.QuestCompleted, "QuestCompleted"},
+        { AnalyticsDataEvents.DialogueOptionChosen, "DialogueOptionChosen"},
     };
 
-    public void SentAnalyticsData(AnalyticsDataEvents eventName, object value)
+    public void SentAnalyticsData(AnalyticsDataEvents eventToSend, object value)
     {
         if (PlayerPrefs.GetInt("analyticsConsent") == 0) return;
 
         try
         {
-            AnalyticsService.Instance.CustomData(eventName.ToString(), new Dictionary<string, object> { { dataEvents[eventName], value } });
+            AnalyticsService.Instance.CustomData(eventToSend.ToString(), new Dictionary<string, object> { { event_to_param[eventToSend], value } });
             Debug.Log($"The data has been successfully sent");
         }
         catch (Exception)
         {
-            Debug.LogError($"Sending analytics data failed for event {eventName} with value {value}");
+            Debug.LogError($"Sending analytics data failed for event {event_to_param[eventToSend]} with value {value}");
         }
     }
 
@@ -67,6 +69,6 @@ public class AnalyticsManager : MonoBehaviour
 public enum AnalyticsDataEvents
 {
     Consent,
-    FirstQuestline,
-    FirstDialogue
+    QuestCompleted,
+    DialogueOptionChosen
 }

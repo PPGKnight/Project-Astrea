@@ -14528,7 +14528,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkStory
       value: 
-      objectReference: {fileID: 4900000, guid: 372ee721892c7eb418e8de17a95f74f2, type: 3}
+      objectReference: {fileID: 4900000, guid: ff36d8c64527fc448805a7dc5a488cd0, type: 3}
     - target: {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_Height
@@ -21278,7 +21278,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkStory
       value: 
-      objectReference: {fileID: 4900000, guid: 20e786ce5f2946b499624d9c8d80a37b, type: 3}
+      objectReference: {fileID: 4900000, guid: 9a1d07d5f5bdc5e4195d1d56e9a87e2e, type: 3}
     - target: {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_Radius

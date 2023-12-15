@@ -30,9 +30,7 @@ public class EncounterList : MonoBehaviour
     {
         if (s.Contains("&"))
         {
-            Debug.Log(s);
             s = s.Remove(s.Length-1);
-            Debug.Log(s);
             return (encounterList[s + "1"] || encounterList[s + "2"]);
         }
         else

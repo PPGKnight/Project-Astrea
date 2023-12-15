@@ -2922,6 +2922,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6957817301872563219, guid: 8c20bf720b9661b4ba5a1c9b67f7fc6d,
         type: 3}
+      propertyPath: data
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957817301872563219, guid: 8c20bf720b9661b4ba5a1c9b67f7fc6d,
+        type: 3}
       propertyPath: questInfoForPoint
       value: 
       objectReference: {fileID: 11400000, guid: 1fa7377360aef2242afddfc02157a26e,
