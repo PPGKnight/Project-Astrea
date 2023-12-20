@@ -14943,7 +14943,7 @@ MonoBehaviour:
   encounterID: TavernTutorial2
   enemies:
   - {fileID: -4752486825937246483, guid: 03d4523790b8cb34685ab1b4aa3b78d8, type: 3}
-  arenaName: BattleArena_Inn
+  arenaName: BattleArena_Inn_old
   DialogueAfterEncounter: {fileID: 1242624678}
   encounterType: 0
 --- !u!65 &1297700169
@@ -15233,7 +15233,7 @@ MonoBehaviour:
   enemies:
   - {fileID: -2332175936783643967, guid: 7be46a948b5001c4da48c435f0e8a986, type: 3}
   - {fileID: -4752486825937246483, guid: 03d4523790b8cb34685ab1b4aa3b78d8, type: 3}
-  arenaName: BattleArena_Inn
+  arenaName: BattleArena_Inn_old
   DialogueAfterEncounter: {fileID: 1242624678}
   encounterType: 0
 --- !u!65 &1327798894
