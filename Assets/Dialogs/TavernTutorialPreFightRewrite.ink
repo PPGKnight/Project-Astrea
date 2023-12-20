@@ -42,7 +42,7 @@ You look at him, but you can't remember his face. #speaker:
 Both merchants look even angrier. Prepare for a fight. #analytics:Cabbage_Man_Chosen #fight:TavernTutorial1 #changeOutcome:0
 ->END
 ===FucktheCabbagesMan===
-Joining the other guy, you both insult the seller and his cabbages. He's starting to get red. After a while, he attacks you both. #analytics:Baker_Chosen #fight:TavernTutorial1 #changeOutcome:1
+Joining the other guy, you both insult the seller and his cabbages. He's starting to get red. After a while, he attacks you both. #analytics:Baker_Chosen #fight:TavernTutorial2 #changeOutcome:1
 ->END
 
 === idc ===
