@@ -139,10 +139,10 @@ public class GameManager : MonoBehaviour
             {"Gracz", Resources.Load<GameObject>("Prefabs/PlayerModel")},
             {"Cabbage Man", Resources.Load<GameObject>("Prefabs/Characters/Cabbage_Man")},
             {"Baker", Resources.Load<GameObject>("Prefabs/Characters/Baker")}, 
-            {"Bandit Josh", Resources.Load<GameObject>("Prefabs/Characters/M_Vest_Green_Blonde")},
-            {"Bandit Andrew", Resources.Load<GameObject>("Prefabs/Characters/M_Vest_Red")},
+            {"Bandit Josh", Resources.Load<GameObject>("Prefabs/Characters/Banditman_1")},
+            {"Bandit Andrew", Resources.Load<GameObject>("Prefabs/Characters/Banditman_2")},
             {"Bandit Catherin", Resources.Load<GameObject>("Prefabs/Characters/W_NoVest_Dark")},
-            {"Bandit Louise", Resources.Load<GameObject>("Prefabs/Characters/W_Vest_Green")},
+            {"Bandit Louise", Resources.Load<GameObject>("Prefabs/Characters/Banditman_3")},
         };
     }
 
