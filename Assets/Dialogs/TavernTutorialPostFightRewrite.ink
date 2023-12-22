@@ -5,7 +5,7 @@ VAR DialogueID = "TavernTutorialPostFight"
 {
 -outcome == 0:
 ->afterthefight
--else
+-else:
 ->fightwithtwist
 }
 

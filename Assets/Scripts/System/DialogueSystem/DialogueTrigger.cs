@@ -22,7 +22,6 @@ public class DialogueTrigger : MonoBehaviour
 
         if (manager == null)
         {
-            Debug.LogWarning("Manager wyjebalo awake");
             manager = DialogueManager.Instance;
         }
 

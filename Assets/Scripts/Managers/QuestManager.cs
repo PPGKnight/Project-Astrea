@@ -120,6 +120,7 @@ public class QuestManager : MonoBehaviour
         ClaimRewards(quest);
         ChangeQuestState(quest.info.id, QuestState.Completed);
         Debug.LogWarning($"Zakonczono quest '{quest.info.displayName}'");
+        AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.QuestCompleted, quest.info.id);
         DialogueManager.Instance.CheckRequirements();
     }
 

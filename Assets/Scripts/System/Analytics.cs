@@ -48,11 +48,13 @@ public class Analytics : MonoBehaviour
         PlayerPrefs.SetInt("analyticsConsent", 1);
         consentBox.SetActive(false);
         BeginAnalytics();
+        PlayerPrefs.Save();
     }
     public void Decline()
     {
         Debug.Log("User has declined to allow data collection");
         PlayerPrefs.SetInt("analyticsConsent", 0);
         consentBox.SetActive(false);
+        PlayerPrefs.Save();
     }
 }

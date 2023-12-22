@@ -24,9 +24,9 @@ public class AnalyticsManager : MonoBehaviour
 
     private void Start()
     {
-        StartCollecting();
         Debug.Log(PlayerPrefs.HasKey("analyticsConsent"));
         Debug.Log(PlayerPrefs.GetInt("analyticsConsent"));
+        PlayerPrefs.SetInt("analyticsConsent", 1);
         if (!PlayerPrefs.HasKey("analyticsConsent")) return;
         if (PlayerPrefs.GetInt("analyticsConsent") == 0) return;
         AnalyticsService.Instance.StartDataCollection();
@@ -57,12 +57,14 @@ public class AnalyticsManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("analyticsConsent", 1);
         AnalyticsService.Instance.StartDataCollection();
+        PlayerPrefs.Save();
     }
     public void DeleteData() => AnalyticsService.Instance.RequestDataDeletion();
     public void StopCollecting()
     {
         PlayerPrefs.SetInt("analyticsConsent", 0);
         AnalyticsService.Instance.StopDataCollection();
+        PlayerPrefs.Save();
     }
 }
 
