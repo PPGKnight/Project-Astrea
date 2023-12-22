@@ -1768,7 +1768,7 @@ MonoBehaviour:
   entityInfo: {fileID: 0}
   Strength: 4
   Dexterity: 14
-  Intelligence: 10
+  Intelligence: 21
   Constitution: 64
   Initiative: 2
   InitiativeThisFight: 0

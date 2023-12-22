@@ -35,7 +35,7 @@ public class Transitionier : MonoBehaviour
             GameManager.Instance._player.GetComponent<PlayerMovement>().UpdateAgent(TransitionSpawns.ReturnSpawn(key));
         }
 
-        else if (_trans == TransitionType.Additive && !GameManager.Instance.activeScenes.Contains(_nextSceneName))
+        else if (_trans == TransitionType.Additive && !GameManager.Instance.activeScenes.Contains(_nextSceneName) && SceneManager.GetActiveScene().name != _nextSceneName)
         {
             GameManager.Instance.activeScenes.Add(_nextSceneName);
             //SceneManager.LoadSceneAsync(_nextSceneName, LoadSceneMode.Additive);

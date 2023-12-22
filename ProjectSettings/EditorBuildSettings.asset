@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HendleyVillage.unity
     guid: b6981d06d8fc6e24dbf811eacba096c2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testing Ground.unity
     guid: 98720df57546f134e9e41f654f73bd3f
   - enabled: 1

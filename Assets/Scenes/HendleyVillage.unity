@@ -3946,6 +3946,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!1001 &143504002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6474,7 +6475,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkStory
       value: 
-      objectReference: {fileID: 4900000, guid: 924aa4f4e75aa394eaf4e33da91a837b, type: 3}
+      objectReference: {fileID: 4900000, guid: 3fc3e00217571e040aa907c111c03d51, type: 3}
     - target: {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_Radius
@@ -29451,6 +29452,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 1
   isLeaning: 0
+  isDead: 0
 --- !u!1001 &1253331682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33827,6 +33829,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606974, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: inkStory
+      value: 
+      objectReference: {fileID: 4900000, guid: b6bbe91135df27642b14661923cf7c20, type: 3}
     - target: {fileID: 5430192039179606974, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: dialogueTriggerType
@@ -38244,7 +38251,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkStory
       value: 
-      objectReference: {fileID: 4900000, guid: 53e8a72f9ec81cf4c83f3a1e3bc3565b, type: 3}
+      objectReference: {fileID: 4900000, guid: 8bc62d423d6b2d54c921e28ccb72f636, type: 3}
     - target: {fileID: 5430192039179606974, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: dialogueTriggerType
@@ -48201,6 +48208,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!95 &1958795387 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6636495284796657184, guid: 6a84781010078624cb046f211c44883c,
@@ -52192,6 +52200,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!1001 &2046348175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54412,6 +54421,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!1001 &2063168924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56320,7 +56330,7 @@ PrefabInstance:
     - target: {fileID: 3039707635953809186, guid: 6fa0b1c1c0c080140a098ed2eccba6b9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -620.45
+      value: -621.32
       objectReference: {fileID: 0}
     - target: {fileID: 3039707635953809186, guid: 6fa0b1c1c0c080140a098ed2eccba6b9,
         type: 3}

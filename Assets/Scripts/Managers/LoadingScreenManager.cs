@@ -29,11 +29,14 @@ public class LoadingScreenManager : MonoBehaviour
     public void LoadSceneWithMove(string sceneName, string key)
     {
         GameManager.Instance.ChangePlayerPos(TransitionSpawns.ReturnSpawn(key));
+        GameManager.Instance.activeScenes.Clear();
+        GameManager.Instance.activeScenes.Add(sceneName);
         StartCoroutine(AsyncLoadingScreen(sceneName));
         GameManager.Instance._player.GetComponent<PlayerMovement>().UpdateAgent(TransitionSpawns.ReturnSpawn(key));
     }
     IEnumerator AsyncLoadingScreen(string sceneName)
     {
+        StopCoroutine(ChangeTipText());
         loadingFillAmount.value = 0;
         screen.SetActive(true);
         StartCoroutine(ChangeTipText());

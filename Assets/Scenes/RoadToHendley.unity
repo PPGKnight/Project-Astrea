@@ -8036,7 +8036,7 @@ PrefabInstance:
     - target: {fileID: 3039707635953809186, guid: 6fa0b1c1c0c080140a098ed2eccba6b9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -460.6
+      value: -454.2
       objectReference: {fileID: 0}
     - target: {fileID: 3039707635953809186, guid: 6fa0b1c1c0c080140a098ed2eccba6b9,
         type: 3}
@@ -8046,7 +8046,7 @@ PrefabInstance:
     - target: {fileID: 3039707635953809186, guid: 6fa0b1c1c0c080140a098ed2eccba6b9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -569.7
+      value: -503.6
       objectReference: {fileID: 0}
     - target: {fileID: 3039707635953809186, guid: 6fa0b1c1c0c080140a098ed2eccba6b9,
         type: 3}
@@ -11337,7 +11337,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkStory
       value: 
-      objectReference: {fileID: 4900000, guid: 7586cb12ff182524597e73f4fe9b0518, type: 3}
+      objectReference: {fileID: 4900000, guid: ac2a5bb02ba67f04ab466ea73c19c0d6, type: 3}
     - target: {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_Height
@@ -19749,7 +19749,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkStory
       value: 
-      objectReference: {fileID: 4900000, guid: 861a3ac51c5df484093397d97bc48281, type: 3}
+      objectReference: {fileID: 4900000, guid: 4a86da0a79e0e10499b0224f49f4fe7d, type: 3}
     - target: {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_Height
@@ -36182,6 +36182,7 @@ MonoBehaviour:
   isArguing: 1
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!1001 &868235193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91527,6 +91528,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!136 &6775188163967035740
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -91561,6 +91563,7 @@ MonoBehaviour:
   isArguing: 1
   isFishing: 0
   isLeaning: 0
+  isDead: 0
 --- !u!33 &6823594351844440823
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -92930,6 +92933,7 @@ MonoBehaviour:
   isArguing: 0
   isFishing: 0
   isLeaning: 1
+  isDead: 0
 --- !u!1 &8241034311071516389
 GameObject:
   m_ObjectHideFlags: 0
