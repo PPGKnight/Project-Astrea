@@ -20,7 +20,6 @@ MonoBehaviour:
   - TavernTourWithGary
   encounterPrerequisites: []
   questStepPrefabs:
-  - {fileID: 2560590787905857327, guid: ba921b3246221ec46bc6d8b2c0d6fa32, type: 3}
-  - {fileID: 3614619218865094710, guid: 0a687ee724f4ad64d889f023a85e5a33, type: 3}
+  - {fileID: 7847720473865556761, guid: e41432dba21bf3d4f8880bde8ad7a602, type: 3}
   goldReward: 0
   experienceReward: 0

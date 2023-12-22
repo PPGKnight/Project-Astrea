@@ -46,6 +46,8 @@ public class Creature : MonoBehaviour
 
     private void Start()
     {
+        if (outlineMaterials.Count == 0 || outlineMaterials == null) return;
+
         foreach (GameObject mat in outlineMaterials)
         {
             m_outlineEventOn.AddListener(mat.GetComponent<OutlineCS>().AlphaOn);

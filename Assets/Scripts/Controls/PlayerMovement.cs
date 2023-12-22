@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         if (gameManager.worldTime == 0) return;
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             //Debug.LogError($"Worldtime {gameManager.worldTime}");
             navPlayer.speed = speed;

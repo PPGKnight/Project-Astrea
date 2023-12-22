@@ -206,11 +206,13 @@ public class BattleManager : MonoBehaviour
         Vector3 original = attacker.position;
         a.Play("Running");
         attacker.DOMove(pos.position, 0.5f);
+        attacker.DORotateQuaternion(pos.rotation, 0.5f);
         yield return new WaitForSeconds(.3f);
         a.Play("Hook Punch");
         yield return new WaitForSeconds(2f);
         a.Play("Running Backwards");
         attacker.DOMove(original, 0.5f);
+        attacker.DORotateQuaternion(originRot, 0.5f);
         attacker.DORotate(Vector3.zero, .1f).OnComplete(() => {
             attacker.rotation = originRot;
         });
@@ -314,6 +316,10 @@ public class BattleManager : MonoBehaviour
             {
                 if ((hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("MainPlayer")) && !hit.transform.GetComponent<Creature>().IsDead())
                 {
+                    if(action == "Attack"&& !hit.transform.CompareTag("Enemy")) return;
+
+                    if (action == "Heal" && hit.transform.CompareTag("Enemy")) return;
+
                     if (hit.transform.CompareTag("Enemy"))
                         Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
                     if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
@@ -354,7 +360,6 @@ public class BattleManager : MonoBehaviour
                     char lastCharacter =target.gameObject.transform.parent.name[target.gameObject.transform.parent.name.Length-1];
                     //char lastCharacter = target.GetComponent<Enemy>().Name[target.GetComponent<Enemy>().Name.Length-1];
                     int l  = int.Parse(lastCharacter.ToString());
-                    Debug.Log($"ostatnia cyfra to {l}");  
 
                     if(l == 1)
                     {
@@ -411,7 +416,7 @@ public class BattleManager : MonoBehaviour
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                     StopCoroutine(coro);
                     c.GetComponent<Player>().Guard();
-                    Guard.Invoke(target.GetComponent<Creature>());
+                    Guard.Invoke(c.GetComponent<Creature>());
                     break;
             }
             target = null;
@@ -436,7 +441,6 @@ public class BattleManager : MonoBehaviour
     {   
         char lastCharacter = c.gameObject.transform.parent.name[c.gameObject.transform.parent.name.Length-1];
         int l = int.Parse(lastCharacter.ToString());
-        Debug.Log($"ostatnia cyfra to {l}");
         if(l == 1)
         {
             CameraEnemy1.SetActive(true);

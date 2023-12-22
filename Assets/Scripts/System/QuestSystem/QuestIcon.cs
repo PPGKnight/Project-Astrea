@@ -10,13 +10,11 @@ public class QuestIcon : MonoBehaviour
 
     public void SetState(QuestState newState, bool startPoint, bool finishPoint)
     {
-        // set all to inactive
         cantStartIcon.SetActive(false);
         canStartIcon.SetActive(false);
         cantFinishIcon.SetActive(false);
         canFinishIcon.SetActive(false);
 
-        // set the appropriate one to active based on the new state
         switch (newState)
         {
             case QuestState.Requirements_Not_Met:
