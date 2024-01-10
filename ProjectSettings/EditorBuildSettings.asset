@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Battle Arena.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/BattleArena_Inn.unity
+    path: Assets/Scenes/BattleArena_Non_working.unity
     guid: 3c4b8f16d54feec4b854d3cd704e7bc6
   - enabled: 1
     path: Assets/Scenes/BattleArena_Sawmill.unity

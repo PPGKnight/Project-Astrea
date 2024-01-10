@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out hit) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             //Debug.LogError($"Worldtime {gameManager.worldTime}");
+            //Debug.DrawRay(transform.position,new Vector3(ray.x),Color.blue);
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
             

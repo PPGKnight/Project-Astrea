@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public GameObject _player;
 
     private Player player;
+    
+    [SerializeField]
+    GameObject CameraRig;
 
     public List<string> Inventory;
 
@@ -76,6 +79,10 @@ public class GameManager : MonoBehaviour
             player = _player.GetComponent<Player>();
             //Debug.Log("Stworzylem");
         }
+        if(CameraRig==null)
+        {
+             CameraRig = Instantiate(Resources.Load<GameObject>("Prefabs/CameraRig"));
+        }
         await Task.Run(() =>
         {
             Task.Delay(20);
@@ -91,6 +98,7 @@ public class GameManager : MonoBehaviour
             Check();
 
         _player.SetActive(true);
+        CameraRig.SetActive(true);
         //if (_battleData.dialogue != null)
            // _battleData.dialogue.GetComponent<BoxCollider>().enabled = true;
     }
@@ -130,6 +138,7 @@ public class GameManager : MonoBehaviour
         DialogueManager.Instance.gameObject.transform.parent.Find("EventSystem").gameObject.SetActive(false);
         SceneManager.LoadScene(arenaName);
         _player.SetActive(false);
+        CameraRig.SetActive(false);
     }
 
     public void Populate()
