@@ -57,7 +57,7 @@ public class DialogueTrigger : MonoBehaviour
         //    parent.SetActive(false);
         if (manager == null)
         {
-            Debug.LogWarning("Brak managera wykryty update");
+            //Debug.LogWarning("Brak managera wykryty update");
             manager = DialogueManager.Instance;
         }
 
@@ -73,7 +73,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (manager == null)
             {
-                Debug.LogWarning("Brak managera wykryty w triggerkey");
+                //Debug.LogWarning("Brak managera wykryty w triggerkey");
                 manager = DialogueManager.Instance;
             }
 
@@ -98,7 +98,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (manager == null)
             {
-                Debug.LogWarning("Brak managera wykryty w triggernear");
+                //Debug.LogWarning("Brak managera wykryty w triggernear");
                 manager = DialogueManager.Instance;
             }
 
@@ -106,10 +106,10 @@ public class DialogueTrigger : MonoBehaviour
                 if (manager.dialogueList.CheckIfCompleted(parent.name))
                     return;
 
-            Debug.Log("Uruchamiam dialog");
+            //Debug.Log("Uruchamiam dialog");
             inDialogue = true;
 
-            if (inkStory == null) Debug.LogError("Brak pliku Ink");
+            if (inkStory == null) Debug.LogError("Detected missing Ink file");
             manager.EnterDialogue(inkStory);
         }
     }

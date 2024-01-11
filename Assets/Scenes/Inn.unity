@@ -6953,7 +6953,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32642
+  m_Name: pb_Mesh87212
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19515,6 +19515,20 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 862311868}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513737601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513737595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playDeadAfterEncounter:
+  - TavernTutorial1
 --- !u!1001 &1516866968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19977,7 +19991,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32292
+  m_Name: pb_Mesh86862
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21316,6 +21330,21 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1215368970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1819633447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819633441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playDeadAfterEncounter:
+  - TavernTutorial1
+  - TavernTutorial2
 --- !u!1001 &1820669368
 PrefabInstance:
   m_ObjectHideFlags: 0

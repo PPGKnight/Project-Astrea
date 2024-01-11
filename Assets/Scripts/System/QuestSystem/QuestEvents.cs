@@ -8,6 +8,9 @@ public class QuestEvents
     public event Action<string> onAdvanceQuest;
     public void AdvanceQuest(string id) => onAdvanceQuest?.Invoke(id);
 
+    public event Action<string, IQuestProgress> onQuestProgress;
+    public void ProgressQuest(string id, IQuestProgress iqp) => onQuestProgress?.Invoke(id, iqp);
+
     public event Action<string> onFinishQuest;
     public void FinishQuest(string id) => onFinishQuest?.Invoke(id);
 

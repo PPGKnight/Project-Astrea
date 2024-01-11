@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("Additional Dialogue Manager has been deleted from the scene");
+            //Debug.LogWarning("Additional Dialogue Manager has been deleted from the scene");
             Destroy(this.gameObject);
         }
         else
@@ -113,9 +113,9 @@ public class DialogueManager : MonoBehaviour
     public void EnterDialogue(TextAsset ink)
     {
         GameManager.Instance.worldTime = 0;
-        Debug.Log("Rozpoczynam dialog");
+        //Debug.Log("Rozpoczynam dialog");
         currentStory = new Story(ink.text);
-        Debug.Log("Story zaczytane");
+        //Debug.Log("Story zaczytane");
         if (player == null) Debug.Log("Nie ma playera");
         object playername = player.ReturnName();
         
@@ -123,7 +123,7 @@ public class DialogueManager : MonoBehaviour
             currentStory.variablesState["PlayerName"] = playername;
 
         dialogue_name = currentStory.variablesState["DialogueID"].ToString();
-        Debug.Log("Nazwa dialogu wzieta");
+        //Debug.Log("Nazwa dialogu wzieta");
 
         if (currentStory.variablesState["outcome"] != null)
             currentStory.variablesState["outcome"] = outcome;
@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour
         isDialogue = true;
         dialoguePanel.SetActive(true);
         dialogueEventSystem.SetActive(true);
-        Debug.Log("Canvas wlaczone");
+        //Debug.Log("Canvas wlaczone");
 
         ContinueStory();
     }
@@ -228,7 +228,7 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case FIGHT_TAG:
                     GameObject o = GameObject.Find(tagValue);
-                    Debug.Log($"Uruchamiam walke {o.name}");
+                    //Debug.Log($"Uruchamiam walke {o.name}");
                     StartCoroutine(PrepareToFight(o));
                     break;
                 case TELEPORT_TAG:
@@ -238,7 +238,7 @@ public class DialogueManager : MonoBehaviour
                     if (getobject == null)
                     {
                         getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
-                        Debug.LogError("PlayerMovement null");
+                        //Debug.LogError("PlayerMovement null");
 
                         if (GameManager.Instance._player == null) Debug.LogError("GM Player null");
                         else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
@@ -247,7 +247,7 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case ANALYTICS_TAG:
                     string textToSend = tagValue.Replace("_", " ");
-                    Debug.LogError("Analytics send");
+                    //Debug.LogError("Analytics send");
                     AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.DialogueOptionChosen, textToSend);
                     break;
                 default:
@@ -322,7 +322,7 @@ public class DialogueManager : MonoBehaviour
 
     void TeleportTo(PlayerMovement obj, Vector3 loc)
     {
-        Debug.LogWarning($"Teleportuje {obj.name} na koordynaty {loc}");
+        //Debug.LogWarning($"Teleportuje {obj.name} na koordynaty {loc}");
         //obj.transform.position = loc;
         obj.UpdateAgent(loc);
     }

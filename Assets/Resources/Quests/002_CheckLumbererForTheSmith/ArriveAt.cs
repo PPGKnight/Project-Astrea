@@ -3,28 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class ArriveAt : QuestStep
+public class ArriveAt : QuestStep, IQuestProgress
 {
-    /*[SerializeField] Vector3 stepPosition;
-    [SerializeField] Vector3 stepScale;
-
-    public Vector3 GetPosition()
-    {
-        return stepPosition;
-    }
-
-    public Vector3 GetScale()
-    {
-        return stepScale;
-    }*/
-
-
     bool isVisited = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MainPlayer"))
             PlaceVisited();
+    }
+    private void Start()
+    {
+        GameEventsManager.instance.QuestEvents.ProgressQuest(questId, this);
     }
 
     void PlaceVisited()
@@ -43,5 +33,10 @@ public class ArriveAt : QuestStep
     {
         string s = isVisited.ToString();
         ChangeState(s);
+    }
+
+    public string QuestProgress()
+    {
+        return "Go to a lumberjack living in the forest outside the town";
     }
 }

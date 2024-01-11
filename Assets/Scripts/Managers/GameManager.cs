@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void Check()
     {
-        Debug.Log($"Encounter: {_battleData.eID}");
+        //Debug.Log($"Encounter: {_battleData.eID}");
         /*if (_battleData.battleStatus == BattleStatus.Victory)
         {
             GameObject g = GameObject.Find(_battleData.eID);

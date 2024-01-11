@@ -24,9 +24,7 @@ public class AnalyticsManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(PlayerPrefs.HasKey("analyticsConsent"));
-        Debug.Log(PlayerPrefs.GetInt("analyticsConsent"));
-        PlayerPrefs.SetInt("analyticsConsent", 1);
+        PlayerPrefs.SetInt("analyticsConsent", 0);
         if (!PlayerPrefs.HasKey("analyticsConsent")) return;
         if (PlayerPrefs.GetInt("analyticsConsent") == 0) return;
         AnalyticsService.Instance.StartDataCollection();

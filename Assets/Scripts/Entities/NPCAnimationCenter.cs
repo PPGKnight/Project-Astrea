@@ -13,6 +13,7 @@ public class NPCAnimationCenter : MonoBehaviour
      [SerializeField] int isFishing;
      [SerializeField] int isLeaning;
      [SerializeField] int isDead;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,5 +56,22 @@ public class NPCAnimationCenter : MonoBehaviour
             animator.SetBool("isDead",true);
         }
 
+    }
+
+    public void ResetAnimations()
+    {
+        animator.SetBool("isBartering", false);
+        animator.SetBool("isSittingHands", false);
+        animator.SetBool("isDrinking", false);
+        animator.SetBool("isYelling", false);
+        animator.SetBool("isArguing", false);
+        animator.SetBool("isFishing", false);
+        animator.SetBool("isLeaning", false);
+        animator.SetBool("isDead", false);
+    }
+
+    public void SetAnimation(string s)
+    {
+        animator.SetBool(s, true);
     }
 }
