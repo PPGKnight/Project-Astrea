@@ -7,7 +7,8 @@ MonoImporter:
   - _battleData: {fileID: 11400000, guid: f63e6fc56128b014b8065cd4664db2ef, type: 2}
   - _playerPositionSO: {fileID: 11400000, guid: 78a851ff247933b489d5d19e6746bc56,
       type: 2}
-  - _player: {instanceID: 0}
+  - _player: {fileID: 5883580192167874112, guid: d9408ae8078bbf84ebdc3eec7105a348,
+      type: 3}
   executionOrder: -1100
   icon: {instanceID: 0}
   userData: 

@@ -48,7 +48,7 @@ public class CameraControl : MonoBehaviour
     private void Start()
     {
       // CinemachineCore.GetInputAxis = CustomAxis;
-        playermodel = GameManager.Instance._player;
+        //playermodel = GameManager.Instance._player;
     }
 
     // float CustomAxis(string axis)
