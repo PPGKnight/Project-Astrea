@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
+
 public class CameraControl : MonoBehaviour
 {
     [SerializeField]
@@ -13,6 +14,9 @@ public class CameraControl : MonoBehaviour
 
     [SerializeField]
     private float sensitivity = 0.006f;
+    [SerializeField]
+    private float zoomsensitivity = 0.006f;
+
 
     PlayerInput input;
     InputAction rotateCameraAction;
@@ -25,6 +29,8 @@ public class CameraControl : MonoBehaviour
     Vector2 p1;
     Vector2 p2;
     CameraControl instance;
+    float minHeight = 0f;
+    float maxHeight = 4f;
 
     private void Awake()
     {
@@ -35,9 +41,9 @@ public class CameraControl : MonoBehaviour
         }
         else
         Destroy(this.gameObject.transform.parent);
-      //  input = GetComponent<PlayerInput>();
+        input = GetComponent<PlayerInput>();
 //        rotateCameraAction = input.actions["Camera"];
-//        zoomCameraAction = input.actions["Zoom"];
+        zoomCameraAction = input.actions["Zoom"];
 //        cam.m_Lens.FieldOfView = FOV;
 //        player = GameObject.FindGameObjectWithTag("MainPlayer");
 //        cam.Follow = player.transform;
@@ -71,6 +77,41 @@ public class CameraControl : MonoBehaviour
     private void Update()
     {
         cameraRig.transform.position = playermodel.transform.position;
+        
+        zoomCameraAction.performed += _ => {
+
+        float scrollSp = -zoomsensitivity * zoomCameraAction.ReadValue<float>(); 
+
+
+        
+        if(zoomCameraAction.ReadValue<float>() > 0)
+        {
+            Debug.Log("bitchin"+Mathf.Log(transform.position.y));
+            Debug.Log(zoomCameraAction.ReadValue<float>());
+        }
+
+        if((transform.position.y >= maxHeight) && (scrollSp > 0))
+        {
+            scrollSp = 0;
+        }
+        else if((transform.position.y <= minHeight) && (scrollSp < 0))
+        {
+           scrollSp = 0; 
+        }
+
+        if((transform.position.y + scrollSp) > maxHeight)
+        {
+            scrollSp = transform.position.y - maxHeight;
+        }
+        else if((transform.position.y + scrollSp) < minHeight)
+        {
+            scrollSp = minHeight -transform.position.y;
+        }
+
+        Vector3 cameraHeight = new Vector3(0,scrollSp,0);
+
+        transform.position = transform.position + cameraHeight;
+        };
         // rotateCameraAction.started += _ => { mousePosX = Mathf.RoundToInt(Input.mousePosition.x);  isHeld = true; };
         // rotateCameraAction.canceled += _ => { isHeld = false; };
         
