@@ -320,10 +320,12 @@ public class BattleManager : MonoBehaviour
 
                     if (action == "Heal" && hit.transform.CompareTag("Enemy")) return;
 
+                    /*
                     if (hit.transform.CompareTag("Enemy"))
                         Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
                     if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
                         Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
+                    */
 
                     target = hit.transform.gameObject;
                     StartCoroutine(DoTurn(activeCreature));
@@ -392,7 +394,7 @@ public class BattleManager : MonoBehaviour
                     //yield return coro = StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
                     yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t, target.GetComponent<Animator>(), "isReacting"));
                     StopCoroutine(coro);
-                    print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
+                    //print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
                     target.GetComponent<Enemy>().TakeDamage(a);
                     TakeDamage.Invoke(target.GetComponent<Creature>(), a);
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
@@ -401,7 +403,7 @@ public class BattleManager : MonoBehaviour
                     CameraHitAlly1.SetActive(true);
                     TemporaryCamera.SetActive(false);
                     TemporaryCamera = CameraHitAlly1;
-                    print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
+                    //print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                     StopCoroutine(coro);
                     int healingAmount = c.GetComponent<Player>().Intelligence;
@@ -412,7 +414,7 @@ public class BattleManager : MonoBehaviour
                     CameraHitAlly1.SetActive(true);
                     TemporaryCamera.SetActive(false);
                     TemporaryCamera = CameraHitAlly1;
-                    print($"You will take -50% damage on enemy's next attack");
+                    //print($"You will take -50% damage on enemy's next attack");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                     StopCoroutine(coro);
                     c.GetComponent<Player>().Guard();

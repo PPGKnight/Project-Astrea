@@ -9,6 +9,9 @@ public class AnalyticsManager : MonoBehaviour
     static AnalyticsManager instance;
     public static AnalyticsManager Instance { get { return instance; } }
 
+    [SerializeField]
+    bool DebugTest;
+
     async void Awake()
     {
         if (instance == null)
@@ -24,7 +27,7 @@ public class AnalyticsManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("analyticsConsent", 0);
+        PlayerPrefs.SetInt("analyticsConsent", DebugTest == true ? 1 : 0);
         if (!PlayerPrefs.HasKey("analyticsConsent")) return;
         if (PlayerPrefs.GetInt("analyticsConsent") == 0) return;
         AnalyticsService.Instance.StartDataCollection();
@@ -32,7 +35,9 @@ public class AnalyticsManager : MonoBehaviour
 
     Dictionary<AnalyticsDataEvents, string> event_to_param = new Dictionary<AnalyticsDataEvents, string>(){
         { AnalyticsDataEvents.Consent, "ConsentToUseAnalytics"},
+        { AnalyticsDataEvents.QuestStarted, "QuestStarted" },
         { AnalyticsDataEvents.QuestCompleted, "QuestCompleted"},
+        { AnalyticsDataEvents.FightLost, "FightLost" },
         { AnalyticsDataEvents.DialogueOptionChosen, "DialogueOptionChosen"},
     };
 
@@ -69,6 +74,8 @@ public class AnalyticsManager : MonoBehaviour
 public enum AnalyticsDataEvents
 {
     Consent,
+    QuestStarted,
     QuestCompleted,
+    FightLost,
     DialogueOptionChosen
 }

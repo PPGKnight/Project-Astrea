@@ -50,7 +50,7 @@ public class DialogueManager : MonoBehaviour
 
     PlayerInput input;
     GameManager gameManager;
-    InputAction submitAction;
+    InputAction submitAction, debugppm;
     Vector2 moveAction;
 
     private void Awake()
@@ -75,6 +75,7 @@ public class DialogueManager : MonoBehaviour
         dialogueList = new DialogueList();
         input = GetComponent<PlayerInput>();
         submitAction = input.actions["Submit"];
+        debugppm = input.actions["DebugPPM"];
     }
 
     private void Start()

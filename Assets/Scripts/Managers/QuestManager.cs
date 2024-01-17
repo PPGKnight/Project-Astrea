@@ -46,7 +46,6 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         PlayerPrefs.DeleteAll();
-        Debug.Log("Rozpoczynam QuestManagera");
         foreach (Quest quest in questMap.Values)
         {
             if (quest.state == QuestState.In_Progress)
@@ -98,6 +97,7 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestById(id);
         quest.InstantiateCurrentQuestStep(this.transform);
         ChangeQuestState(quest.info.id, QuestState.In_Progress);
+        AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.QuestStarted, quest.info.id);
         Debug.LogWarning($"Rozpoczeto quest '{quest.info.displayName}'");
     }
 
@@ -151,10 +151,12 @@ public class QuestManager : MonoBehaviour
             idToQuestMap.Add(questInfo.id, LoadQuest(questInfo));
         }
 
+        /*
         foreach(KeyValuePair<string, Quest> temp in idToQuestMap)
         {
             Debug.Log($"ID {temp.Key} QUEST STATUS {temp.Value.state}");
         }
+        */
         return idToQuestMap;
     }
 
@@ -216,7 +218,6 @@ public class QuestManager : MonoBehaviour
     public QuestState CheckQuestState(string q)
     {
        Quest m = questMap[q];
-       Debug.Log($"Quest {q} has state {m.state}");
        return m.state;
     }
 }

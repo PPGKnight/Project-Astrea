@@ -18,7 +18,6 @@ public class DialogueTrigger : MonoBehaviour
     private void Awake()
     {
         parent = gameObject.transform.parent.parent.gameObject;
-        Debug.Log(parent.name);
 
         if (manager == null)
         {

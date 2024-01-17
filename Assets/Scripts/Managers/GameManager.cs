@@ -89,6 +89,12 @@ public class GameManager : MonoBehaviour
         worldTime = 1;
         if (_battleData.battleStatus == BattleStatus.Victory)
             Check();
+        else
+        {
+            Debug.Log($"Fight {_battleData.eID} has been lost");
+            AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.FightLost, _battleData.eID);
+
+        }
 
         _player.SetActive(true);
         //if (_battleData.dialogue != null)
@@ -148,13 +154,13 @@ public class GameManager : MonoBehaviour
 
     public void ChangePlayerPos(Vector3 newPos)
     {
-        Debug.Log(newPos);
+        //Debug.Log(newPos);
         _playerPositionSO.SetOnlyPosition(newPos);
     }
 
     public void MovePlayerToNewPos()
     {
-        Debug.Log(_playerPositionSO.GetPlayerPosition());
+        //Debug.Log(_playerPositionSO.GetPlayerPosition());
         _player.transform.position.Set(_playerPositionSO.GetPlayerPosition().x, _playerPositionSO.GetPlayerPosition().y, _playerPositionSO.GetPlayerPosition().z);
     }
 }
