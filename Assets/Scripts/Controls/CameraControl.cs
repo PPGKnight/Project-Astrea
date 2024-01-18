@@ -23,14 +23,14 @@ public class CameraControl : MonoBehaviour
     InputAction zoomCameraAction;
     GameObject player;
     int mousePosX;
-    //int FOV = 40;
+    int FOV = 40;
     bool isHeld = false;
 
     Vector2 p1;
     Vector2 p2;
     CameraControl instance;
     float minHeight = 0f;
-    float maxHeight = 4f;
+    float maxHeight = 2f;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class CameraControl : MonoBehaviour
         input = GetComponent<PlayerInput>();
 //        rotateCameraAction = input.actions["Camera"];
         zoomCameraAction = input.actions["Zoom"];
-//        cam.m_Lens.FieldOfView = FOV;
+        cam.m_Lens.FieldOfView = FOV;
 //        player = GameObject.FindGameObjectWithTag("MainPlayer");
 //        cam.Follow = player.transform;
 //        cam.LookAt = player.transform;
@@ -80,11 +80,17 @@ public class CameraControl : MonoBehaviour
         
         zoomCameraAction.performed += _ => {
 
-        float scrollSp = -zoomsensitivity * zoomCameraAction.ReadValue<float>(); 
+        float scrollSp = -zoomsensitivity * zoomCameraAction.ReadValue<float>();
 
+                 if (zoomCameraAction.ReadValue<float>() > 0)
+                     if (cam.m_Lens.FieldOfView >= 40)
+                        cam.m_Lens.FieldOfView -= 5;
 
-        
-        if(zoomCameraAction.ReadValue<float>() > 0)
+                 if (zoomCameraAction.ReadValue<float>() < 0)
+                    if(cam.m_Lens.FieldOfView <= 50)
+                        cam.m_Lens.FieldOfView += 5;
+
+            if (zoomCameraAction.ReadValue<float>() > 0)
         {
             Debug.Log("bitchin"+Mathf.Log(transform.position.y));
             Debug.Log(zoomCameraAction.ReadValue<float>());
