@@ -31,16 +31,24 @@ public class DialogueTrigger : MonoBehaviour
     private void OnEnable()
     {
         PlayerMovement.InteractionWithNPC += ListenForInput;
+        PlayerMovement.InteractionWithMouse += ListenForMouseInput;
     }
     private void OnDisable()
     {
         PlayerMovement.InteractionWithNPC -= ListenForInput;
+        PlayerMovement.InteractionWithMouse -= ListenForMouseInput;
     }
 
     void ListenForInput()
     {
         StopAllCoroutines();
         StartCoroutine(EmitKey());
+    }
+
+    void ListenForMouseInput(GameObject go)
+    {
+        if (go.transform.parent.parent == this.gameObject.transform.parent.parent.parent)
+            ListenForInput();
     }
 
     IEnumerator EmitKey()
@@ -52,11 +60,11 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        //if (oneTimeDialogue && DialogueManager.Instance.dialogueList.CheckIfCompleted(parent.name))
-        //    parent.SetActive(false);
+        if (oneTimeDialogue && DialogueManager.Instance.dialogueList.CheckIfCompleted(parent.name))
+            parent.SetActive(false);
+
         if (manager == null)
         {
-            //Debug.LogWarning("Brak managera wykryty update");
             manager = DialogueManager.Instance;
         }
 
@@ -72,7 +80,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (manager == null)
             {
-                //Debug.LogWarning("Brak managera wykryty w triggerkey");
                 manager = DialogueManager.Instance;
             }
 
@@ -97,7 +104,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (manager == null)
             {
-                //Debug.LogWarning("Brak managera wykryty w triggernear");
                 manager = DialogueManager.Instance;
             }
 
@@ -105,7 +111,6 @@ public class DialogueTrigger : MonoBehaviour
                 if (manager.dialogueList.CheckIfCompleted(parent.name))
                     return;
 
-            //Debug.Log("Uruchamiam dialog");
             inDialogue = true;
 
             if (inkStory == null) Debug.LogError("Detected missing Ink file");

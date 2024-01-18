@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -10,11 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     public float movement_speed, rotation_speed;
     private PlayerInput input;
-    private InputAction followAction;
-    private InputAction walkAction;
-    private InputAction runAction;
-    private InputAction keyAction;
-    private InputAction interactAction;
+    private InputAction followAction, walkAction, runAction, keyAction, interactAction, interactMouseAction;
     private Ray ray;
     private RaycastHit hit;
 
@@ -22,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 cameraForward;
     public static event Action InteractionWithNPC;
+    public static event Action<GameObject> InteractionWithMouse;
 
     [SerializeField]
     NavMeshAgent navPlayer;
@@ -40,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         runAction = input.actions["Run"];
         keyAction = input.actions["Keys"];
         interactAction = input.actions["Interact"];
+        interactMouseAction = input.actions["InteractWithMouse"];
 
         if (_instance == null)
         {
@@ -71,14 +67,20 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * 150f, Color.blue);
 
         interactAction.performed += _ => { InteractionWithNPC?.Invoke(); };
+        interactMouseAction.performed += _ => {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int lm = LayerMask.GetMask("MinimapIcons");
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~lm))
+                InteractionWithMouse?.Invoke(hit.transform.gameObject); 
+        };
 
         walkAction.performed += _ => { MoveMouse(3.5f); };
-            runAction.performed += _ => MoveMouse(10f);
+        runAction.performed += _ => MoveMouse(10f);
             
-            if(followAction.phase == InputActionPhase.Performed) { MoveMouse(5f);  }
-            if(followAction.phase == InputActionPhase.Canceled) { StopAnim();  }
+        if(followAction.phase == InputActionPhase.Performed) { MoveMouse(5f);  }
+        if(followAction.phase == InputActionPhase.Canceled) { StopAnim();  }
 
-            if(keyAction.phase == InputActionPhase.Started) MoveKeybard();
+        if(keyAction.phase == InputActionPhase.Started) MoveKeybard();
             
     }
     void MovementAnimation()
@@ -106,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
-            //Debug.LogError($"Worldtime {gameManager.worldTime}");
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
             
@@ -129,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             
             if (Input.GetKey("down") || Input.GetKey("s"))
             {
-               animator.SetBool("isWalking",true);
+                animator.SetBool("isWalking",true);
                 Stop();
                 transform.position += -Camera.main.transform.forward * Time.deltaTime * movement_speed * GameManager.Instance.worldTime;
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-cameraForward, Vector3.up), Time.deltaTime);

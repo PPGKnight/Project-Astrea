@@ -1,6 +1,6 @@
 VAR DialogueID = "001_OneTimePickaxe"
 
-As you travel southern road from Hendley in order to gather necessary items for the smith, you encounter a single copper ore with a pickaxe dug into it.
+As you travel southern road from Hendley in order to gather necessary items for the smith, you encounter a single copper ore with a pickaxe dug into it. #speaker: 
 Except you and few animals in the trees you're completly alone.
 Surely noone would mind if you borrowed this pickaxe for a while. 
 

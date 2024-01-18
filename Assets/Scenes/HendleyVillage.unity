@@ -3939,14 +3939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 4
 --- !u!1001 &143504002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29445,14 +29438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 839418188822475224}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 1
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 4
 --- !u!1001 &1253331682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36809,6 +36795,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 658888517}
     m_Modifications:
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 27.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5430192039179606974, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: inkStory
@@ -36817,12 +36818,12 @@ PrefabInstance:
     - target: {fileID: 5430192039179606974, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: dialogueTriggerType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_Radius
-      value: 600
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 5430192040082177256, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
@@ -48201,14 +48202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1958795387}
-  isBartering: 1
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 0
 --- !u!95 &1958795387 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6636495284796657184, guid: 6a84781010078624cb046f211c44883c,
@@ -52193,14 +52187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2043421661}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 1
 --- !u!1001 &2046348175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54414,14 +54401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 6
 --- !u!1001 &2063168924
 PrefabInstance:
   m_ObjectHideFlags: 0

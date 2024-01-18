@@ -8,6 +8,7 @@ public class DialogueList
         {"TavernTutorialPreFight", false },
         {"TavernTutorialPostFight", false },
         {"TavernTourWithGary", false},
+        {"Missing", false},
         {"001_GatherForSmith", false},
         {"001_OneTimePickaxe", false},
         {"002_CheckLumbererForTheSmith", false},
