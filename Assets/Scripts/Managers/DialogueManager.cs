@@ -228,6 +228,7 @@ public class DialogueManager : MonoBehaviour
                     outcome = int.Parse(tagValue);
                     break;
                 case FIGHT_TAG:
+                    canFight = false;
                     GameObject o = GameObject.Find(tagValue);
                     StartCoroutine(PrepareToFight(o));
                     break;
