@@ -229,17 +229,14 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case FIGHT_TAG:
                     GameObject o = GameObject.Find(tagValue);
-                    //Debug.Log($"Uruchamiam walke {o.name}");
                     StartCoroutine(PrepareToFight(o));
                     break;
                 case TELEPORT_TAG:
                     string[] strings = tagValue.Split('_');
-                    Debug.LogWarning($"{strings[0]} {strings[1]}");
                     PlayerMovement getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
                     if (getobject == null)
                     {
                         getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
-                        //Debug.LogError("PlayerMovement null");
 
                         if (GameManager.Instance._player == null) Debug.LogError("GM Player null");
                         else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
@@ -248,8 +245,34 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case ANALYTICS_TAG:
                     string textToSend = tagValue.Replace("_", " ");
-                    //Debug.LogError("Analytics send");
                     AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.DialogueOptionChosen, textToSend);
+                    break;
+                case REWARD_TAG:
+                    string[] rewards = tagValue.Split('_');
+                    foreach(string s1 in rewards)
+                    {
+                        string[] reward = s1.Split('?');
+                            switch (reward[0])
+                            {
+                                case "exp":
+                                    Debug.Log($"Granted {reward[1]} exp");
+                                    break;
+                                case "gold":
+                                    Debug.Log($"Granted {reward[1]} gold");
+                                    break;
+                                case "item":
+                                    Debug.Log($"Granted {reward[1]}");
+                                Item item = new Item();
+                                item.SetItem(reward[1]);
+                                GameEventsManager.instance.MiscEvents.ItemPicked(item);
+                                GameManager.Instance.Inventory.Add(reward[1]);
+                                    break;
+                                default:
+                                    Debug.Log("TagValue not found");
+                                    break;
+
+                            }
+                    }
                     break;
                 default:
                     Debug.LogWarning("Tag came in but is not currently being handled: " + tag);

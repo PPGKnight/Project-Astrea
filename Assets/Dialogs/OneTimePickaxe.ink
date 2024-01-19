@@ -11,5 +11,5 @@ Surely noone would mind if you borrowed this pickaxe for a while.
 * [Reach for the pickaxe] -> PullOut
 
 === PullOut ===
-You reach for it, gripping it tighly in your hands. And after pulling him with all your strength, you succeed with freeing him out from the ore. 
+You reach for it, gripping it tighly in your hands. And after pulling him with all your strength, you succeed with freeing him out from the ore. #reward:item?Pickaxe
 -> DONE

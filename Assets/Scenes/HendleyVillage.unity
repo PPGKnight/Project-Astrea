@@ -1445,6 +1445,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63354424}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &69158969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5430192039179606972, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+    type: 3}
+  m_PrefabInstance: {fileID: 1520101260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &69158972
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69158969}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 80
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &69937686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10051,6 +10070,11 @@ PrefabInstance:
       propertyPath: inkStory
       value: 
       objectReference: {fileID: 4900000, guid: c5150c3ecdc1c1f4ca49e173586a56e9, type: 3}
+    - target: {fileID: 3387284721151182371, guid: e63dc7baed6817049ab142061f53d117,
+        type: 3}
+      propertyPath: oneTimeDialogue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4663412712664817660, guid: e63dc7baed6817049ab142061f53d117,
         type: 3}
       propertyPath: m_Name
@@ -10108,6 +10132,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 2
+  pickWithoutAdding: 0
   inter: 1
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -14915,6 +14940,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -15605,7 +15631,8 @@ MonoBehaviour:
   CanStack: 0
   StackSize: 1
   Quantity: 1
-  inter: 1
+  pickWithoutAdding: 1
+  inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
   NeededItems: []
@@ -15620,8 +15647,24 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 30.38
+  m_Radius: 30
   m_Center: {x: 0.015945481, y: 11.993386, z: 0.020744504}
+--- !u!114 &658888522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658888516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fec0e2d706e0ad41869ab6f0ff00bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 1359266359}
+  dialogueRequirements: []
+  encounterRequirements: []
+  questRequirements: []
 --- !u!1 &662101941
 GameObject:
   m_ObjectHideFlags: 0
@@ -20285,6 +20328,11 @@ PrefabInstance:
       propertyPath: inkStory
       value: 
       objectReference: {fileID: 4900000, guid: c5150c3ecdc1c1f4ca49e173586a56e9, type: 3}
+    - target: {fileID: 3387284721151182371, guid: e63dc7baed6817049ab142061f53d117,
+        type: 3}
+      propertyPath: oneTimeDialogue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4312498887169535375, guid: e63dc7baed6817049ab142061f53d117,
         type: 3}
       propertyPath: m_Radius
@@ -22926,6 +22974,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 3
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -27723,6 +27772,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -30891,6 +30941,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -31696,6 +31747,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -32409,6 +32461,12 @@ Transform:
   m_Father: {fileID: 1969736268}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: -49.352, z: 90}
+--- !u!1 &1359266359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5430192040082177256, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+    type: 3}
+  m_PrefabInstance: {fileID: 1520101260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1368645495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33004,6 +33062,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -36797,18 +36856,53 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.6
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430192039179606973, guid: ad1c328ade240a1468fa8e1d23b8eb03,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5430192039179606974, guid: ad1c328ade240a1468fa8e1d23b8eb03,
         type: 3}
@@ -36885,7 +36979,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5430192039179606975, guid: ad1c328ade240a1468fa8e1d23b8eb03, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad1c328ade240a1468fa8e1d23b8eb03, type: 3}
 --- !u!1001 &1521069361
 PrefabInstance:
@@ -41294,6 +41389,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 3
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -44955,6 +45051,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}

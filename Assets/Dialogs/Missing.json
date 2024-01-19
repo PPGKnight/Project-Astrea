@@ -1,1 +1,1 @@
-﻿{"inkVersion":20,"root":[["^Uh oh. It looks like you are missing something. Pick it up and come back later.","\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev","str","^default","/str",{"VAR=":"NeededItem"},"/ev","end",null],"#f":1}],"listDefs":{}}
+﻿{"inkVersion":20,"root":[["^Uh oh. It looks like you are missing something. Pick it up and come back later. ",{"#":"speaker:"},"\n","end",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev","str","^default","/str",{"VAR=":"NeededItem"},"/ev","end",null],"#f":1}],"listDefs":{}}

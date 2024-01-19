@@ -19,13 +19,13 @@ Sitting near the counter, the barkeep gives you a bowl of stew.
 As you eat, your hangover subsides. #speaker: 
 After finishing, a blonde man sits next to you.
 "Tough fight, wasn't it?" #speaker:Gary
-+"They weren't too tough." #speaker: 
++["They weren't too tough."]
 ->FriendlyResponse
-+"I know how to take care of myself." #speaker: 
++["I know how to take care of myself."]
 ->FriendlyResponse
-+"I'm lucky they were drunk." #speaker: 
++["I'm lucky they were drunk."]
 ->FriendlyResponse
-+Ignore him.
++[Ignore him.]
 ->FriendlyResponse
 
 === FriendlyResponse ===
