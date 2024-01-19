@@ -104,13 +104,15 @@ public class PlayerMovement : MonoBehaviour
         if (gameManager.worldTime == 0) return;
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        int lm = LayerMask.GetMask("MinimapIcons");
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~lm) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             //Debug.LogError($"Worldtime {gameManager.worldTime}");
             //Debug.DrawRay(transform.position,new Vector3(ray.x),Color.blue);
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
-            
+            Debug.Log(hit.transform.gameObject.layer);
+
         }
     }
 
@@ -171,6 +173,23 @@ public class PlayerMovement : MonoBehaviour
     {
         navPlayer.ResetPath();
         animator.SetBool("isWalking", false);
+    }
+    private void OnDrawGizmos()
+    {
+        if (navPlayer.destination != null)
+        {
+            Gizmos.color = Color.white;
+            {
+                // Draw lines joining each path corner
+                Vector3[] pathCorners = navPlayer.path.corners;
+
+                for (int i = 0; i < pathCorners.Length - 1; i++)
+                {
+                    Gizmos.DrawLine(pathCorners[i], pathCorners[i + 1]);
+                }
+
+            }
+        }
     }
 
 }
