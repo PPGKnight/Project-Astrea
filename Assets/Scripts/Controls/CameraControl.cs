@@ -29,8 +29,8 @@ public class CameraControl : MonoBehaviour
     Vector2 p1;
     Vector2 p2;
     CameraControl instance;
-    float minHeight = 0f;
-    float maxHeight = 2f;
+    float minHeight = 4f;
+    float maxHeight = 6f;
 
     private void Awake()
     {
@@ -90,33 +90,44 @@ public class CameraControl : MonoBehaviour
                     if(cam.m_Lens.FieldOfView <= 50)
                         cam.m_Lens.FieldOfView += 5;
 
-            if (zoomCameraAction.ReadValue<float>() > 0)
+       /*     if (zoomCameraAction.ReadValue<float>() > 0)
         {
             Debug.Log("bitchin"+Mathf.Log(transform.position.y));
             Debug.Log(zoomCameraAction.ReadValue<float>());
-        }
+        }*/
 
-        if((transform.position.y >= maxHeight) && (scrollSp > 0))
+        if((transform.localPosition.y >= maxHeight) && (scrollSp > 0))
         {
             scrollSp = 0;
-        }
-        else if((transform.position.y <= minHeight) && (scrollSp < 0))
+              /*  Debug.Log("maxHeight");
+                Debug.Log(transform.position.y);
+                Debug.Log("maxHeight");*/
+            }
+        else if((transform.localPosition.y <= minHeight) && (scrollSp < 0))
         {
-           scrollSp = 0; 
-        }
+           scrollSp = 0;
+                Debug.Log("minHeight");
+                Debug.Log(transform.localPosition.y);
+                Debug.Log("minHeight");
+            }
 
-        if((transform.position.y + scrollSp) > maxHeight)
+        if((transform.localPosition.y + scrollSp) > maxHeight)
         {
-            scrollSp = transform.position.y - maxHeight;
+                Debug.Log("maxHeight");
+                Debug.Log(transform.localPosition.y);
+                Debug.Log(scrollSp);
+                Debug.Log(maxHeight);
+                Debug.Log("maxHeight");
+                scrollSp = transform.localPosition.y - maxHeight;
         }
-        else if((transform.position.y + scrollSp) < minHeight)
+        else if((transform.localPosition.y + scrollSp) < minHeight)
         {
-            scrollSp = minHeight -transform.position.y;
+            scrollSp = minHeight -transform.localPosition.y;
         }
 
         Vector3 cameraHeight = new Vector3(0,scrollSp,0);
 
-        transform.position = transform.position + cameraHeight;
+        transform.localPosition = transform.localPosition + cameraHeight;
         };
         // rotateCameraAction.started += _ => { mousePosX = Mathf.RoundToInt(Input.mousePosition.x);  isHeld = true; };
         // rotateCameraAction.canceled += _ => { isHeld = false; };
