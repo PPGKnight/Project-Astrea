@@ -2798,7 +2798,7 @@ MeshCollider:
   m_GameObject: {fileID: 431472492}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -3145,14 +3145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 1
-  isDead: 0
+  activeAnimation: 5
 --- !u!1001 &481885210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3362,14 +3355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 510455829}
-  isBartering: 1
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 0
 --- !u!1 &524394088
 GameObject:
   m_ObjectHideFlags: 0
@@ -6953,7 +6939,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32642
+  m_Name: pb_Mesh275740
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8743,6 +8729,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
+    - target: {fileID: 839418189990838799, guid: 7be46a948b5001c4da48c435f0e8a986,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6200834489601114831, guid: 7be46a948b5001c4da48c435f0e8a986,
         type: 3}
       propertyPath: m_Name
@@ -13495,6 +13486,7 @@ GameObject:
   - component: {fileID: 1132802345}
   - component: {fileID: 1132802347}
   - component: {fileID: 1132802348}
+  - component: {fileID: 1132802349}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13627,6 +13619,22 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1132802349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132802343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1144266394
 GameObject:
   m_ObjectHideFlags: 0
@@ -14015,7 +14023,7 @@ PrefabInstance:
     - target: {fileID: 2636463974424641948, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.795
+      value: -8.71
       objectReference: {fileID: 0}
     - target: {fileID: 2636463974424641948, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
         type: 3}
@@ -14025,7 +14033,7 @@ PrefabInstance:
     - target: {fileID: 2636463974424641948, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.308
+      value: 4.635
       objectReference: {fileID: 0}
     - target: {fileID: 2636463974424641948, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
         type: 3}
@@ -14072,6 +14080,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
+    - target: {fileID: 8247980774860512230, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4752486825937246483, guid: 03d4523790b8cb34685ab1b4aa3b78d8, type: 3}
     - {fileID: -4930312959292017103, guid: 03d4523790b8cb34685ab1b4aa3b78d8, type: 3}
@@ -19169,14 +19182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 1
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 1
 --- !u!1001 &1454868118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19501,20 +19507,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1513737598}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 1
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 3
 --- !u!95 &1513737598 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 839418189990838799, guid: 7be46a948b5001c4da48c435f0e8a986,
     type: 3}
   m_PrefabInstance: {fileID: 862311868}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513737601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513737595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - TavernTutorial1
+  animationAfterEncounter: 6
+  moveNPC: 1
+  cordsPos: {x: -7.15, y: 0, z: 3.4}
+  cordsRot: {x: 0, y: -63, z: 0}
+--- !u!114 &1513737604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513737595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - TavernTutorial2
+  animationAfterEncounter: 1
+  moveNPC: 1
+  cordsPos: {x: -9.05, y: 0.08, z: 5.6}
+  cordsRot: {x: 0, y: -172, z: 0}
 --- !u!1001 &1516866968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19614,14 +19649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1518945572}
-  isBartering: 0
-  isSitting: 1
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 1
 --- !u!95 &1518945572 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5438700013450861333, guid: a1a0cb0ea63c00847818c851e8e1a6e9,
@@ -19977,7 +20005,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32292
+  m_Name: pb_Mesh275388
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21275,14 +21303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8247980774205871132}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 1
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 2
 --- !u!1 &1819633441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3448994978137791270, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
@@ -21302,20 +21323,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1819633444}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 1
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 3
 --- !u!95 &1819633444 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8247980774860512230, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
     type: 3}
   m_PrefabInstance: {fileID: 1215368970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1819633447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819633441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - TavernTutorial1
+  - TavernTutorial2
+  animationAfterEncounter: 6
+  moveNPC: 0
+  cordsPos: {x: 0, y: 0, z: 0}
+  cordsRot: {x: 0, y: 0, z: 0}
 --- !u!1001 &1820669368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22725,14 +22758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2085750288}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 1
 --- !u!95 &2085750288 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 839418189990838799, guid: 1dd590274f68fb446963034c83ddd66d,

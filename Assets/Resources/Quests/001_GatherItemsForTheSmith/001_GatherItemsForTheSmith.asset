@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 001_GatherItemsForTheSmith
   m_EditorClassIdentifier: 
   <id>k__BackingField: 001_GatherItemsForTheSmith
-  displayName: Gather 5 flint and copper ore for the smith
+  displayName: Gather materials for the Smith
   levelRequirement: 0
   questPrerequisites: []
   dialoguePrerequisites:

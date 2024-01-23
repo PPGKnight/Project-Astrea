@@ -35,11 +35,8 @@ public class InitiativeTrackerManager : MonoBehaviour
         initiativeBar.rectTransform.sizeDelta = new Vector2(100f, barSize * 100f);
     }
 
-
-
     public void CreateTokens()
     {
-        Debug.Log("Create");
         turnCreatures = BattleManager.Instance.RequestTrackerOrder();
         SetIniBar();
         int counter = 1;

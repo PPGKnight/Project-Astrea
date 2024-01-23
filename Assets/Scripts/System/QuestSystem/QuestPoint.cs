@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(SphereCollider))]
 public class QuestPoint : MonoBehaviour
@@ -11,7 +12,6 @@ public class QuestPoint : MonoBehaviour
     [Header("Config")]
     [SerializeField] private bool startPoint = true;
     [SerializeField] private bool finishPoint = true;
-    [SerializeField] private SendAnalyticsData data;
 
     private bool allRequiredCompleted = true;
     private bool playerIsNear = false;
@@ -32,12 +32,14 @@ public class QuestPoint : MonoBehaviour
     {
         GameEventsManager.instance.QuestEvents.onQuestStateChange += QuestStateChange;
         PlayerMovement.InteractionWithNPC += SubmitPressed;
+        PlayerMovement.InteractionWithMouse += SubmitWithMouse;
     }
 
     private void OnDisable()
     {
         GameEventsManager.instance.QuestEvents.onQuestStateChange -= QuestStateChange;
         PlayerMovement.InteractionWithNPC -= SubmitPressed;
+        PlayerMovement.InteractionWithMouse -= SubmitWithMouse;
     }
 
     void CheckQuestStatus()
@@ -59,21 +61,22 @@ public class QuestPoint : MonoBehaviour
     private void SubmitPressed()
     {
         if (!playerIsNear) return;
-        Debug.Log("Submit nacisniety");
-        
-        Debug.Log($"{QuestManager.Instance.CheckQuestState(questId)} -> {startPoint} -> {allRequiredCompleted}");
         if (currentQuestState.Equals(QuestState.Can_Start) && startPoint)
         {
-            Debug.Log("Rozpoczynam Quest");
             GameEventsManager.instance.QuestEvents.StartQuest(questId);
         }
         else if (currentQuestState.Equals(QuestState.Can_Finish) && finishPoint)
         {
-            Debug.Log("Koncze Quest");
             GameEventsManager.instance.QuestEvents.FinishQuest(questId);
-            if (data == SendAnalyticsData.Yes)
-                AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.QuestCompleted, questInfoForPoint.id);
         }
+    }
+
+    private void SubmitWithMouse(GameObject result)
+    {
+        //Checking by comparing grandparent object (Hit NPC)
+        //in case he has more than one quest
+        if (result.transform.parent.parent == this.gameObject.transform.parent.parent)
+            SubmitPressed();
     }
 
     private void QuestStateChange(Quest quest)
@@ -96,10 +99,4 @@ public class QuestPoint : MonoBehaviour
         if (otherCollider.CompareTag("MainPlayer"))
             playerIsNear = false;
     }
-}
-
-public enum SendAnalyticsData
-{
-    No,
-    Yes
 }

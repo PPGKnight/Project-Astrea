@@ -30,7 +30,7 @@ public class HealthBarShrink : MonoBehaviour
         if (ally != null)
         {
             gameObject.SetActive(true);
-            Debug.Log(ally);
+            //Debug.Log(ally);
             healthSystem = new HealthBarSystem(ally);
             SetHealth(healthSystem.GetHealthNormalized());
             healthSystem.OnDamaged += HealthSystem_OnDamaged;
@@ -63,7 +63,7 @@ public class HealthBarShrink : MonoBehaviour
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
         damagedHealthShrinkTimer = DAMAGED_HEALTH_TIMER_MAX;
-        Debug.Log($"Shrinking to {healthSystem.GetHealthNormalized()}");
+        //Debug.Log($"Shrinking to {healthSystem.GetHealthNormalized()}");
         SetHealth(healthSystem.GetHealthNormalized());
     }
 

@@ -3,9 +3,9 @@ As you step into the smithy, a blacksmith at rest notices you immediately. #spea
 
 "Oy, you need something?" #speaker:Smith
 
-*"Gary forgot something for you and told me to come here." #speaker: 
+*["Gary forgot something for you and told me to come here."]
 ->tellthetruth
-*"I've reminded Gary that he was supposed to bring you something." #speaker: 
+*["I've reminded Gary that he was supposed to bring you something."]
 ->lieabit
 
 ===tellthetruth===
@@ -24,9 +24,9 @@ In this moment, Gary enters the smithy. #speaker:
 "You stupid donkey, you were supposed to deliver it today morning!" #speaker:Smith
 "Calm down, we were kinda busy kicking some asses at the tavern this morning." #speaker:Gary
 
-*"We?! I didn't see you helping out." #speaker: 
+*["We?! I didn't see you helping out."]
 
-He waves his hand at you.
+He waves his hand at you. #speaker: 
 
 "The point is their asses were kicked." #speaker:Gary
 Blacksmith takes the package from Gary. He then turns to you. #speaker: 
@@ -36,11 +36,11 @@ Blacksmith takes the package from Gary. He then turns to you. #speaker:
 You look at your empty coin purse. The money surely would be useful. #speaker: 
 ->Quest
 ===Quest===
-*"Okay, what do you need me to do?" #speaker: 
+*["Okay, what do you need me to do?"]
 -> Questtalk
 ===Questtalk===
 "I need ya to gather me some good-quality flints and some copper ore. The forest is full of it, just gather me some, you muppet." #speaker:Smith
 "I can give you a few coins, and I think I have something that you could use in the shop."
 You nod your head. #speaker: 
-*"I'll bring you the things you need. See you around."
+*["I'll bring you the things you need. See you around."]
 -> END

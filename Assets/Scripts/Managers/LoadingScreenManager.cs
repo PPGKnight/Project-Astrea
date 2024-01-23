@@ -40,7 +40,6 @@ public class LoadingScreenManager : MonoBehaviour
         loadingFillAmount.value = 0;
         screen.SetActive(true);
         StartCoroutine(ChangeTipText());
-        yield return new WaitForSeconds(15f);
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
         while (!loading.isDone)
         {

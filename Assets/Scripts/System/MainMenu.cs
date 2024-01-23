@@ -11,6 +11,12 @@ public class MainMenu : MonoBehaviour
     // TODO: Save and Continue
     // public void ContinueGame();
 
+    public void CloseWindow()
+    {
+        GameManager.Instance.worldTime = 1;
+        gameObject.SetActive(false);
+    }
+
     public void ButtonExit() => StartCoroutine(ButtonExitCor());
     private IEnumerator ButtonExitCor()
     {

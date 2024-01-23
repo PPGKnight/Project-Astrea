@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "InteractWithMouse",
+                    "type": "Button",
+                    "id": "81400d1a-a7ea-4b01-90a3-9a254a0be34c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -216,7 +225,7 @@
                 {
                     "name": "",
                     "id": "928eb0a6-5292-45b7-a723-0aae1361024b",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "",
@@ -245,6 +254,17 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12c7118d-c8bc-4471-ae5d-f7f193804f5d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractWithMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -265,6 +285,15 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "2661a92c-c105-4053-b0ec-8e54ba605799",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DebugPPM",
+                    "type": "Button",
+                    "id": "1765c42a-08da-4e85-94d5-8b711af3ec55",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -357,6 +386,96 @@
                     "processors": "",
                     "groups": "",
                     "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91336b9a-5998-4140-90dc-af2dc4f2b693",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4124217b-2616-4496-ae70-76cb617386d5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugPPM",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Combat",
+            "id": "4fb087c2-cfc0-4998-92c8-35be061517f0",
+            "actions": [
+                {
+                    "name": "AttackKey",
+                    "type": "Button",
+                    "id": "4a7aba8a-a822-4af1-be03-bde3d458dfa4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GuardKey",
+                    "type": "Button",
+                    "id": "16d04717-3c28-4810-b551-e43de8e90545",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HealKey",
+                    "type": "Button",
+                    "id": "5f86c608-fb0b-4b39-85eb-b2451978015e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a7a66dc3-f666-4287-a876-053c8b1e3712",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0609de2f-070b-4956-8aae-2abfd30494ee",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GuardKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0eccae4f-4628-4e56-be6b-d0b53c99592f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HealKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

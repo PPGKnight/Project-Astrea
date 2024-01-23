@@ -5,11 +5,11 @@ Gary leads you to one of the buildings on the main square, where the sound of me
  
 Approaching the smithy, you see the blacksmith crafting some kind of hatchet. Gary seems to gasp when you get close to the building. #speaker: 
 
-+"What happened?"
++["What happened?"]
 -> Package
-+"You forgot something didn't you?"
++["You forgot something didn't you?"]
 -> Package
-+Stay silent
++[Stay silent]
 -> Package
 
 ===Package====

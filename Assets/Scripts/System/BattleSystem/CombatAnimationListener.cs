@@ -7,7 +7,7 @@ public class CombatAnimationListener : MonoBehaviour
 
     public void AnimationDone()
     {
-        Debug.Log("Animacja zakonczona!");
+        //Debug.Log("Animacja zakonczona!");
         AnimationFinished?.Invoke();
     }
 }

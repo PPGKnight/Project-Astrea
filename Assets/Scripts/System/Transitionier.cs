@@ -24,27 +24,21 @@ public class Transitionier : MonoBehaviour
 
     void LoadScene()
     {
-        //QuestManager.Instance.SaveAllQuests();
         GameManager.Instance.ChangePlayerPos(TransitionSpawns.ReturnSpawn(key));
         if (_trans == TransitionType.Normal)
         {
             GameManager.Instance.activeScenes.Clear();
             GameManager.Instance.activeScenes.Add(_nextSceneName);
             SceneManager.LoadScene(_nextSceneName);
-            //GameManager.Instance.SpawnThePlayer(false);
             GameManager.Instance._player.GetComponent<PlayerMovement>().UpdateAgent(TransitionSpawns.ReturnSpawn(key));
         }
 
         else if (_trans == TransitionType.Additive && !GameManager.Instance.activeScenes.Contains(_nextSceneName) && SceneManager.GetActiveScene().name != _nextSceneName)
         {
             GameManager.Instance.activeScenes.Add(_nextSceneName);
-            //SceneManager.LoadSceneAsync(_nextSceneName, LoadSceneMode.Additive);
-            //SceneManager.SetActiveScene(SceneManager.GetSceneByName(_nextSceneName));
             StartCoroutine(Load());
         }
-        Debug.Log(TransitionSpawns.ReturnSpawn(key));
         GameManager.Instance.MovePlayerToNewPos();
-        //QuestManager.Instance.LoadAllQuests();
     }
     IEnumerator MovePlayer()
     {
@@ -85,16 +79,6 @@ public class Transitionier : MonoBehaviour
             else
                 UnloadScene();
     }
-
-    /*
-    private void OnTriggerExit(Collider other)
-    {
-        if (_trans != TransitionType.Additive) return;
-
-        if (other.CompareTag("MainPlayer"))
-            UnloadScene();
-    }
-    */
 }
 
 public enum WithLoadingScreen

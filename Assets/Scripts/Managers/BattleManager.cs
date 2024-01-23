@@ -236,7 +236,6 @@ public class BattleManager : MonoBehaviour
             case 1:
                 loopIndex++;
                 // Check if all dead
-                //Debug.Log("CombatLoop1");
                 Tuple<bool, int> result = turnManager.CheckResults();
                 if (result.Item1) FinalizeFight(result);
                 else AdvanceLoop.Invoke();
@@ -244,14 +243,12 @@ public class BattleManager : MonoBehaviour
             case 2:
                 loopIndex++;
                 // Get next creature
-                //Debug.Log("CombatLoop2");
                 activeCreature = turnManager.GetCreature();
                 AdvanceLoop.Invoke();
                 break;
             case 3:
                 loopIndex++;
                 // Do its turn
-                //Debug.Log("CombatLoop3");
                 if(activeCreature.GetCreatureType() == "Enemy")
                     DoEnemyTurn(activeCreature);
                 else
@@ -260,13 +257,11 @@ public class BattleManager : MonoBehaviour
             case 4:
                 loopIndex++;
                 // Check Deaths
-                //Debug.Log("CombatLoop4");
                 turnManager.CheckDeaths();
                 AdvanceLoop.Invoke();
                 break;
             case 5:
                 // Shift order
-                //Debug.Log("CombatLoop5");
                 loopIndex++;
                 turnManager.NextTurn();
                 AdvanceLoop.Invoke();
@@ -309,7 +304,6 @@ public class BattleManager : MonoBehaviour
              CameraAlly1.SetActive(true);
             TemporaryCamera.SetActive(false);
             TemporaryCamera = CameraAlly1;
-            Debug.Log("Target");
             Ray ray = m_camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
@@ -320,14 +314,8 @@ public class BattleManager : MonoBehaviour
 
                     if (action == "Heal" && hit.transform.CompareTag("Enemy")) return;
 
-                    if (hit.transform.CompareTag("Enemy"))
-                        Debug.Log($"Trafiono {hit.transform.GetComponent<Enemy>().Name}");
-                    if (hit.transform.CompareTag("MainPlayer") || hit.transform.CompareTag("Ally"))
-                        Debug.Log($"Trafiono {hit.transform.GetComponent<Player>().Name}");
-
                     target = hit.transform.gameObject;
                     StartCoroutine(DoTurn(activeCreature));
-                  //  TemporaryCamera.SetActive(false);
                     _turnOptions = TurnOptions.Idle;
                 }
             }
@@ -341,7 +329,6 @@ public class BattleManager : MonoBehaviour
         CameraAlly1.SetActive(true);
         TemporaryCamera.SetActive(false);
         TemporaryCamera = CameraAlly1;
-        Debug.Log("Wykonalem sie");
         isSomeonesTurn = true;
         _turn = Turn.Ally;
         action = "";
@@ -358,7 +345,6 @@ public class BattleManager : MonoBehaviour
                 case "Attack":
                     int a = c.GetComponent<Player>().Attack();
                     char lastCharacter =target.gameObject.transform.parent.name[target.gameObject.transform.parent.name.Length-1];
-                    //char lastCharacter = target.GetComponent<Enemy>().Name[target.GetComponent<Enemy>().Name.Length-1];
                     int l  = int.Parse(lastCharacter.ToString());
 
                     if(l == 1)
@@ -387,12 +373,8 @@ public class BattleManager : MonoBehaviour
                     }
                     Transform t = GameObject.Find(target.gameObject.transform.parent.name + "Hit").transform;
                     yield return new WaitForSeconds(0.1f);
-                    //yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
-                    //StopCoroutine(coro);
-                    //yield return coro = StartCoroutine(BeginAnimation(target.GetComponent<Animator>(), "isReacting"));
                     yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t, target.GetComponent<Animator>(), "isReacting"));
                     StopCoroutine(coro);
-                    print($"You attacked {target.GetComponent<Enemy>().Name} for {a} damage!");
                     target.GetComponent<Enemy>().TakeDamage(a);
                     TakeDamage.Invoke(target.GetComponent<Creature>(), a);
                     target.GetComponent<Enemy>().entityInfo.UpdateHP(target.GetComponent<Enemy>().CurrentHP);
@@ -401,7 +383,6 @@ public class BattleManager : MonoBehaviour
                     CameraHitAlly1.SetActive(true);
                     TemporaryCamera.SetActive(false);
                     TemporaryCamera = CameraHitAlly1;
-                    print($"You heal {target.GetComponent<Player>().Name} for {c.GetComponent<Player>().Intelligence} health points!");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                     StopCoroutine(coro);
                     int healingAmount = c.GetComponent<Player>().Intelligence;
@@ -412,7 +393,6 @@ public class BattleManager : MonoBehaviour
                     CameraHitAlly1.SetActive(true);
                     TemporaryCamera.SetActive(false);
                     TemporaryCamera = CameraHitAlly1;
-                    print($"You will take -50% damage on enemy's next attack");
                     yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                     StopCoroutine(coro);
                     c.GetComponent<Player>().Guard();
@@ -490,23 +470,16 @@ public class BattleManager : MonoBehaviour
 
                 int att = rnd.Next(0, insideAllies.Count);
                 int a = c.Attack();
-                Debug.Log($"Damage c: {c.Attack()}");
-                Debug.Log($"Damage active: {activeCreature.Attack()}");
                 Transform t = GameObject.Find(insideAllies[att].gameObject.transform.parent.name + "Hit").transform;
                 yield return new WaitForSeconds(0.1f);
-                //yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t));
-                //StopCoroutine(coro);
-                //yield return coro = StartCoroutine(BeginAnimation(insideAllies[att].GetComponent<Animator>(), "isReacting"));
                 yield return coro = StartCoroutine(BeginAnimationB(c.GetComponent<Animator>(), "isAttacking", c.transform, t, insideAllies[att].GetComponent<Animator>(), "isReacting"));
                 StopCoroutine(coro);
-                Debug.Log($"{c.Name} atakuje {insideAllies[att].Name} za {a} punktow obrazen!");
                 insideAllies[att].TakeDamage(a);
                 TakeDamage.Invoke(insideAllies[att], a);
                 break;
             case 7:
             case 8:
                 insideEnemies.Sort((a, b) => a.CurrentHP.CompareTo(b.CurrentHP));
-                Debug.Log($"{c.Name} leczy {insideEnemies[0].Name} za {c.Intelligence} punktow zdrowia");
                 yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isHealing"));
                 StopCoroutine(coro);
                 insideEnemies[0].Heal(c.Intelligence);
@@ -516,7 +489,6 @@ public class BattleManager : MonoBehaviour
             case 9:
                 yield return coro = StartCoroutine(BeginAnimation(c.GetComponent<Animator>(), "isGuarding"));
                 StopCoroutine(coro);
-                Debug.Log($"{c.Name} broni sie przez co ten otrzyma o polowe mniej obrazen");
                 Guard.Invoke(insideEnemies[0]);
                 c.Guard();
                 break;
@@ -567,6 +539,5 @@ public class BattleManager : MonoBehaviour
     IEnumerator SmallPause()
     {
         yield return new WaitForSeconds(1.5f);
-        Debug.Log("Done");
     }
 }
