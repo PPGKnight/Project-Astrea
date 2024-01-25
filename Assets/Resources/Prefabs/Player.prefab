@@ -3294,7 +3294,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8726117211984356888}
-  m_LocalRotation: {x: 0.43087044, y: 1e-45, z: -1e-45, w: 0.9024138}
+  m_LocalRotation: {x: 0.43087044, y: -0, z: -0, w: 0.9024138}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3372,7 +3372,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8726117212044031616}
-  m_LocalRotation: {x: 0.44721362, y: 0.000000015389857, z: -0.000000007694929, w: 0.89442724}
+  m_LocalRotation: {x: 0.44721362, y: -0.000000015389857, z: 0.000000007694929, w: 0.89442724}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4151,6 +4151,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2661a92c-c105-4053-b0ec-8e54ba605799
     m_ActionName: UI_Interaction/Submit[/Keyboard/enter,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 81400d1a-a7ea-4b01-90a3-9a254a0be34c
+    m_ActionName: PlayerMovement/InteractWithMouse[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1765c42a-08da-4e85-94d5-8b711af3ec55
+    m_ActionName: UI_Interaction/DebugPPM[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a7aba8a-a822-4af1-be03-bde3d458dfa4
+    m_ActionName: Combat/AttackKey
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 16d04717-3c28-4810-b551-e43de8e90545
+    m_ActionName: Combat/GuardKey
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f86c608-fb0b-4b39-85eb-b2451978015e
+    m_ActionName: Combat/HealKey
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f4896d7f-f2c8-43ef-93b6-096fcd81fbff
+    m_ActionName: PlayerMovement/Options[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1a97983-b963-4a9e-b4f0-6ff9a860da96
+    m_ActionName: PlayerMovement/Inventory[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d25bf9c0-86e0-4728-a169-8f6337072bfe
+    m_ActionName: PlayerMovement/Map[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 72e1b9c9-ffd2-45d7-abe1-c15ea8ae5496
+    m_ActionName: PlayerMovement/Journal[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f5148332-bb31-4f00-a8e4-aa0de60f1619
+    m_ActionName: PlayerMovement/Party[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMovement
@@ -4327,7 +4367,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8726117213825449603}
-  m_LocalRotation: {x: 0.4144284, y: 0.000000027122557, z: -0.00000001235093, w: 0.9100819}
+  m_LocalRotation: {x: 0.4144284, y: 0.000000027122558, z: -0.000000012350931, w: 0.9100819}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4741,6 +4781,11 @@ PrefabInstance:
     - target: {fileID: 511144619039757856, guid: a20e386b47b4eb94bb479ee868f7e9e7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 511144619039757857, guid: a20e386b47b4eb94bb479ee868f7e9e7,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 511144619039757868, guid: a20e386b47b4eb94bb479ee868f7e9e7,

@@ -74,7 +74,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1348320733594411720}
   - component: {fileID: 225009750436928688}
-  - component: {fileID: 6837113497613120037}
   m_Layer: 0
   m_Name: Body.Legs
   m_TagString: Untagged
@@ -161,18 +160,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0013025925, y: -0.49057135, z: -0.005598806}
     m_Extent: {x: 0.17768112, y: 0.53967774, z: 0.247529}
   m_DirtyAABB: 0
---- !u!114 &6837113497613120037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696653021436004116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &789328374558002096
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +320,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2577632048612748478}
   - component: {fileID: 914527670083058646}
-  - component: {fileID: 3034957718467152184}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -376,7 +362,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 3f5cc1b7dd6b1194ca00f4afb09b72a8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -427,18 +412,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00038287044, y: 0.19931982, z: 0.02042127}
     m_Extent: {x: 0.80341995, y: 0.19889377, z: 0.105174705}
   m_DirtyAABB: 0
---- !u!114 &3034957718467152184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351460643964535532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1519316083021641870
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +651,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5052828401673629295}
   - component: {fileID: 8176681365724733098}
-  - component: {fileID: 4191552142302766403}
   m_Layer: 0
   m_Name: Hair_2
   m_TagString: Untagged
@@ -721,7 +693,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: cd15db5660ed939478bde477eb13f701, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -757,18 +728,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0008329302, y: 0.14687364, z: -0.025042608}
     m_Extent: {x: 0.076661974, y: 0.1303625, z: 0.13458456}
   m_DirtyAABB: 0
---- !u!114 &4191552142302766403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2404299872304282027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2457179323858218418
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +738,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1632628819216928630}
   - component: {fileID: 6104158006373075216}
-  - component: {fileID: 9160668961254272313}
   m_Layer: 0
   m_Name: Pants_Short
   m_TagString: Untagged
@@ -822,7 +780,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 8765a78d8ceff3a4dbc8bd0939339a8f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -864,18 +821,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0002674237, y: -0.22507128, z: 0.002576232}
     m_Extent: {x: 0.1642718, y: 0.2952535, z: 0.13182026}
   m_DirtyAABB: 0
---- !u!114 &9160668961254272313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2457179323858218418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2626144236409237320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1375,6 @@ GameObject:
   m_Component:
   - component: {fileID: 487436835341957721}
   - component: {fileID: 6381116520552871865}
-  - component: {fileID: 7879080552792702737}
   m_Layer: 0
   m_Name: Shirt
   m_TagString: Untagged
@@ -1473,7 +1417,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 1b022ed178de28c4a99c0d43000f2de6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1519,18 +1462,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0003580302, y: 0.2430469, z: 0.049751416}
     m_Extent: {x: 0.2673084, y: 0.23051392, z: 0.13483725}
   m_DirtyAABB: 0
---- !u!114 &7879080552792702737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887419800594640841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6939986694063969031
 GameObject:
   m_ObjectHideFlags: 0

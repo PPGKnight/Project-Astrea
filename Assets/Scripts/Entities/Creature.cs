@@ -43,17 +43,6 @@ public class Creature : MonoBehaviour
     [SerializeField] List<GameObject> outlineMaterials;
     public UnityEvent m_outlineEventOn, m_outlineEventOff;
 
-
-    private void Start()
-    {
-        if (outlineMaterials.Count == 0 || outlineMaterials == null) return;
-
-        foreach (GameObject mat in outlineMaterials)
-        {
-            m_outlineEventOn.AddListener(mat.GetComponent<OutlineCS>().AlphaOn);
-            m_outlineEventOff.AddListener(mat.GetComponent<OutlineCS>().AlphaOff);
-        }
-    }
     public virtual void UpdateStats()
     {
         MaxHP = (Constitution * 2 + Strength) * Level;

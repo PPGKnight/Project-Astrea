@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerPositionSO _playerPositionSO;
 
     public int worldTime = 1;
+    public bool isPaused = false;
 
     public Dictionary<string, GameObject> entity;
 
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"Fight {_battleData.eID} has been lost");
             AnalyticsManager.Instance.SentAnalyticsData(AnalyticsDataEvents.FightLost, _battleData.eID);
-
+            _player.GetComponent<PlayerMovement>().ShowDeathScreen();
         }
 
         _player.SetActive(true);

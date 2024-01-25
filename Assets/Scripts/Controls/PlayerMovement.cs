@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float movement_speed, rotation_speed;
     private PlayerInput input;
     private InputAction followAction, walkAction, runAction, keyAction, interactAction, interactMouseAction;
+    private InputAction optionAction;
     private Ray ray;
     private RaycastHit hit;
 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         keyAction = input.actions["Keys"];
         interactAction = input.actions["Interact"];
         interactMouseAction = input.actions["InteractWithMouse"];
+        optionAction = input.actions["Options"];
 
         if (_instance == null)
         {
@@ -63,8 +65,8 @@ public class PlayerMovement : MonoBehaviour
         cameraForward.y = 0;
         cameraForward = Vector3.Normalize(cameraForward);
 
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 150f, Color.yellow);
-        Debug.DrawRay(transform.position, transform.forward * 150f, Color.blue);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 150f, Color.yellow);
+        //Debug.DrawRay(transform.position, transform.forward * 150f, Color.blue);
 
         interactAction.performed += _ => { InteractionWithNPC?.Invoke(); };
         interactMouseAction.performed += _ => {
@@ -76,7 +78,9 @@ public class PlayerMovement : MonoBehaviour
 
         walkAction.performed += _ => { MoveMouse(3.5f); };
         runAction.performed += _ => MoveMouse(10f);
-            
+
+        optionAction.performed += _ => GameEventsManager.instance.MiscEvents.OptionKeyPressed();
+
         if(followAction.phase == InputActionPhase.Performed) { MoveMouse(5f);  }
         if(followAction.phase == InputActionPhase.Canceled) { StopAnim();  }
 
@@ -173,4 +177,5 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWalking", false);
     }
 
+    public void ShowDeathScreen() => GameEventsManager.instance.MiscEvents.DeathScreen();
 }

@@ -139,6 +139,7 @@ public class DialogueManager : MonoBehaviour
 
     void ContinueStory()
     {
+        if (GameManager.Instance.isPaused) return;
         //Debug.Log("Kontynuuje");
         if (currentStory.canContinue)
         {

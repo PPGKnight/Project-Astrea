@@ -59,6 +59,6 @@ public class GatherItemsQuestStep : QuestStep, IQuestProgress
 
     public string QuestProgress()
     {
-        return $"Collect {flintToCollect} flint and {copperToCollect} copper ore for the Smith.\nCurrent progress:\n {flintCollected}/{flintToCollect} flint\n{copperCollected}/{copperToCollect} copper ore";
+        return $"Collect {flintToCollect} flint and {copperToCollect} copper ore for the Smith.\n {flintCollected}/{flintToCollect} flint\n{copperCollected}/{copperToCollect} copper ore";
     }
 }

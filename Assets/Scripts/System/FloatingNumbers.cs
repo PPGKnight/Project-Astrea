@@ -18,31 +18,11 @@ public class FloatingNumbers : MonoBehaviour
     void Start()
     {
         iniPos = transform.position;
-        iniPos.y += 1f;
-        float dir = Random.rotation.eulerAngles.z;
-        float dist = Random.Range(minDist, maxDist);
-        targetPos = iniPos + (Quaternion.Euler(0,0, dir) * new Vector3(dist, dist, 0f));
-        targetPos.y = iniPos.y + dist;
+        iniPos.y += 0.5f;
+        targetPos = iniPos +  new Vector3(0f, 1f, 0f);
 
-        //transform.LookAt(2 * transform.position - Camera.main.transform.position);
-        //transform.Rotate(25, Camera.main.transform.rotation.y - 360, 0);
         transform.Rotate(0f, 180f, 0f);
-        transform.localScale = Vector3.zero;
-
-        //TweenMove();
-    }
-
-    void TweenMove()
-    {
-        transform.DOScale(Vector3.one, lifetime);
-        transform.DOLocalMoveY(iniPos.y - 1f, lifetime / 2).SetEase(Ease.InOutBounce).OnComplete(() =>
-        {
-            transform.DOLocalMoveY(iniPos.y + Random.Range(minDist, maxDist), lifetime / 2).SetEase(Ease.InOutSine).OnComplete(() =>
-            {
-                Destroy(gameObject);
-            });
-        });
-
+        transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
     }
     void Update()
     {
@@ -54,7 +34,7 @@ public class FloatingNumbers : MonoBehaviour
         if (timer > lifetime) Destroy(gameObject);
         else if (timer > fraction) text.color = Color.Lerp(text.color, Color.clear, (timer - fraction) / (lifetime - fraction));
 
-        transform.position = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
+        transform.localPosition = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
         transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(0.5f, 0.5f, 0.5f), Mathf.Sin(timer / lifetime));
 
         transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
