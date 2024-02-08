@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 cameraForward;
     public static event Action InteractionWithNPC;
+    public static event Action<GameObject> InteractionWithMouse;
 
     [SerializeField]
     NavMeshAgent navPlayer;
@@ -191,5 +192,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public void ShowDeathScreen() => GameEventsManager.instance.MiscEvents.DeathScreen();
 
 }
