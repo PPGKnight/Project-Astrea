@@ -190,22 +190,10 @@ MonoBehaviour:
   entityInfo: {fileID: 0}
   Strength: 9
   Dexterity: 6
-  Intelligence: 4
+  Intelligence: 3
   Constitution: 5
   Initiative: 1
   InitiativeThisFight: 0
-  outlineMaterials:
-  - {fileID: 1091589945095066313}
-  - {fileID: 7351565091988594340}
-  - {fileID: 3210591091826153683}
-  - {fileID: 6851951741898420028}
-  - {fileID: 4787967278912487404}
-  m_outlineEventOn:
-    m_PersistentCalls:
-      m_Calls: []
-  m_outlineEventOff:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2269763060093118183
 MonoBehaviour:
   m_ObjectHideFlags: 0

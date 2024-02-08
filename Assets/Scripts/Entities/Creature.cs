@@ -39,9 +39,7 @@ public class Creature : MonoBehaviour
     #endregion
 
     private void Awake() => UpdateStats();
-
-    [SerializeField] List<GameObject> outlineMaterials;
-    public UnityEvent m_outlineEventOn, m_outlineEventOff;
+    
 
     public virtual void UpdateStats()
     {
@@ -51,7 +49,9 @@ public class Creature : MonoBehaviour
     }
     public string GetCreatureType() => this.creatureType.ToString();
     public void SetInitiative() => InitiativeThisFight = Random.Range(1, 21) + Initiative;
-    public int Attack() => Random.Range(Mathf.FloorToInt((Strength + Dexterity) / 3), (Strength * 2) + Dexterity);
+
+    public int Attack() => Random.Range(Mathf.FloorToInt((Strength + Dexterity) / 3),
+        Mathf.FloorToInt(Strength + (Dexterity * 0.5f)));
 
     public void Heal(int h)
     {
@@ -65,7 +65,7 @@ public class Creature : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        this.CurrentHP -= IsGuarded ? Mathf.RoundToInt(dmg / 2) : dmg;
+        this.CurrentHP -= IsGuarded ? Mathf.RoundToInt(dmg * 0.4f) : dmg;
         IsGuarded = false;
 
         if(this.CurrentHP <= 0)
@@ -73,10 +73,7 @@ public class Creature : MonoBehaviour
             this._isDead = true;
         }
     }
-
-    private void OnMouseOver() => m_outlineEventOn.Invoke();
-
-    private void OnMouseExit() => m_outlineEventOff.Invoke();
+    
 
     public string ReturnName() => this.Name;
 }

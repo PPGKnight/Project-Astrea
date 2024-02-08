@@ -1760,24 +1760,12 @@ MonoBehaviour:
   _isDead: 0
   avatar: {fileID: 21300000, guid: e5457517cb3a01c4abdb140c53e96f64, type: 3}
   entityInfo: {fileID: 0}
-  Strength: 9
+  Strength: 7
   Dexterity: 6
   Intelligence: 4
-  Constitution: 5
+  Constitution: 8
   Initiative: 1
   InitiativeThisFight: 0
-  outlineMaterials:
-  - {fileID: 5916965707482668022}
-  - {fileID: 4268658403369277339}
-  - {fileID: 8193486045669446124}
-  - {fileID: 156595186125956611}
-  - {fileID: 2254356646181353171}
-  m_outlineEventOn:
-    m_PersistentCalls:
-      m_Calls: []
-  m_outlineEventOff:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &-9193200551505597667
 MonoBehaviour:
   m_ObjectHideFlags: 0

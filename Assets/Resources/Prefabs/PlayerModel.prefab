@@ -169,7 +169,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3196107203816918643}
   - component: {fileID: 3481123240851519578}
-  - component: {fileID: 3763739699893505330}
   m_Layer: 0
   m_Name: Body.Legs
   m_TagString: Untagged
@@ -255,18 +254,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000020042062, y: -0.5211518, z: 0.009452954}
     m_Extent: {x: 0.1539993, y: 0.5761142, z: 0.27151316}
   m_DirtyAABB: 0
---- !u!114 &3763739699893505330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673667294769246040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &743755063416941214
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +651,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5210014165465001441}
   - component: {fileID: 7531382112370089612}
-  - component: {fileID: 8567679595012082794}
   m_Layer: 0
   m_Name: Body.Shirt
   m_TagString: Untagged
@@ -752,18 +738,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0011811852, y: 0.29412088, z: -0.005122736}
     m_Extent: {x: 0.343971, y: 0.26045808, z: 0.13802597}
   m_DirtyAABB: 0
---- !u!114 &8567679595012082794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462948320756602884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1465383010251958114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,12 +1730,7 @@ MonoBehaviour:
   Constitution: 64
   Initiative: 2
   InitiativeThisFight: 0
-  outlineMaterials:
-  - {fileID: 4472718880027213414}
-  - {fileID: 8360166156438904417}
-  - {fileID: 6282142411702646583}
-  - {fileID: 5210796915233898320}
-  - {fileID: 1145087292479323426}
+  outlineMaterials: []
   m_outlineEventOn:
     m_PersistentCalls:
       m_Calls: []

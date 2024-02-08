@@ -2164,6 +2164,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 3
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -2425,6 +2426,7 @@ MonoBehaviour:
   CanStack: 0
   StackSize: 1
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 1
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -9321,6 +9323,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 2
+  pickWithoutAdding: 0
   inter: 1
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -35492,6 +35495,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -37839,14 +37843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 1
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 0
 --- !u!1001 &868235193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49255,6 +49252,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -55081,6 +55079,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -75013,6 +75012,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -84330,7 +84330,6 @@ GameObject:
   - component: {fileID: 2041272319}
   - component: {fileID: 2041272318}
   - component: {fileID: 2041272320}
-  - component: {fileID: 2041272321}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -84435,18 +84434,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &2041272321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041272317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8417fb45c6e75cc4b9ae0f4c79f2ca3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2049649915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89456,6 +89443,7 @@ MonoBehaviour:
   CanStack: 1
   StackSize: 5
   Quantity: 1
+  pickWithoutAdding: 0
   inter: 0
   DialogueIfAllReqsAreMet: {fileID: 0}
   DialogueIfAllReqsAreNotMet: {fileID: 0}
@@ -96036,14 +96024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 1
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 0
 --- !u!136 &6775188163967035740
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -96071,14 +96052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 1
-  isFishing: 0
-  isLeaning: 0
-  isDead: 0
+  activeAnimation: 0
 --- !u!33 &6823594351844440823
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97441,14 +97415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  isBartering: 0
-  isSitting: 0
-  isDrinking: 0
-  isYelling: 0
-  isArguing: 0
-  isFishing: 0
-  isLeaning: 1
-  isDead: 0
+  activeAnimation: 0
 --- !u!1 &8241034311071516389
 GameObject:
   m_ObjectHideFlags: 0
