@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject _player;
 
     private Player player;
+    
+    // [SerializeField]
+    // GameObject CameraRig;
 
     public List<string> Inventory;
 
@@ -73,10 +76,14 @@ public class GameManager : MonoBehaviour
         //Debug.Log("jestem");
         if (_player == null)
         {
-            _player = Instantiate(Resources.Load<GameObject>("Prefabs/Player"), keepPosition ? _playerPositionSO.GetPlayerPosition() : _playerPositionSO.spawnPoint[SceneManager.GetActiveScene().name], Quaternion.identity);
-            player = _player.GetComponent<Player>();
+            _player = Instantiate(Resources.Load<GameObject>("Prefabs/PlayerPLUSCamera"), keepPosition ? _playerPositionSO.GetPlayerPosition() : _playerPositionSO.spawnPoint[SceneManager.GetActiveScene().name], Quaternion.identity);
+            player = _player.GetComponentInChildren<Player>();
             //Debug.Log("Stworzylem");
         }
+        // if(CameraRig==null)
+        // {
+        //      CameraRig = Instantiate(Resources.Load<GameObject>("Prefabs/CameraRig"));
+        // }
         await Task.Run(() =>
         {
             Task.Delay(20);
@@ -98,6 +105,7 @@ public class GameManager : MonoBehaviour
         }
 
         _player.SetActive(true);
+       // CameraRig.SetActive(true);
         //if (_battleData.dialogue != null)
            // _battleData.dialogue.GetComponent<BoxCollider>().enabled = true;
     }
@@ -137,6 +145,7 @@ public class GameManager : MonoBehaviour
         DialogueManager.Instance.gameObject.transform.parent.Find("EventSystem").gameObject.SetActive(false);
         SceneManager.LoadScene(arenaName);
         _player.SetActive(false);
+        //CameraRig.SetActive(false);
     }
 
     public void Populate()
