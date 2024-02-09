@@ -241,7 +241,7 @@ public class DialogueManager : MonoBehaviour
                         getobject = GameObject.FindGameObjectWithTag(strings[0]).GetComponent<PlayerMovement>();
 
                         if (GameManager.Instance._player == null) Debug.LogError("GM Player null");
-                        else getobject = GameManager.Instance._player.GetComponent<PlayerMovement>();
+                        else getobject = GameManager.Instance._player.GetComponentInChildren<PlayerMovement>();
                     }
                     TeleportTo(getobject, TransitionSpawns.ReturnSpawn(strings[1]));
                     break;

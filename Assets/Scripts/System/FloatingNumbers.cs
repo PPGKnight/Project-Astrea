@@ -18,11 +18,11 @@ public class FloatingNumbers : MonoBehaviour
     void Start()
     {
         iniPos = transform.position;
-        iniPos.y += 0.5f;
-        targetPos = iniPos +  new Vector3(0f, 1f, 0f);
+        iniPos.y += 1f;
+        targetPos = iniPos +  new Vector3(0f, 0.5f, 0f);
 
         transform.Rotate(0f, 180f, 0f);
-        transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        transform.localScale = Vector3.zero;
     }
     void Update()
     {
@@ -35,7 +35,7 @@ public class FloatingNumbers : MonoBehaviour
         else if (timer > fraction) text.color = Color.Lerp(text.color, Color.clear, (timer - fraction) / (lifetime - fraction));
 
         transform.localPosition = Vector3.Lerp(iniPos, targetPos, Mathf.Sin(timer / lifetime));
-        transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(0.5f, 0.5f, 0.5f), Mathf.Sin(timer / lifetime));
+        transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(0.25f, 0.25f, 0.25f), Mathf.Sin(timer / lifetime));
 
         transform.LookAt(transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
     }

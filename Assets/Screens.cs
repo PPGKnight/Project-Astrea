@@ -100,9 +100,9 @@ public class Screens : MonoBehaviour
     public void LeaveToMenu()
     {
         GameObject m = GameObject.FindGameObjectWithTag("Managers");
-        GameObject p = GameObject.FindGameObjectWithTag("MainPlayer");
+        GameObject p = GameObject.FindGameObjectWithTag("PlayerHolder");
         SceneManager.LoadScene(0);
-        Destroy(m);
         Destroy(p);
+        Destroy(m);
     }
 }

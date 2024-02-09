@@ -30691,6 +30691,7 @@ GameObject:
   - component: {fileID: 1296948355}
   - component: {fileID: 1296948354}
   - component: {fileID: 1296948356}
+  - component: {fileID: 1296948357}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -30795,6 +30796,18 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &1296948357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296948353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8417fb45c6e75cc4b9ae0f4c79f2ca3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1308937752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41936,6 +41949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1702036557}
   - component: {fileID: 1702036556}
+  - component: {fileID: 1702036558}
   m_Layer: 7
   m_Name: MinimapQuestMarker
   m_TagString: Untagged
@@ -42010,6 +42024,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1702036558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702036555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382ab5bc48f91af4293f110b5bc5f68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: 001_GatherItemsForTheSmith
 --- !u!1001 &1706501915
 PrefabInstance:
   m_ObjectHideFlags: 0

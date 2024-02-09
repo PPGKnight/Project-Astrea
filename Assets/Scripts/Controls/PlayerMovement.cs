@@ -10,11 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     public float movement_speed, rotation_speed;
     private PlayerInput input;
-    private InputAction followAction;
-    private InputAction walkAction;
-    private InputAction runAction;
-    private InputAction keyAction;
-    private InputAction interactAction;
+    private InputAction followAction, walkAction, runAction, keyAction, interactAction, optionAction;
     private Ray ray;
     private RaycastHit hit;
 
@@ -41,14 +37,15 @@ public class PlayerMovement : MonoBehaviour
         runAction = input.actions["Run"];
         keyAction = input.actions["Keys"];
         interactAction = input.actions["Interact"];
+        optionAction = input.actions["Options"];
 
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject.transform.parent.gameObject);
         }
         else
-            Destroy(this.gameObject);
+            Destroy(this.gameObject.transform.parent.gameObject);
 
 
         if (gameManager == null)
@@ -68,18 +65,15 @@ public class PlayerMovement : MonoBehaviour
         cameraForward.y = 0;
         cameraForward = Vector3.Normalize(cameraForward);
 
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 150f, Color.yellow);
-        Debug.DrawRay(transform.position, transform.forward * 150f, Color.blue);
-
         interactAction.performed += _ => { InteractionWithNPC?.Invoke(); };
 
         walkAction.performed += _ => { MoveMouse(3.5f); };
-            runAction.performed += _ => MoveMouse(10f);
-            
-            if(followAction.phase == InputActionPhase.Performed) { MoveMouse(5f);  }
-            if(followAction.phase == InputActionPhase.Canceled) { StopAnim();  }
+        runAction.performed += _ => MoveMouse(10f);
+        optionAction.performed += _ => GameEventsManager.instance.MiscEvents.OptionKeyPressed();
 
-            if(keyAction.phase == InputActionPhase.Started) MoveKeybard();
+        if (followAction.phase == InputActionPhase.Performed) { MoveMouse(5f);  }
+        if (followAction.phase == InputActionPhase.Canceled) { StopAnim();  }
+        if (keyAction.phase == InputActionPhase.Started) MoveKeybard();
             
     }
     void MovementAnimation()
@@ -108,11 +102,8 @@ public class PlayerMovement : MonoBehaviour
         int lm = LayerMask.GetMask("MinimapIcons");
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~lm) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
-            //Debug.LogError($"Worldtime {gameManager.worldTime}");
-            //Debug.DrawRay(transform.position,new Vector3(ray.x),Color.blue);
             navPlayer.speed = speed;
             navPlayer.destination = hit.point;
-            Debug.Log(hit.transform.gameObject.layer);
 
         }
     }
@@ -163,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
     public void UpdateAgent(Vector3 newPos)
     {
         Stop();
+        this.gameObject.transform.parent.position = newPos;
         navPlayer.Warp(newPos);
     }
 
@@ -170,28 +162,12 @@ public class PlayerMovement : MonoBehaviour
     {
       navPlayer.ResetPath();
     }
+
     private void StopAnim()
     {
         navPlayer.ResetPath();
         animator.SetBool("isWalking", false);
     }
-    private void OnDrawGizmos()
-    {
-        if (navPlayer.destination != null)
-        {
-            Gizmos.color = Color.white;
-            {
-                // Draw lines joining each path corner
-                Vector3[] pathCorners = navPlayer.path.corners;
 
-                for (int i = 0; i < pathCorners.Length - 1; i++)
-                {
-                    Gizmos.DrawLine(pathCorners[i], pathCorners[i + 1]);
-                }
-
-            }
-        }
-    }
     public void ShowDeathScreen() => GameEventsManager.instance.MiscEvents.DeathScreen();
-
 }

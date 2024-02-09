@@ -709,7 +709,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh67872
+  m_Name: pb_Mesh317190
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1448,7 +1448,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh66148
+  m_Name: pb_Mesh315360
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37843,7 +37843,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  activeAnimation: 0
+  activeAnimation: 3
+--- !u!114 &865737974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865737970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - 002_LumbererEncounter
+  animationAfterEncounter: 5
+  moveNPC: 1
+  cordsPos: {x: -544.56, y: -5.157, z: -446.3}
+  cordsRot: {x: 0, y: 0, z: 0}
 --- !u!1001 &868235193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76191,7 +76209,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh66160
+  m_Name: pb_Mesh315372
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -84330,6 +84348,7 @@ GameObject:
   - component: {fileID: 2041272319}
   - component: {fileID: 2041272318}
   - component: {fileID: 2041272320}
+  - component: {fileID: 2041272321}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -84434,6 +84453,18 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &2041272321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041272317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8417fb45c6e75cc4b9ae0f4c79f2ca3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2049649915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90386,7 +90417,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -91040,6 +91071,7 @@ GameObject:
   - component: {fileID: 531989830626009892}
   - component: {fileID: 6775188163967035740}
   - component: {fileID: 6775188163967035741}
+  - component: {fileID: 6775188163967035742}
   m_Layer: 0
   m_Name: Banditman_3
   m_TagString: Enemy
@@ -92134,8 +92166,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3429881560910317073}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -546.7254, y: -5.1876726, z: -446.245}
+  m_LocalRotation: {x: -0, y: 0.088440016, z: -0, w: 0.99608153}
+  m_LocalPosition: {x: -546.69, y: -5.1876726, z: -446.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -92149,7 +92181,7 @@ Transform:
   - {fileID: 4578756210990032797}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 10.148, z: 0}
 --- !u!33 &2674979592213630426
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -93071,6 +93103,7 @@ GameObject:
   - component: {fileID: 4309993013706124038}
   - component: {fileID: 7112423632300974462}
   - component: {fileID: 8228814718395303634}
+  - component: {fileID: 8228814718395303635}
   m_Layer: 0
   m_Name: Banditman_1
   m_TagString: Enemy
@@ -95019,7 +95052,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -95587,6 +95620,7 @@ GameObject:
   - component: {fileID: 4824979860742248550}
   - component: {fileID: 1986520424993673758}
   - component: {fileID: 6770983811235868620}
+  - component: {fileID: 6770983811235868621}
   m_Layer: 0
   m_Name: Banditman_2
   m_TagString: Enemy
@@ -96024,7 +96058,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  activeAnimation: 0
+  activeAnimation: 3
+--- !u!114 &6770983811235868621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250025733630080369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - 002_LumbererEncounter
+  animationAfterEncounter: 6
+  moveNPC: 0
+  cordsPos: {x: 0, y: 0, z: 0}
+  cordsRot: {x: 0, y: 0, z: 0}
 --- !u!136 &6775188163967035740
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -96052,7 +96104,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  activeAnimation: 0
+  activeAnimation: 3
+--- !u!114 &6775188163967035742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381278225576218163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - 002_LumbererEncounter
+  animationAfterEncounter: 6
+  moveNPC: 0
+  cordsPos: {x: 0, y: 0, z: 0}
+  cordsRot: {x: 0, y: 0, z: 0}
 --- !u!33 &6823594351844440823
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97395,7 +97465,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -97415,7 +97485,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  activeAnimation: 0
+  activeAnimation: 5
+--- !u!114 &8228814718395303635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3429881560910317073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - 002_LumbererEncounter
+  animationAfterEncounter: 6
+  moveNPC: 1
+  cordsPos: {x: -546.7155, y: -5.187673, z: -446.2413}
+  cordsRot: {x: 0, y: 140.478, z: 0}
 --- !u!1 &8241034311071516389
 GameObject:
   m_ObjectHideFlags: 0

@@ -539,6 +539,19 @@ MonoBehaviour:
   _enemyPanel: {fileID: 5552811986019408124, guid: 619f6ae878cdfc0419635cfc0c766634,
     type: 3}
   _battleOptions: {fileID: 2581640820654024150}
+  CameraAlly1: {fileID: 0}
+  CameraAlly2: {fileID: 0}
+  CameraAlly3: {fileID: 0}
+  CameraAlly4: {fileID: 0}
+  CameraHitAlly1: {fileID: 0}
+  CameraHitAlly2: {fileID: 0}
+  CameraHitAlly3: {fileID: 0}
+  CameraHitAlly4: {fileID: 0}
+  CameraEnemy1: {fileID: 0}
+  CameraEnemy2: {fileID: 0}
+  CameraEnemy3: {fileID: 0}
+  CameraEnemy4: {fileID: 0}
+  CameraOverlook: {fileID: 0}
   _floatingNumbers: {fileID: 6970209644435660064, guid: ef7ceafd540eaf843bcef0e9d8e453e7,
     type: 3}
   initiativeTrackerManager: {fileID: 2581640818780862514}

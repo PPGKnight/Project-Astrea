@@ -506,7 +506,10 @@ public class BattleManager : MonoBehaviour
     void DoTheDamage(Creature attacked, int damage)
     {
         FloatingNumbers f;
-        f = Instantiate(_floatingNumbers, attacked.transform.position, Quaternion.identity);
+        Vector3 helpPos = attacked.transform.position;
+        Vector3 dir = (attacked.transform.position - Camera.main.transform.position).normalized;
+        Vector3 fnPos = Camera.main.transform.position + dir * (Vector3.Distance(attacked.transform.position, Camera.main.transform.position) * 0.8f);
+        f = Instantiate(_floatingNumbers, fnPos, Quaternion.identity);
         f.SetText(damage, Color.red);
 
         UpdateBars?.Invoke();
@@ -515,7 +518,10 @@ public class BattleManager : MonoBehaviour
     void HealTheDamage(Creature healed, int healingAmount)
     {
         FloatingNumbers f;
-        f = Instantiate(_floatingNumbers, healed.transform.position, Quaternion.identity);
+        Vector3 helpPos = healed.transform.position;
+        Vector3 dir = (healed.transform.position - Camera.main.transform.position).normalized;
+        Vector3 fnPos = Camera.main.transform.position + dir * (Vector3.Distance(healed.transform.position, Camera.main.transform.position) * 0.8f);
+        f = Instantiate(_floatingNumbers, fnPos, Quaternion.identity);
         f.SetText(healingAmount, Color.green);
         UpdateBars?.Invoke();
     }
@@ -523,7 +529,10 @@ public class BattleManager : MonoBehaviour
     void GuardFromDamage(Creature guard)
     {
         FloatingNumbers f;
-        f = Instantiate(_floatingNumbers, guard.transform.position, Quaternion.identity);
+        Vector3 helpPos = guard.transform.position;
+        Vector3 dir = (guard.transform.position - Camera.main.transform.position).normalized;
+        Vector3 fnPos = Camera.main.transform.position + dir * (Vector3.Distance(guard.transform.position, Camera.main.transform.position) * 0.8f);
+        f = Instantiate(_floatingNumbers, fnPos, Quaternion.identity);
         f.SetText("Block", Color.blue);
     }
     public List<Creature> RequestTrackerOrder() => turnManager.GetTracker();

@@ -32,7 +32,7 @@ public class LoadingScreenManager : MonoBehaviour
         GameManager.Instance.activeScenes.Clear();
         GameManager.Instance.activeScenes.Add(sceneName);
         StartCoroutine(AsyncLoadingScreen(sceneName));
-        GameManager.Instance._player.GetComponent<PlayerMovement>().UpdateAgent(TransitionSpawns.ReturnSpawn(key));
+        GameManager.Instance._player.GetComponentInChildren<PlayerMovement>().UpdateAgent(TransitionSpawns.ReturnSpawn(key));
     }
     IEnumerator AsyncLoadingScreen(string sceneName)
     {

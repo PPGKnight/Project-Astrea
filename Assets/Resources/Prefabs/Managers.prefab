@@ -681,12 +681,12 @@ PrefabInstance:
     - target: {fileID: 1953488038573805326, guid: 2b66013256f4d2844b87e65cd3cef5ce,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1953488038573805326, guid: 2b66013256f4d2844b87e65cd3cef5ce,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2316263930885005058, guid: 2b66013256f4d2844b87e65cd3cef5ce,
         type: 3}
@@ -743,10 +743,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2722293557624938387, guid: 2b66013256f4d2844b87e65cd3cef5ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4649039123643346369, guid: 2b66013256f4d2844b87e65cd3cef5ce,
         type: 3}
       propertyPath: m_Name
       value: LoadingScreenManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6110095664135768141, guid: 2b66013256f4d2844b87e65cd3cef5ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b66013256f4d2844b87e65cd3cef5ce, type: 3}

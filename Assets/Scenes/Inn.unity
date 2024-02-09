@@ -7008,7 +7008,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh88780
+  m_Name: pb_Mesh130798
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8798,6 +8798,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
+    - target: {fileID: 839418189990838799, guid: 7be46a948b5001c4da48c435f0e8a986,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6200834489601114831, guid: 7be46a948b5001c4da48c435f0e8a986,
         type: 3}
       propertyPath: m_Name
@@ -13676,8 +13681,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132802343}
-  m_LocalRotation: {x: 0.43087044, y: 0, z: 0, w: 0.9024138}
-  m_LocalPosition: {x: 0, y: 20, z: -15}
+  m_LocalRotation: {x: 0.26325846, y: 0, z: 0, w: 0.9647254}
+  m_LocalPosition: {x: 0, y: 4.09, z: -5.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14196,6 +14201,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b23254ed1eaeb72438c2e411b95a8250, type: 2}
+    - target: {fileID: 8247980774860512230, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -4752486825937246483, guid: 03d4523790b8cb34685ab1b4aa3b78d8, type: 3}
     - {fileID: -4930312959292017103, guid: 03d4523790b8cb34685ab1b4aa3b78d8, type: 3}
@@ -19293,7 +19303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  activeAnimation: 0
+  activeAnimation: 1
 --- !u!1001 &1454868118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19618,13 +19628,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1513737598}
-  activeAnimation: 0
+  activeAnimation: 3
 --- !u!95 &1513737598 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 839418189990838799, guid: 7be46a948b5001c4da48c435f0e8a986,
     type: 3}
   m_PrefabInstance: {fileID: 862311868}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513737601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513737595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - TavernTutorial2
+  animationAfterEncounter: 1
+  moveNPC: 1
+  cordsPos: {x: -9.05, y: 0.08, z: 5.61}
+  cordsRot: {x: 0, y: -172.77, z: 0}
+--- !u!114 &1513737602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513737595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - TavernTutorial1
+  animationAfterEncounter: 6
+  moveNPC: 1
+  cordsPos: {x: -7.05, y: 0, z: 3.74}
+  cordsRot: {x: 0, y: 35, z: 0}
 --- !u!1001 &1516866968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19724,7 +19770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1518945572}
-  activeAnimation: 0
+  activeAnimation: 1
 --- !u!95 &1518945572 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5438700013450861333, guid: a1a0cb0ea63c00847818c851e8e1a6e9,
@@ -20080,7 +20126,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh88430
+  m_Name: pb_Mesh130446
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21378,7 +21424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8247980774205871132}
-  activeAnimation: 0
+  activeAnimation: 2
 --- !u!1 &1819633441 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3448994978137791270, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
@@ -21398,13 +21444,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1819633444}
-  activeAnimation: 0
+  activeAnimation: 3
 --- !u!95 &1819633444 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8247980774860512230, guid: 03d4523790b8cb34685ab1b4aa3b78d8,
     type: 3}
   m_PrefabInstance: {fileID: 1215368970}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1819633447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819633441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589b1a5cae4246545933fb452b2eb798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAfterEncounter:
+  - TavernTutorial1
+  - TavernTutorial2
+  animationAfterEncounter: 6
+  moveNPC: 0
+  cordsPos: {x: 0, y: 0, z: 0}
+  cordsRot: {x: 0, y: 0, z: 0}
 --- !u!1001 &1820669368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22814,7 +22879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2085750288}
-  activeAnimation: 0
+  activeAnimation: 5
 --- !u!95 &2085750288 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 839418189990838799, guid: 1dd590274f68fb446963034c83ddd66d,

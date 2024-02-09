@@ -3986,37 +3986,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4460954018568688100, guid: 2b66013256f4d2844b87e65cd3cef5ce,
-        type: 3}
-      propertyPath: tips.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4460954018568688100, guid: 2b66013256f4d2844b87e65cd3cef5ce,
-        type: 3}
-      propertyPath: tips.Array.data[0]
-      value: This group is full of weirdos!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4460954018568688100, guid: 2b66013256f4d2844b87e65cd3cef5ce,
-        type: 3}
-      propertyPath: tips.Array.data[1]
-      value: Hope you're keeping well, friend.
-      objectReference: {fileID: 0}
-    - target: {fileID: 4460954018568688100, guid: 2b66013256f4d2844b87e65cd3cef5ce,
-        type: 3}
-      propertyPath: tips.Array.data[2]
-      value: "You\u2019re doing great. And everyone will be so proud of you"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4460954018568688100, guid: 2b66013256f4d2844b87e65cd3cef5ce,
-        type: 3}
-      propertyPath: tips.Array.data[3]
-      value: Please help, they're holding me hostage.
-      objectReference: {fileID: 0}
-    - target: {fileID: 4460954018568688100, guid: 2b66013256f4d2844b87e65cd3cef5ce,
-        type: 3}
-      propertyPath: tips.Array.data[4]
-      value: I am terrified of elevators. I'm going to start taking steps to avoid
-        them.
-      objectReference: {fileID: 0}
     - target: {fileID: 4649039123643346369, guid: 2b66013256f4d2844b87e65cd3cef5ce,
         type: 3}
       propertyPath: m_Name

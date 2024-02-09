@@ -2457,7 +2457,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4716010773501165345}
   - component: {fileID: 1435801442620334015}
-  - component: {fileID: 6868095835756320442}
   m_Layer: 0
   m_Name: Body.Legs
   m_TagString: Untagged
@@ -2500,7 +2499,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2544,18 +2542,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000020042062, y: -0.5211518, z: 0.009452954}
     m_Extent: {x: 0.1539993, y: 0.5761142, z: 0.27151316}
   m_DirtyAABB: 0
---- !u!114 &6868095835756320442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6251930917387990200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6287606018332259133
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,7 +2839,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4104019468429482964}
   - component: {fileID: 8657433563310025226}
-  - component: {fileID: 8391169139027924734}
   m_Layer: 0
   m_Name: Body.Shirt
   m_TagString: Untagged
@@ -2896,7 +2881,6 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 988e17ffb83f0c94e97394bafd8750ef, type: 2}
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -2942,18 +2926,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0011811852, y: 0.29412088, z: -0.005122736}
     m_Extent: {x: 0.343971, y: 0.26045808, z: 0.13802597}
   m_DirtyAABB: 0
---- !u!114 &8391169139027924734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7633278431488011759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe7a0b8dbe59bf4ea4ef88484c27235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7725044879558173496
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,13 +3339,6 @@ MonoBehaviour:
   Constitution: 15
   Initiative: 0
   InitiativeThisFight: 0
-  outlineMaterials: []
-  m_outlineEventOn:
-    m_PersistentCalls:
-      m_Calls: []
-  m_outlineEventOff:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!23 &6418512797290119056
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3469,7 +3434,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   movement_speed: 0.5
   rotation_speed: 10
-  navPlayer: {fileID: 0}
+  navPlayer: {fileID: 8726117212797868153}
 --- !u!195 &8726117212797868153
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3554,6 +3519,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2661a92c-c105-4053-b0ec-8e54ba605799
     m_ActionName: UI_Interaction/Submit[/Keyboard/enter,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 81400d1a-a7ea-4b01-90a3-9a254a0be34c
+    m_ActionName: PlayerMovement/InteractWithMouse[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f4896d7f-f2c8-43ef-93b6-096fcd81fbff
+    m_ActionName: PlayerMovement/Options[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1a97983-b963-4a9e-b4f0-6ff9a860da96
+    m_ActionName: PlayerMovement/Inventory[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d25bf9c0-86e0-4728-a169-8f6337072bfe
+    m_ActionName: PlayerMovement/Map[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 72e1b9c9-ffd2-45d7-abe1-c15ea8ae5496
+    m_ActionName: PlayerMovement/Journal[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f5148332-bb31-4f00-a8e4-aa0de60f1619
+    m_ActionName: PlayerMovement/Party[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1765c42a-08da-4e85-94d5-8b711af3ec55
+    m_ActionName: UI_Interaction/DebugPPM[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a7aba8a-a822-4af1-be03-bde3d458dfa4
+    m_ActionName: Combat/AttackKey
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 16d04717-3c28-4810-b551-e43de8e90545
+    m_ActionName: Combat/GuardKey
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f86c608-fb0b-4b39-85eb-b2451978015e
+    m_ActionName: Combat/HealKey
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMovement

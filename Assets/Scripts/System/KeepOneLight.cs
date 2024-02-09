@@ -18,7 +18,7 @@ public class KeepOneLight : MonoBehaviour
             Destroy(this.gameObject);
 
         DontDestroyOnLoad(this.gameObject);
-        StartCoroutine(DayNightCycle());
+        //StartCoroutine(DayNightCycle());
     }
 
     IEnumerator DayNightCycle()

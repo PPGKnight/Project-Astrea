@@ -219,6 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 6788127140525411681}
-  lifetime: 2.5
+  lifetime: 1
   minDist: 1
-  maxDist: 3
+  maxDist: 2
